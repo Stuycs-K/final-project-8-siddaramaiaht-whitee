@@ -13,7 +13,12 @@ public Ball(PVector x, PVector v, PVector a){
 }
 
 public void applyForce(PVector F){
-  acceleration.add(F / mass);
+  acceleration.add(F.div(mass));
+}
+
+public void move(){
+  velocity.add(acceleration);
+  position.add(velocity);
 }
 
 }
