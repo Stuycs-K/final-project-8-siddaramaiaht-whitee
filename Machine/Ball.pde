@@ -1,3 +1,5 @@
+class Ball{
+
 private PVector position;
 private PVector velocity;
 private PVector acceleration;
@@ -12,4 +14,6 @@ public Ball(PVector x, PVector v, PVector a){
 
 public void applyForce(PVector F){
   acceleration.add(F / mass);
+}
+
 }
