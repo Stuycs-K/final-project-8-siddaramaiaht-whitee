@@ -3,7 +3,7 @@ class Ball{
 private PVector position;
 private PVector velocity;
 private PVector acceleration;
-final int ballSize = 5;
+final int radius = 5;
 final int mass = 80;
 
 public Ball(PVector x, PVector v, PVector a){
@@ -19,6 +19,12 @@ public void applyForce(PVector F){
 public void move(){
   velocity.add(acceleration);
   position.add(velocity);
+}
+
+public void display(){
+  fill(255);
+  stroke(0);
+  circle(position.x, position.y, radius);
 }
 
 }
