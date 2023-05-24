@@ -7,7 +7,7 @@ class Stopper{
     pos = new PVector(x, y);
     bounciness = k;
   }
-  public Stopper(int x, int y, int wi, int he; float k){
+  public Stopper(int x, int y, int wi, int he, float k){
     pos = new PVector(x, y);
     bounciness = k;
     w = wi;
@@ -26,5 +26,14 @@ class Stopper{
     if (collide(ball.getPos())){
       // bounce equation goes here
     }
+  }
+  public PVector getPos(){
+    return pos;
+  }
+  public int getWidth(){
+    return w;
+  }
+  public int getHeight(){
+    return h;
   }
 }
