@@ -11,12 +11,12 @@ I worked on setting up Stopper superclass, with the necessary methods. I also se
 info
 
 
-## GROUP MEMBER 2
+## Eli White
 
-### date x
+### 2023-05-22
 
-info
+I started to work on the Ball class by making its instance variables, the constructor, and the beginning of the applyForce method. I also 
 
-### date y
+### 2023-05-23
 
 info
