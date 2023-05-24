@@ -19,4 +19,12 @@ class Stopper{
   public void display(){
     
   }
+    public boolean collide(PVector ballPos){
+    return false; // to compile
+  }
+  public void bounce(Ball ball){
+    if (collide(ball.getPos())){
+      // bounce equation goes here
+    }
+  }
 }

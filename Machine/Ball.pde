@@ -27,4 +27,8 @@ public void display(){
   circle(position.x, position.y, radius);
 }
 
+public PVector getPos(){
+  return position;
+}
+
 }
