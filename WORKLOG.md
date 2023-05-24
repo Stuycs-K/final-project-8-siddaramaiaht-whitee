@@ -15,8 +15,8 @@ info
 
 ### 2023-05-22
 
-I started to work on the Ball class by making its instance variables, the constructor, and the beginning of the applyForce method. I also 
+I started to work on the Ball class by making its instance variables, the constructor, and the beginning of the applyForce method.
 
 ### 2023-05-23
 
-info
+I finished the first version of the Ball, and made Machine the main class instead of Ball. I also added bounciness to Stopper's constructor and the methods that will be used whenever a ball collides with a Stopper object. I started to incorporate hitboxes into the Stopper constructors.
