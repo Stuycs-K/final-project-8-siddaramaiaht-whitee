@@ -6,7 +6,4 @@ class Bell extends Stopper{
     score = s;
     bounciness = b;
   }
-  public int bounce(){
-    return bounciness;
-  }
 }
