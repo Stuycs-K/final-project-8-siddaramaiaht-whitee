@@ -19,12 +19,16 @@ class Stopper{
   public void display(){
     
   }
-    public boolean collide(PVector ballPos){
-    return false; // to compile
+  public boolean collide(Ball ball){
+    float ballX = ball.getPos().x;
+    float ballY = ball.getPos().y;
+    float stopX = getPos().x;
+    float stopY = getPos().y;
+    return (ballX < stopX + getWidth() && ballX < stopX + getWidth() && ballY < stopY + getWidth() && ballY > stopX - getWidth());
   }
   public void bounce(Ball ball){
-    if (collide(ball.getPos())){
-      // bounce equation goes here
+    if (collide(ball)){
+      ball.applyForce(ball.getAcc().copy().setMag(-1*getBounciness()));
     }
   }
   public PVector getPos(){

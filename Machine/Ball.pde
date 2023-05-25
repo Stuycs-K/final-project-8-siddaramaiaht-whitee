@@ -3,7 +3,7 @@ class Ball{
 private PVector position;
 private PVector velocity;
 private PVector acceleration;
-final int radius = 5;
+final int radius = 50;
 final int mass = 80;
 
 public Ball(PVector x, PVector v, PVector a){
@@ -29,6 +29,9 @@ public void display(){
 
 public PVector getPos(){
   return position;
+}
+public PVector getAcc(){
+  return acceleration;
 }
 
 }
