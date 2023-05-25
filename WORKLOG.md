@@ -6,9 +6,9 @@
 
 I worked on setting up Stopper superclass, with the necessary methods. I also set up the subclasses of Bell, Bumper, Flipper, and Wall.
 
-### date y
+### 2023-05-23
 
-info
+I worked on the constructors for the subclasses of Stopper. I merged my changes into the main. We worked on merging our changes in order to prevent errors from occurring in future iterations.
 
 
 ## Eli White
