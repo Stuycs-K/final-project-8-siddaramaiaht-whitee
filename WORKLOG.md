@@ -10,6 +10,8 @@ I worked on setting up Stopper superclass, with the necessary methods. I also se
 
 I worked on the constructors for the subclasses of Stopper. I merged my changes into the main. We worked on merging our changes in order to prevent errors from occurring in future iterations.
 
+### 2023-05-24
+I set up the display methods for all the objects, besides the flipper and the ball. I set up a basic format to display the game, which has walls with an opening for the flippers and randomly placed bells within the walls.
 
 ## Eli White
 
