@@ -18,6 +18,7 @@ public void applyForce(PVector F){
 
 public void move(){
   velocity.add(acceleration);
+  //velocity.y =- 9.8 / mass; gravity will be used later
   position.add(velocity);
 }
 
