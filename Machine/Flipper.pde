@@ -37,10 +37,10 @@ class Flipper extends Stopper{
       translate(x, y);
       rect(x - len / 2, y - wi / 2, 2 * len, 2 * wi);
     }else{
-      translate(-1 * x, -1 * y);
       rotate(radians(angle));
       translate(x, y);
-      rect(x - len / 2, y - wi / 2, 2 * len, 2 * wi);
+      rect(-1 * len, -1 * wi, 2 * len, 2 * wi);
+      //rotate(-1 * radians(angle));
     }
   }
 
