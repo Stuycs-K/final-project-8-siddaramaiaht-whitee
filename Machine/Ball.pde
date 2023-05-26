@@ -33,5 +33,8 @@ public PVector getPos(){
 public PVector getAcc(){
   return acceleration;
 }
+public PVector getV(){
+  return velocity;
+}
 
 }

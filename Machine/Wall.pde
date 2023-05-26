@@ -1,7 +1,7 @@
 class Wall extends Stopper{
-  final int wallK = 0;
+  final int wallK = 1;
   public Wall(int x, int y, int w, int h){
-    super(x, y, w, h, 0);
+    super(x, y, w, h, 1);
   }
   public void display(){
     float x = this.getPos().x;

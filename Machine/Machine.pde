@@ -24,7 +24,7 @@ void setup(){
   be3 = new Bell((int)(Math.random()*550)+150, (int)(Math.random()*550)+150, 50, 20);
   be4 = new Bell((int)(Math.random()*550)+150, (int)(Math.random()*550)+150, 50, 20);
   be5 = new Bell((int)(Math.random()*550)+150, (int)(Math.random()*550)+150, 50, 20);
-  b0 = new Ball(new PVector(200, 200), new PVector(5, 5), new PVector(0, 0));
+  b0 = new Ball(new PVector(500, 500), new PVector(-3, -5), new PVector(0, 0));
 
 }
 

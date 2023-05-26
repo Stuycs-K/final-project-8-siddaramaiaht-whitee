@@ -24,13 +24,24 @@ class Stopper{
     float ballY = ball.getPos().y;
     float stopX = getPos().x;
     float stopY = getPos().y;
-    return (ballX < stopX + getWidth() && ballX < stopX + getWidth() && ballY < stopY + getWidth() && ballY > stopX - getWidth());
-  }
+    if(ballX == stopX){
+      ball.getV().mult(-1);//*bounciness);
+    }
+    if(ballY == stopY){
+      ball.getV().mult(-1);//*bounciness);
+    }
+    /*if( (ballX < stopX + getWidth() && ballX > stopX && ballY < stopY + getHeight() && ballY > stopY)){
+      System.out.println("hi");
+      return true;
+    }*/
+    return false;
+  }/*
   public void bounce(Ball ball){
     if (collide(ball)){
-      ball.applyForce(ball.getAcc().copy().setMag(-1*getBounciness()));
+      ball.getV().mult(-1);//*bounciness);
+      System.out.println(ball.getV());
     }
-  }
+  }*/
   public PVector getPos(){
     return pos;
   }
