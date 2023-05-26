@@ -13,6 +13,9 @@ I worked on the constructors for the subclasses of Stopper. I merged my changes 
 ### 2023-05-24
 I set up the display methods for all the objects, besides the flipper and the ball. I set up a basic format to display the game, which has walls with an opening for the flippers and randomly placed bells within the walls.
 
+### 2023-05-25
+I worked on making a collision method for the stoppers. I worked on the code, though the collisions don't return as intended. I also worked on the bounce method to make the ball bounce properly.
+
 ## Eli White
 
 ### 2023-05-22
