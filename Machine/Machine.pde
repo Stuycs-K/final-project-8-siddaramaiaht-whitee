@@ -13,6 +13,7 @@ Bell be5;
 
 void setup(){
   size(800, 800);
+  frameRate(100);
   edge1 = new Wall(700, 100, 20, 600);
   edge2 = new Wall(100, 100, 20, 600);
   edge3 = new Wall(100, 100, 600, 20);
@@ -46,6 +47,12 @@ void draw(){
   be3.display();
   be4.display();
   be5.display();
+  be0.bounce(b0);
+  be1.bounce(b0);
+  be2.bounce(b0);
+  be3.bounce(b0);
+  be4.bounce(b0);
+  be5.bounce(b0);
   b0.display();
   b0.move();
 }

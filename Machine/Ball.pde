@@ -36,5 +36,8 @@ public PVector getAcc(){
 public PVector getV(){
   return velocity;
 }
+public int getRadius(){
+  return radius;
+}
 
 }
