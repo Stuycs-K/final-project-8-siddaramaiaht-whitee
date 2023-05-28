@@ -11,4 +11,5 @@ class Wall extends Stopper{
     fill(100);
     rect(x, y, w, h);
   }
+  public void bounce(Ball ball){
 }

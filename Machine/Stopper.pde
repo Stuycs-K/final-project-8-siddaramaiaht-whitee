@@ -19,14 +19,12 @@ class Stopper{
   public void display(){
     
   }
-  public void bounce(Ball ball){
+  public void bounce(Ball ball, float stopX, float stopY){
     float ballX = ball.getPos().x;
     float ballY = ball.getPos().y;
     float vX = ball.getV().x;
     float vY = ball.getV().y;
-    float stopX = getPos().x;
-    float stopY = getPos().y;
-    int r = ball.getRadius()/2;
+    float r = ball.getRadius()/2;
     
     if(ballX - r + vX < stopX + getWidth() && ballX + r + vX > stopX && ballY - r < stopY + getHeight() && ballY + r > stopY){
       ball.getV().set(-1*vX, vY);
