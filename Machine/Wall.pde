@@ -12,4 +12,8 @@ class Wall extends Stopper{
     rect(x, y, w, h);
   }
   public void bounce(Ball ball){
+    float stopX = getPos().x;
+    float stopY = getPos().y;
+    super.bounce(ball, stopX, stopY);
+  }
 }

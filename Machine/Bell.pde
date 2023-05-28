@@ -13,4 +13,9 @@ class Bell extends Stopper{
     fill(100);
     ellipse(x, y, w, h);
   }
+  public void bounce(Ball ball){
+    float stopX = getPos().x - getWidth()/2;
+    float stopY = getPos().y - getHeight()/2;
+    super.bounce(ball, stopX, stopY);
+  }
 }
