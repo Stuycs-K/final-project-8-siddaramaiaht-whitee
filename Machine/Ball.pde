@@ -21,64 +21,27 @@ public void move(){
   position.add(velocity);
   acceleration.set(0, 0);
   if(position.x > 720){
-    //velocity.setMag(0);
-    float numX = (position.x - 720)/velocity.x+1;
-                System.out.println(position);
-                System.out.println(numX);
-                System.out.println(velocity);
-
+    float numX = (position.x - 720)/velocity.x+0;
     position.y -= (numX*velocity.y-0);
     position.x = 700-getRadius();
-    System.out.println("hi1");
-            System.out.println(position);
-velocity.setMag(0);
-acceleration.setMag(0);
-move();
   }
   if(position.x < 100){
-    //velocity.setMag(0);
-    float numX = (position.x - 100)/velocity.x+1;
-                System.out.println(position);
-                System.out.println(numX);
-                System.out.println(velocity);
-
+    float numX = (position.x - 100)/velocity.x+0;
     position.y -= (numX*velocity.y-0);
     position.x = 120+getRadius();
-    System.out.println("hi2");
-        System.out.println(position);
-        velocity.setMag(0);
-        acceleration.setMag(0);
-move();
   }
   if(position.y < 100){
-    //velocity.setMag(0);
-    float numY = (position.y - 100)/velocity.y+1;
-                System.out.println(position);
-                System.out.println(numY);
-                System.out.println(velocity);
-
+    float numY = (position.y - 100)/velocity.y+0;
     position.x -= (numY*velocity.x-0);
     position.y = 120+getRadius();
-    System.out.println("hi3");
-            System.out.println(position);
-velocity.setMag(0);
-acceleration.setMag(0);
-move();
   }
   if(position.y > 720 && (position.x < 350 || position.x > 470)){
-    //velocity.setMag(0);
-    float numY = (position.y - 720)/velocity.y+1;
-                System.out.println(position);
-                System.out.println(numY);
-                System.out.println(velocity);
-
+    float numY = (position.y - 720)/velocity.y+0;
     position.x -= (numY*velocity.x-0);
     position.y = 700-getRadius();
-    System.out.println("hi4");
-            System.out.println(position);
-velocity.setMag(0);
-acceleration.setMag(0);
-move();
+  }
+  if(velocity.mag() >= 30){
+    velocity.setMag(50);
   }
 }
 
