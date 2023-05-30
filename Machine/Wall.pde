@@ -1,6 +1,19 @@
 class Wall extends Stopper{
-  final wallK = 0;
+  final int wallK = 1;
   public Wall(int x, int y, int w, int h){
-    super(x, y, w, h, wallK);
+    super(x, y, w, h, 1);
+  }
+  public void display(){
+    float x = this.getPos().x;
+    float y = this.getPos().y;
+    int w = this.getWidth();
+    int h = this.getHeight();
+    fill(100);
+    rect(x, y, w, h);
+  }
+  public void bounce(Ball ball){
+    float stopX = getPos().x;
+    float stopY = getPos().y;
+    super.bounce(ball, stopX, stopY);
   }
 }
