@@ -1,6 +1,6 @@
 class Flipper extends Stopper{
-  final float wi = 5;
-  final float len = 15;
+  final float wi = 20;
+  final float len = 60;
   final float swingSpeedInitial = 6;
   final float flipperMass = 10;
   final float swingSweep = 30; // angle that the flipper sweeps 
@@ -32,15 +32,17 @@ class Flipper extends Stopper{
     stroke(0);
     fill(200, 10, 10);
     if (side == 0){
-      translate(-1 * x, -1 * y);
+      pushMatrix();
+      translate(x, y);
       rotate(-1 * radians(angle));
-      translate(x, y);
-      rect(x - len / 2, y - wi / 2, 2 * len, 2 * wi);
+      rect(0, -1 * wi / 2, len, wi);
+      popMatrix();
     }else{
-      rotate(radians(angle));
+      pushMatrix();
       translate(x, y);
-      rect(-1 * len, -1 * wi, 2 * len, 2 * wi);
-      //rotate(-1 * radians(angle));
+      rotate(radians(angle));
+      rect(0, -1 * wi / 2, len, wi);
+      popMatrix();
     }
   }
 
