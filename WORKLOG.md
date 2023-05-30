@@ -26,6 +26,10 @@ I continued working on making the collision method work properly. I came up with
 
 I worked on the bounce method, and I removed removing the collide method to improve the viability of coding the hitboxes. I made the proper interaction for the ball and the stoppers, wall and bell, such that the ball bounces appropriately.
 
+### 2023-05-29
+
+I worked on preventing the ball from leaving the pinball area by calculating where the ball would be if it didn't pass the walls. I also merged the Display branch onto main.
+
 ## Eli White
 
 ### 2023-05-22
