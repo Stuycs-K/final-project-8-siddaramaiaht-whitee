@@ -43,3 +43,7 @@ I started working on the Flipper class more in-depth by adding instance variable
 ### 2023-05-25
 
 I incorporated gravity into ball's movement, which will not be used yet. I added a swingSpeed and mass to Flipper (still need to add acceleration). I tried to display Flippers based on what angle they are at, but as of now it does not work with the built-in rotate and translate methods with a rect. I added new constructors to Stopper so that the subclasses can be more flexible.
+
+### 2023-05-26
+
+I continued to try to rotate a flipper around its center, but I was only able to rotate it around the origin.
