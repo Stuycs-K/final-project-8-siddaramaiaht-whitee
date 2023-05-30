@@ -47,3 +47,7 @@ I incorporated gravity into ball's movement, which will not be used yet. I added
 ### 2023-05-26
 
 I continued to try to rotate a flipper around its center, but I was only able to rotate it around the origin.
+
+### 2023-05-27 - 2023-05-29
+
+I fixed the transformations so that the Flippers are placed and rotated correctly, and I modified the Flipper constructors so that they use less parameters. I made the swing method properly change the rotation of the Flippers and tested it in draw.
