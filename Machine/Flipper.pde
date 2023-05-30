@@ -1,9 +1,9 @@
 class Flipper extends Stopper{
   final int wi = 20;
   final int len = 60;
-  final float initialSwingSpeed = 3;
+  final float initialSwingSpeed = 1;
   final float flipperMass = 10;
-  final float swingSweep = 55; // angle that the flipper sweeps 
+  final float swingSweep = 65; // angle that the flipper sweeps 
   private float swingSpeed; // speed of swing in degrees per frame
   private float angle; // angle to the inward horizontal at their current position
   private float initialAngle = 60;
