@@ -2,7 +2,7 @@ class Bell extends Stopper{
   private int score;
   final int bellK = 1;
   public Bell(int x, int y, int r, int s){
-    super(x, y, r, r, 1.2);
+    super(x, y, r, r, 1.0);
     score = s;
   }
   public void display(){
@@ -14,8 +14,13 @@ class Bell extends Stopper{
     ellipse(x, y, w, h);
   }
   public void bounce(Ball ball){
-    float stopX = getPos().x - getWidth()/2;
+    /*float stopX = getPos().x - getWidth()/2;
     float stopY = getPos().y - getHeight()/2;
-    super.bounce(ball, stopX, stopY);
+    super.bounce(ball, stopX, stopY);*/
+    if(getPos().dist(ball.getPos()) < getWidth()/2 + ball.getRadius()){
+      float stopX = getPos().x - getWidth()/2;
+      float stopY = getPos().y - getHeight()/2;
+      super.bounce(ball, stopX, stopY);
+    }
   }
 }

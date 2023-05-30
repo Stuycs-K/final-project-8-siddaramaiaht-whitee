@@ -16,6 +16,11 @@ void setup(){
   walls.add(new Wall(100, 700, 250, 20));
   walls.add(new Wall(470, 700, 250, 20));
   bumpers.add(new Bumper(350, 350, 1));
+  for(int i = 100; i < 350; i++){
+    stroke(0);
+    walls.add(new Wall(i, 350+i, 1, 350-i));
+    walls.add(new Wall(820-i, 350+i, 1, 350-i));
+  }
   for(int i = 0; i < 6; i++){
     bells.add(new Bell((int)(Math.random()*550)+150, (int)(Math.random()*550)+150, 50, 20));
   }
