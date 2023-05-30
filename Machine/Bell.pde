@@ -2,7 +2,7 @@ class Bell extends Stopper{
   private int score;
   final int bellK = 1;
   public Bell(int x, int y, int r, int s){
-    super(x, y, r, r, 1);
+    super(x, y, r, r, 1.2);
     score = s;
   }
   public void display(){
