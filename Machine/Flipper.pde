@@ -1,28 +1,34 @@
 class Flipper extends Stopper{
-  final float wi = 20;
-  final float len = 60;
-  final float swingSpeedInitial = 6;
+  final int wi = 20;
+  final int len = 60;
+  final float initialSwingSpeed = 3;
   final float flipperMass = 10;
-  final float swingSweep = 30; // angle that the flipper sweeps 
+  final float swingSweep = 55; // angle that the flipper sweeps 
   private float swingSpeed; // speed of swing in degrees per frame
   private float angle; // angle to the inward horizontal at their current position
+  private float initialAngle = 60;
   private int side; // 0 for left, 1 for right
-  public Flipper(int x, int y, float s, float theta, int si){
-    super(x, y); // x and y are coords of center of rotation
-    angle = theta;
-    swingSpeed = s;
+  
+  final int leftX = 100;
+  final int leftY = 300;
+  final int rightX = width - leftX;
+  final int rightY = leftY;
+  
+  public Flipper(int si){
+    if (si == 0){
+      pos = new PVector(leftX, leftY);
+    }
+    if (si == 1){
+      pos = new PVector(rightX, rightY);
+    }
+    angle = initialAngle;
+    swingSpeed = initialSwingSpeed;
     side = si;
   }
   
-  public void setSwingSpeed(float newSpeed){
-    swingSpeed = newSpeed;
-  }
-  
   public void swing(){
-    setSwingSpeed(swingSpeedInitial);
-    for (int count = 0; count < swingSweep / swingSpeed; count++){
+    if (angle >= initialAngle - swingSweep + swingSpeed){
       angle -= swingSpeed;
-      // will need to change hitbox every time angle changes using trig
     }
   }
   
@@ -34,14 +40,14 @@ class Flipper extends Stopper{
     if (side == 0){
       pushMatrix();
       translate(x, y);
-      rotate(-1 * radians(angle));
-      rect(0, -1 * wi / 2, len, wi);
+      rotate(radians(angle));
+      rect(-1 * len, -1 * wi / 2, 2 * len, wi);
       popMatrix();
     }else{
       pushMatrix();
-      translate(x, y);
-      rotate(radians(angle));
-      rect(0, -1 * wi / 2, len, wi);
+      translate(width - leftX, y);
+      rotate(-1 * radians(angle));
+      rect(-1 * len, -1 * wi / 2, 2 * len, wi);
       popMatrix();
     }
   }
