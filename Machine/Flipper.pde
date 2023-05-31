@@ -6,7 +6,7 @@ class Flipper extends Stopper{
   final float swingSweep = 65; // angle that the flipper sweeps 
   private float swingSpeed; // speed of swing in degrees per frame
   private float angle; // angle to the inward horizontal at their current position
-  private float initialAngle = 60;
+  final float initialAngle = 60;
   private int side; // 0 for left, 1 for right
   
   final int leftX = 100;
@@ -52,4 +52,8 @@ class Flipper extends Stopper{
     }
   }
 
+  public float getAngle(){
+    return angle;
+  }
+  
 }
