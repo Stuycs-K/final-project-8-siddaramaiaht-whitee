@@ -27,20 +27,23 @@ class Flipper extends Stopper{
     angle = initialAngle;
     swingSpeed = initialSwingSpeed;
     side = si;
+    up = true;
   }
   
   public void swing(){
-    if (angle > finalAngle){
+    if (up){
       if (angle >= finalAngle + swingSpeed){
         angle -= swingSpeed;
       }else{
         angle = finalAngle;
+        up = false;
       }
     }else{
       if (angle <= initialAngle - swingSpeed){
         angle += swingSpeed;
       }else{
         angle = initialAngle;
+        up = true;
       }
     }
   }
