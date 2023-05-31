@@ -6,8 +6,8 @@ class Flipper extends Stopper{
   final float swingSweep = 65; // angle that the flipper sweeps 
   private float swingSpeed; // speed of swing in degrees per frame
   private float angle; // angle to the inward horizontal at their current position
-  final float initialAngle = 60;
-  final float finalAngle = initialAngle - swingSweep;
+  final float initialAngle = -60;
+  final float finalAngle = initialAngle + swingSweep;
   private int side; // 0 for left, 1 for right
   
   private boolean up;
@@ -32,15 +32,15 @@ class Flipper extends Stopper{
   
   public void swing(){
     if (up){
-      if (angle >= finalAngle + swingSpeed){
-        angle -= swingSpeed;
+      if (angle <= finalAngle - swingSpeed){
+        angle += swingSpeed;
       }else{
         angle = finalAngle;
         up = false;
       }
     }else{
-      if (angle <= initialAngle - swingSpeed){
-        angle += swingSpeed;
+      if (angle >= initialAngle + swingSpeed){
+        angle -= swingSpeed;
       }else{
         angle = initialAngle;
         up = true;
@@ -56,13 +56,13 @@ class Flipper extends Stopper{
     if (side == 0){
       pushMatrix();
       translate(x, y);
-      rotate(radians(angle));
+      rotate(-1 * radians(angle));
       rect(-1 * len, -1 * wi / 2, 2 * len, wi);
       popMatrix();
     }else{
       pushMatrix();
       translate(width - leftX, y);
-      rotate(-1 * radians(angle));
+      rotate(radians(angle));
       rect(-1 * len, -1 * wi / 2, 2 * len, wi);
       popMatrix();
     }

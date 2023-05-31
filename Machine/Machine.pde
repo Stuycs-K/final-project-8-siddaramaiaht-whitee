@@ -20,7 +20,7 @@ void setup(){
 
 void draw(){
   background(190);
-  if (keyboardInput.isPressed(Controller.SWING) || left.getAngle() < left.getAngleI()){
+  if (keyboardInput.isPressed(Controller.SWING) || left.getAngle() > left.getAngleI()){
     left.swing();
     right.swing();
   }
