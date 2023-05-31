@@ -30,6 +30,11 @@ I worked on the bounce method, and I removed removing the collide method to impr
 
 I worked on preventing the ball from leaving the pinball area by calculating where the ball would be if it didn't pass the walls. I also merged the Display branch onto main.
 
+### 2023-05-30
+
+I worked on a better bounce mechanic but realized that different forms of bounce will be needed for other types of objects. I also added a score mechanic that keeps track of the score and displays it during the game.
+
+
 ## Eli White
 
 ### 2023-05-22
