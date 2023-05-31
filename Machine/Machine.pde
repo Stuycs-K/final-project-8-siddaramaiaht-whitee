@@ -1,5 +1,9 @@
 import java.util.*;
 
+static int PLAYING = 0;
+static int OVER = 1;
+static int MODE = PLAYING;
+
 Ball b;
 ArrayList<Wall> walls = new ArrayList<Wall>();
 ArrayList<Bell> bells = new ArrayList<Bell>();
@@ -27,6 +31,7 @@ void setup(){
 }
 
 void draw(){
+  if(MODE =
   background(255);
   for(int i = 0; i < walls.size(); i++){
     walls.get(i).display();

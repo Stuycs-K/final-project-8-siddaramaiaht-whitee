@@ -15,11 +15,11 @@ class Bell extends Stopper{
     /*float stopX = getPos().x - getWidth()/2;
     float stopY = getPos().y - getHeight()/2;
     super.bounce(ball, stopX, stopY);*/
-    if(getPos().dist(ball.getPos()) < getWidth()/2 + ball.getRadius()){
+    //if(getPos().dist(ball.getPos()) < getWidth()/2 + ball.getRadius()){
       float stopX = getPos().x - getWidth()/2;
       float stopY = getPos().y - getHeight()/2;
       return super.bounce(ball, stopX, stopY);
-    }
-    return false;
+    //}
+    //return false;
   }
 }
