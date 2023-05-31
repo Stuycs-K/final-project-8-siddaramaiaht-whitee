@@ -3,6 +3,7 @@ class Ball{
 private PVector position;
 private PVector velocity;
 private PVector acceleration;
+private int score;
 final int radius = 50;
 final int mass = 80;
 
@@ -62,6 +63,12 @@ public PVector getV(){
 }
 public int getRadius(){
   return radius/2;
+}
+public int getScore(){
+  return score;
+}
+public void addScore(int s){
+  score += s;
 }
 
 }
