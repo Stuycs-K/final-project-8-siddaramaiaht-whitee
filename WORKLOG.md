@@ -55,3 +55,7 @@ I continued to try to rotate a flipper around its center, but I was only able to
 ### 2023-05-27 - 2023-05-29
 
 I fixed the transformations so that the Flippers are placed and rotated correctly, and I modified the Flipper constructors so that they use less parameters. I made the swing method properly change the rotation of the Flippers and tested it in draw.
+
+### 2023-05-30
+
+I added a Controller class (as on the website), and modified it so that pressing the space bar swings both Flippers. I made it so that pressing the space bar once for any amount of time results in the Flippers doing a full swing by determining each frame if the Flippers are passed their initial angle.
