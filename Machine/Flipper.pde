@@ -1,15 +1,17 @@
 class Flipper extends Stopper{
   final int wi = 20; //width 
   final int len = 60; //length
-  final float initialSwingSpeed = 7; // initial speed of the swing
+  private float initialSwingSpeed; // initial speed of the swing
+  final float defaultInitialSwingSpeed = 7;
   final float flipperMass = 30; // mass of flipper to determine how much force it will exert on the ball
   final float swingSweep = 70; // angle that the flipper sweeps 
   private float swingSpeed; // speed of swing in degrees per frame
-  final float swingAcceleration = -1 * (initialSwingSpeed * initialSwingSpeed) / (2 * swingSweep); // acceleration of swing in degress per frame^2
+  private float swingAcceleration; // acceleration of swing in degress per frame^2
   private float angle; // angle to the inward horizontal at their current position
   final float initialAngle = -45;
   final float finalAngle = initialAngle + swingSweep;
   private int side; // 0 for left, 1 for right
+  private float strength; // strength of the swing in terms of initialSpeed
   
   private boolean up;
   
@@ -26,9 +28,12 @@ class Flipper extends Stopper{
       pos = new PVector(rightX, rightY);
     }
     angle = initialAngle;
-    swingSpeed = initialSwingSpeed;
+    swingSpeed = defaultInitialSwingSpeed;
+    initialSwingSpeed = defaultInitialSwingSpeed;
+    swingAcceleration = -1 * (initialSwingSpeed * initialSwingSpeed) / (2 * swingSweep);
     side = si;
     up = true;
+    strength = 0;
   }
   
   public void swing(){
@@ -57,7 +62,7 @@ class Flipper extends Stopper{
     }
     
     //System.out.println(swingSpeed);
-    System.out.println(up);
+    //System.out.println(up);
   }
   
   public void display(){
@@ -86,6 +91,14 @@ class Flipper extends Stopper{
   
   public float getAngleI(){
     return initialAngle;
+  }
+  
+  public void changeStrength(float deltaStrength){
+    if (getAngle() == initialAngle){
+      strength += deltaStrength;
+      initialSwingSpeed += deltaStrength;
+      swingAcceleration = -1 * (initialSwingSpeed * initialSwingSpeed) / (2 * swingSweep);
+    }
   }
   
 }
