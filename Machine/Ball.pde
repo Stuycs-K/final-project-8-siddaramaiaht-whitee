@@ -5,7 +5,7 @@ private PVector velocity;
 private PVector acceleration;
 private int score;
 final int radius = 50;
-final int mass = 80;
+static final int mass = 80;
 
 public Ball(PVector x, PVector v, PVector a){
   position = x;
