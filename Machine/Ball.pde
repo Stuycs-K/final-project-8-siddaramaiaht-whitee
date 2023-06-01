@@ -44,8 +44,8 @@ public void move(){
   if(velocity.mag() >= 30){
     velocity.setMag(50);
   }
-  if(position.x >= 350 && position.x <= 470)){
-    MACHINE.MODE = 1;
+  if(position.y > 720 && position.x >= 350 && position.x <= 470){
+    Machine.MODE = 1;
     position.set(500, 500);
     velocity.set(0, 0);
     acceleration.set(0, 0);

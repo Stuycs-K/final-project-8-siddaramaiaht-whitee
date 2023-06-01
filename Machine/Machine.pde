@@ -31,7 +31,11 @@ void setup(){
 }
 
 void draw(){
-  if(MODE =
+  if(MODE == 1){
+    fill(255, 0, 0);
+    text("GAME OVER", 280, 400);
+  }
+  else{
   background(255);
   for(int i = 0; i < walls.size(); i++){
     walls.get(i).display();
@@ -55,4 +59,5 @@ void draw(){
   fill(0);
   textSize(50);
   text("Score: " + b.getScore(), 20, 50);
+  }
 }
