@@ -34,6 +34,13 @@ I worked on preventing the ball from leaving the pinball area by calculating whe
 
 I worked on a better bounce mechanic but realized that different forms of bounce will be needed for other types of objects. I also added a score mechanic that keeps track of the score and displays it during the game.
 
+### 2023-05-31
+
+I added a game over screen, so when the ball leaves the area of the game, the game ends. I also thought about how I can use the PVectors to calculate the bounce.
+
+### 2023-06-01
+
+I worked on the bounce method with the PVectors in order to bounce the ball correctly. I made some progress using trigonometry, but the ball doesn't bounce quite right, yet. I also made the game look cleaner for a better playing experience.
 
 ## Eli White
 
@@ -67,4 +74,4 @@ I added a Controller class (as on the website), and modified it so that pressing
 
 ### 2023-05-31
 
-I made it so that Flippers swing all the way no matter the swingSpeed and changed the swing method so that they came back to resting position after swinging upwards. I then modified Flipper so that (inward) angles below the horizontal are negative and the angles above positive. I also added acceleration to the Flippers to make their swings look more realistic. 
+I made it so that Flippers swing all the way no matter the swingSpeed and changed the swing method so that they came back to resting position after swinging upwards. I then modified Flipper so that (inward) angles below the horizontal are negative and the angles above positive. I also added acceleration to the Flippers to make their swings look more realistic.
