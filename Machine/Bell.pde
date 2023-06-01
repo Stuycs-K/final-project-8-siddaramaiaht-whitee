@@ -1,7 +1,7 @@
 class Bell extends Stopper{
   final int bellK = 1;
   public Bell(int x, int y, int r, int s){
-    super(x, y, r, r, 1.0, s);
+    super(x, y, r, r, 1, s);
   }
   public void display(){
     float x = this.getPos().x;

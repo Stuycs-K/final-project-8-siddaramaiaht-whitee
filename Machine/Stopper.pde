@@ -20,7 +20,7 @@ class Stopper{
     return bounciness; 
   }
   public void display(){
-    
+    noStroke();
   }
   public boolean bounce(Ball ball, float stopX, float stopY){
     float ballX = ball.getPos().x;

@@ -4,6 +4,7 @@ class Wall extends Stopper{
     super(x, y, w, h, 1, s);
   }
   public void display(){
+    super.display();
     float x = this.getPos().x;
     float y = this.getPos().y;
     int w = this.getWidth();
