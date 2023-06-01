@@ -1,19 +1,20 @@
 class Flipper extends Stopper{
-  final int wi = 20;
-  final int len = 60;
-  final float initialSwingSpeed = 10;
-  final float flipperMass = 30;
-  final float swingSweep = 65; // angle that the flipper sweeps 
+  final int wi = 20; //width 
+  final int len = 60; //length
+  final float initialSwingSpeed = 7; // initial speed of the swing
+  final float flipperMass = 30; // mass of flipper to determine how much force it will exert on the ball
+  final float swingSweep = 70; // angle that the flipper sweeps 
   private float swingSpeed; // speed of swing in degrees per frame
+  final float swingAcceleration = -1 * (initialSwingSpeed * initialSwingSpeed) / (2 * swingSweep); // acceleration of swing in degress per frame^2
   private float angle; // angle to the inward horizontal at their current position
-  final float initialAngle = -60;
+  final float initialAngle = -45;
   final float finalAngle = initialAngle + swingSweep;
   private int side; // 0 for left, 1 for right
   
   private boolean up;
   
-  final int leftX = 100;
-  final int leftY = 300;
+  final int leftX = 200;
+  final int leftY = 450;
   final int rightX = width - leftX;
   final int rightY = leftY;
   
@@ -31,21 +32,32 @@ class Flipper extends Stopper{
   }
   
   public void swing(){
+    //System.out.println(swingSpeed);
     if (up){
-      if (angle <= finalAngle - swingSpeed){
+      if (angle < finalAngle - swingSpeed){
         angle += swingSpeed;
+        swingSpeed += swingAcceleration;
       }else{
         angle = finalAngle;
         up = false;
+        swingSpeed = 0;
       }
     }else{
-      if (angle >= initialAngle + swingSpeed){
+      if (angle == finalAngle){
+        swingSpeed = initialSwingSpeed;
+      }
+      if (angle > initialAngle + swingSpeed){
         angle -= swingSpeed;
+        swingSpeed += swingAcceleration;
       }else{
         angle = initialAngle;
         up = true;
+        swingSpeed = initialSwingSpeed;
       }
     }
+    
+    //System.out.println(swingSpeed);
+    System.out.println(up);
   }
   
   public void display(){
