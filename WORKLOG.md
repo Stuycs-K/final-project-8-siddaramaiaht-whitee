@@ -30,6 +30,11 @@ I worked on the bounce method, and I removed removing the collide method to impr
 
 I worked on preventing the ball from leaving the pinball area by calculating where the ball would be if it didn't pass the walls. I also merged the Display branch onto main.
 
+### 2023-05-30
+
+I worked on a better bounce mechanic but realized that different forms of bounce will be needed for other types of objects. I also added a score mechanic that keeps track of the score and displays it during the game.
+
+
 ## Eli White
 
 ### 2023-05-22
@@ -55,3 +60,11 @@ I continued to try to rotate a flipper around its center, but I was only able to
 ### 2023-05-27 - 2023-05-29
 
 I fixed the transformations so that the Flippers are placed and rotated correctly, and I modified the Flipper constructors so that they use less parameters. I made the swing method properly change the rotation of the Flippers and tested it in draw.
+
+### 2023-05-30
+
+I added a Controller class (as on the website), and modified it so that pressing the space bar swings both Flippers. I made it so that pressing the space bar once for any amount of time results in the Flippers doing a full swing by determining each frame if the Flippers are passed their initial angle.
+
+### 2023-05-31
+
+I made it so that Flippers swing all the way no matter the swingSpeed and changed the swing method so that they came back to resting position after swinging upwards. I then modified Flipper so that (inward) angles below the horizontal are negative and the angles above positive. I also added acceleration to the Flippers to make their swings look more realistic. 
