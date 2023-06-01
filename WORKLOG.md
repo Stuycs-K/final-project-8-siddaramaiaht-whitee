@@ -64,3 +64,7 @@ I fixed the transformations so that the Flippers are placed and rotated correctl
 ### 2023-05-30
 
 I added a Controller class (as on the website), and modified it so that pressing the space bar swings both Flippers. I made it so that pressing the space bar once for any amount of time results in the Flippers doing a full swing by determining each frame if the Flippers are passed their initial angle.
+
+### 2023-05-31
+
+I made it so that Flippers swing all the way no matter the swingSpeed and changed the swing method so that they came back to resting position after swinging upwards. I then modified Flipper so that (inward) angles below the horizontal are negative and the angles above positive. I also added acceleration to the Flippers to make their swings look more realistic. 
