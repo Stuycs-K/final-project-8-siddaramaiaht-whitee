@@ -19,8 +19,16 @@ void keyReleased() {
   keyboardInput.release(keyCode);
 }
 
-Flipper left = new Flipper(0);
-Flipper right = new Flipper(1);
+final int leftX = 295;
+final int leftY = 645;
+final int rightX = 800 - leftX;
+final int rightY = leftY;
+
+final int wi = 20; //width of flippers
+final int len = 100; //length of flippers
+
+Flipper left = new Flipper(0, leftX, leftY, len, wi, 1, 0);
+Flipper right = new Flipper(1, rightX, rightY, len, wi, 1, 0);
 
 boolean upPressedLastFrame = false;
 boolean upLetGo = false;
@@ -36,13 +44,17 @@ void setup(){
   size(800, 800);
   frameRate(100);
   
-  b = new Ball(new PVector(410, 500), new PVector(0, -10), new PVector(10, 0));
+  left.display();
+  right.display();
+  
+  b = new Ball(new PVector(410, 500), new PVector(0, 0.5), new PVector(1, 0));
   
   walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
   walls.add(new Wall(sideGap, sideGap, wallWi, height - 200, 0));
   walls.add(new Wall(sideGap, sideGap, width - 200, wallWi, 0));
   walls.add(new Wall(sideGap, height - sideGap - wallWi, (width - 2 * sideGap - midGap) / 2, wallWi, 0));
   walls.add(new Wall(sideGap + (width - 2 * sideGap - midGap) / 2 + midGap, height - sideGap - wallWi, (width - 2 * sideGap - midGap) / 2, wallWi, 0));
+  
   bumpers.add(new Bumper(350, 350, 1, 30));
   for(int i = 100; i < 300; i++){
     walls.add(new Wall(i, 350+i, 1, 350-i, 0));
@@ -55,17 +67,18 @@ void setup(){
   }  
   
   keyboardInput = new Controller();
-  left.display();
-  right.display();
 }
 
 void draw(){
+  
   if(MODE == 1){
     fill(255, 0, 0);
     text("GAME OVER", 280, 400);
   }
   else{
     background(255);
+    left.display();
+    right.display();
     for(int i = 0; i < walls.size(); i++){
       walls.get(i).display();
       if(walls.get(i).bounce(b)){
@@ -82,6 +95,15 @@ void draw(){
     if(bumpers.get(0).bounce(b)){
       b.addScore(bumpers.get(0).getScore());
     }
+    if(left.bounce(b)){
+      b.addScore(left.getScore());
+      //System.out.println("left bounce");
+    }
+    if(right.bounce(b)){
+      b.addScore(right.getScore());
+      //System.out.println("right bounce");
+    }
+    //System.out.println(left.getBounciness());
     b.display();
     b.applyForce(new PVector(0, 9.8));
     b.move();
@@ -121,8 +143,6 @@ void draw(){
     downPressedLastFrame = true;
   }
   
-  left.display();
-  right.display();
   left.strengthDisplay();
   
   left.updateHitbox();

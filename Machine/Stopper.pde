@@ -5,6 +5,10 @@ class Stopper{
   private int h; //height of hitbox
   private int score;
   public Stopper(){}
+  public Stopper(float k, int s){
+    bounciness = k;
+    score = s;
+  }
   public Stopper(int x, int y){
     pos = new PVector(x,y);
   }

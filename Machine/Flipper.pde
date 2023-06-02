@@ -1,44 +1,36 @@
 class Flipper extends Stopper{
-  final int wi = 20; //width 
-  final int len = 60; //length
-  final float flipperMass = 30; // mass of flipper to determine how much force it will exert on the ball
+  final float flipperMass = 1.5; // mass of flipper to determine how much force it will exert on the ball
   final float swingSweep = 70; // angle that the flipper sweeps 
   final float initialSwingSpeedMax = 20;
-  final float defaultInitialSwingSpeed = initialSwingSpeedMax / 2; 
-  // initialSwingSpeed at strength = 0
+  final float defaultInitialSwingSpeed = initialSwingSpeedMax / 2; // initialSwingSpeed at strength = 0
   final float initialAngle = -45;
   final float finalAngle = initialAngle + swingSweep;
   
   private float initialSwingSpeed; // initial speed of the swing
+  private float ratio;
   private float swingSpeed; // speed of swing in degrees per frame
   private float swingAcceleration; // acceleration of swing in degress per frame^2
   private float angle; // angle to the inward horizontal at their current position
   private int side; // 0 for left, 1 for right
   private float strength; // strength of the swing in terms of initialSpeed
-  private float[][] hitbox; // [[innerX, innerY], [outerX, outerY]]
   
+  private float[][] hitbox; // [[innerX, innerY], [outerX, outerY]]
   private boolean up; // true if going upwards or at rest, false if going downwards
   
-  final int leftX = 300;
-  final int leftY = 675;
-  final int rightX = 800 - leftX;
-  final int rightY = leftY;
-  
-  public Flipper(int si){
+  public Flipper(int si, int x, int y, int wi, int he, float k, int s){
+    super(x, y, wi, he, k, s); 
     hitbox = new float[2][2];
     if (si == 0){
-      pos = new PVector(leftX, leftY);
-      hitbox[0][0] = leftX - len * cos(initialAngle);
-      hitbox[0][1] = leftY + len * sin(initialAngle);
-      hitbox[1][0] = leftX + len * cos(initialAngle);
-      hitbox[1][1] = leftY - len * sin(initialAngle);
+      hitbox[0][0] = leftX + len * cos(radians(initialAngle));
+      hitbox[0][1] = leftY + len * sin(radians(initialAngle));
+      hitbox[1][0] = leftX - len * cos(radians(initialAngle));
+      hitbox[1][1] = leftY - len * sin(radians(initialAngle));
     }
     if (si == 1){
-      pos = new PVector(rightX, rightY);
-      hitbox[0][0] = rightX - len * cos(initialAngle);
-      hitbox[0][1] = rightY + len * sin(initialAngle);
-      hitbox[1][0] = rightX + len * cos(initialAngle);
-      hitbox[1][1] = rightY - len * sin(initialAngle);
+      hitbox[0][0] = rightX - len * cos(radians(initialAngle));
+      hitbox[0][1] = rightY + len * sin(radians(initialAngle));
+      hitbox[1][0] = rightX + len * cos(radians(initialAngle));
+      hitbox[1][1] = rightY - len * sin(radians(initialAngle));
     }
     angle = initialAngle;
     swingSpeed = defaultInitialSwingSpeed;
@@ -49,11 +41,42 @@ class Flipper extends Stopper{
     strength = 0;
   }
   
+  public boolean bounce(Ball ball){
+    //left.updateHitbox();
+    //right.updateHitbox();
+    float stopX = hitbox[0][0];
+    float stopY = hitbox[1][1];
+    stroke(0);
+    fill(1);
+    //circle(stopX, stopY, 10);
+    if (side == 1){
+      return super.bounce(ball, stopX, stopY);
+    }else{
+      float ballX = ball.getPos().x;
+      float ballY = ball.getPos().y;
+      float vX = ball.getV().x;
+      float vY = ball.getV().y;
+      float r = ball.getRadius();
+      
+      if(ballX - r + vX < stopX && ballX + r + vX > stopX - getWidth() && ballY - r < stopY + getHeight() && ballY + r > stopY){
+        ball.getV().set(-1*vX, vY);
+        ball.getV().mult(getBounciness());
+        return true;
+      }
+      if(ballY - r + vY < stopY + getHeight() && ballY + r +  vY > stopY && ballX - r < stopX && ballX + r > stopX - getWidth()){
+        ball.getV().set(vX, -1*vY);
+        ball.getV().mult(getBounciness());
+        return true;
+      }
+      return false;
+    }
+  }
+  
   public void updateHitbox(){
     if (side == 0){
-      hitbox[0][0] = leftX - len * cos(radians(angle));
+      hitbox[0][0] = leftX + len * cos(radians(angle));
       hitbox[0][1] = leftY + len * sin(radians(angle));
-      hitbox[1][0] = leftX + len * cos(radians(angle));
+      hitbox[1][0] = leftX - len * cos(radians(angle));
       hitbox[1][1] = leftY - len * sin(radians(angle));
       /*stroke(0);
       fill(0);
@@ -63,9 +86,9 @@ class Flipper extends Stopper{
       circle(hitbox[1][0], hitbox[1][1], 5);*/
     }
     if (side == 1){
-      hitbox[0][0] = rightX + len * cos(radians(angle));
+      hitbox[0][0] = rightX - len * cos(radians(angle));
       hitbox[0][1] = rightY + len * sin(radians(angle));
-      hitbox[1][0] = rightX - len * cos(radians(angle));
+      hitbox[1][0] = rightX + len * cos(radians(angle));
       hitbox[1][1] = rightY - len * sin(radians(angle));
       /*stroke(0);
       fill(0);
@@ -143,14 +166,6 @@ class Flipper extends Stopper{
      fill(125);
      rect(width - 16, height / 2 - 1, 12, 2);
   }
-
-  public float getAngle(){
-    return angle;
-  }
-  
-  public float getAngleI(){
-    return initialAngle;
-  }
   
   public void changeStrength(float deltaStrength){
     if ((getAngle() == initialAngle) && (initialSwingSpeed + deltaStrength > 0) && (initialSwingSpeed + deltaStrength <= initialSwingSpeedMax)){
@@ -158,6 +173,18 @@ class Flipper extends Stopper{
       initialSwingSpeed += deltaStrength;
       swingAcceleration = -1 * (initialSwingSpeed * initialSwingSpeed) / (2 * swingSweep);
     }
+  }
+  
+  public float getBounciness(){
+    return super.getBounciness() * flipperMass * abs(swingAcceleration);
+  }
+  
+   public float getAngle(){
+    return angle;
+  }
+  
+  public float getAngleI(){
+    return initialAngle;
   }
   
 }
