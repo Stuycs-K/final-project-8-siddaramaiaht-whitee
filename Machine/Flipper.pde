@@ -1,24 +1,26 @@
 class Flipper extends Stopper{
   final int wi = 20; //width 
   final int len = 60; //length
-  private float initialSwingSpeed; // initial speed of the swing
   final float flipperMass = 30; // mass of flipper to determine how much force it will exert on the ball
   final float swingSweep = 70; // angle that the flipper sweeps 
+  final float initialSwingSpeedMax = 20;
+  final float defaultInitialSwingSpeed = initialSwingSpeedMax / 2; 
+  // initialSwingSpeed at strength = 0
+  final float initialAngle = -45;
+  final float finalAngle = initialAngle + swingSweep;
+  
+  private float initialSwingSpeed; // initial speed of the swing
   private float swingSpeed; // speed of swing in degrees per frame
   private float swingAcceleration; // acceleration of swing in degress per frame^2
   private float angle; // angle to the inward horizontal at their current position
-  final float initialAngle = -45;
-  final float finalAngle = initialAngle + swingSweep;
   private int side; // 0 for left, 1 for right
   private float strength; // strength of the swing in terms of initialSpeed
-  final float initialSwingSpeedMax = 20;
-  final float defaultInitialSwingSpeed = initialSwingSpeedMax / 2; // initialSwingSpeed at strength = 0
   private float[][] hitbox; // [[innerX, innerY], [outerX, outerY]]
   
-  private boolean up;
+  private boolean up; // true if going upwards or at rest, false if going downwards
   
-  final int leftX = 200;
-  final int leftY = 450;
+  final int leftX = 300;
+  final int leftY = 675;
   final int rightX = 800 - leftX;
   final int rightY = leftY;
   
@@ -53,24 +55,24 @@ class Flipper extends Stopper{
       hitbox[0][1] = leftY + len * sin(radians(angle));
       hitbox[1][0] = leftX + len * cos(radians(angle));
       hitbox[1][1] = leftY - len * sin(radians(angle));
-      stroke(0);
+      /*stroke(0);
       fill(0);
       circle(hitbox[0][0], hitbox[0][1], 5);
       stroke(255);
       fill(255);
-      circle(hitbox[1][0], hitbox[1][1], 5);
+      circle(hitbox[1][0], hitbox[1][1], 5);*/
     }
     if (side == 1){
       hitbox[0][0] = rightX + len * cos(radians(angle));
       hitbox[0][1] = rightY + len * sin(radians(angle));
       hitbox[1][0] = rightX - len * cos(radians(angle));
       hitbox[1][1] = rightY - len * sin(radians(angle));
-      stroke(0);
+      /*stroke(0);
       fill(0);
       circle(hitbox[0][0], hitbox[0][1], 5);
       stroke(255);
       fill(255);
-      circle(hitbox[1][0], hitbox[1][1], 5);
+      circle(hitbox[1][0], hitbox[1][1], 5);*/
     }
   }
   

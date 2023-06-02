@@ -28,21 +28,25 @@ boolean downPressedLastFrame = false;
 boolean downLetGo = false;
 final float strengthIncrement = 1;
 
+final int wallWi = 20;
+final int sideGap = 100;
+final int midGap = 220;
+
 void setup(){
   size(800, 800);
   frameRate(100);
   
   b = new Ball(new PVector(410, 500), new PVector(0, -10), new PVector(10, 0));
   
-  walls.add(new Wall(700, 100, 20, 600, 0));
-  walls.add(new Wall(100, 100, 20, 600, 0));
-  walls.add(new Wall(100, 100, 600, 20, 0));
-  walls.add(new Wall(100, 700, 200, 20, 0));
-  walls.add(new Wall(520, 700, 200, 20, 0));
+  walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
+  walls.add(new Wall(sideGap, sideGap, wallWi, height - 200, 0));
+  walls.add(new Wall(sideGap, sideGap, width - 200, wallWi, 0));
+  walls.add(new Wall(sideGap, height - sideGap - wallWi, (width - 2 * sideGap - midGap) / 2, wallWi, 0));
+  walls.add(new Wall(sideGap + (width - 2 * sideGap - midGap) / 2 + midGap, height - sideGap - wallWi, (width - 2 * sideGap - midGap) / 2, wallWi, 0));
   bumpers.add(new Bumper(350, 350, 1, 30));
   for(int i = 100; i < 300; i++){
     walls.add(new Wall(i, 350+i, 1, 350-i, 0));
-    walls.add(new Wall(819-i, 350+i, 1, 350-i, 0));
+    walls.add(new Wall(799-i, 350+i, 1, 350-i, 0));
   }
   for(int i = 0; i < 3; i++){
     for(int j = 0; j < 2; j++){
@@ -86,7 +90,7 @@ void draw(){
     text("Score: " + b.getScore(), 20, 50);
   }
   
-  if (keyboardInput.isPressed(Controller.SWING) || left.getAngle() > left.getAngleI()){
+  if ((keyboardInput.isPressed(Controller.SWING) || left.getAngle() > left.getAngleI()) && MODE != 1){
     left.swing();
     right.swing();
   }
