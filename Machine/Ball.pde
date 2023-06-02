@@ -47,7 +47,7 @@ public void move(){
   }
   if(position.y > 720 + getRadius() && position.x >= 300 && position.x <= 520){
     Machine.MODE = 1;
-    position.set(500, 500);
+    position.set(408, 500);
     velocity.set(0, 0);
     acceleration.set(0, 0);
   }
