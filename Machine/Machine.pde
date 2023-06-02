@@ -67,6 +67,13 @@ void draw(){
   left.display();
   right.display();
   left.strengthDisplay();
+  
+  left.updateHitbox();
+  right.updateHitbox();
+  
+  //stroke(0);
+  //fill(0);
+  //rect(200, 450, 10, 10);
 }
 
 void swing(){

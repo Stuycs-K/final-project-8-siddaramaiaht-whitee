@@ -13,20 +13,30 @@ class Flipper extends Stopper{
   private float strength; // strength of the swing in terms of initialSpeed
   final float initialSwingSpeedMax = 20;
   final float defaultInitialSwingSpeed = initialSwingSpeedMax / 2; // initialSwingSpeed at strength = 0
+  private float[][] hitbox; // [[innerX, innerY], [outerX, outerY]]
   
   private boolean up;
   
   final int leftX = 200;
   final int leftY = 450;
-  final int rightX = width - leftX;
+  final int rightX = 600 - leftX;
   final int rightY = leftY;
   
   public Flipper(int si){
+    hitbox = new float[2][2];
     if (si == 0){
       pos = new PVector(leftX, leftY);
+      hitbox[0][0] = leftX - len * cos(initialAngle);
+      hitbox[0][1] = leftY + len * sin(initialAngle);
+      hitbox[1][0] = leftX + len * cos(initialAngle);
+      hitbox[1][1] = leftY - len * sin(initialAngle);
     }
     if (si == 1){
       pos = new PVector(rightX, rightY);
+      hitbox[0][0] = rightX - len * cos(initialAngle);
+      hitbox[0][1] = rightY + len * sin(initialAngle);
+      hitbox[1][0] = rightX + len * cos(initialAngle);
+      hitbox[1][1] = rightY - len * sin(initialAngle);
     }
     angle = initialAngle;
     swingSpeed = defaultInitialSwingSpeed;
@@ -35,6 +45,33 @@ class Flipper extends Stopper{
     side = si;
     up = true;
     strength = 0;
+  }
+  
+  public void updateHitbox(){
+    if (side == 0){
+      hitbox[0][0] = leftX - len * cos(radians(angle));
+      hitbox[0][1] = leftY + len * sin(radians(angle));
+      hitbox[1][0] = leftX + len * cos(radians(angle));
+      hitbox[1][1] = leftY - len * sin(radians(angle));
+      stroke(0);
+      fill(0);
+      circle(hitbox[0][0], hitbox[0][1], 5);
+      stroke(255);
+      fill(255);
+      circle(hitbox[1][0], hitbox[1][1], 5);
+    }
+    if (side == 1){
+      hitbox[0][0] = rightX + len * cos(radians(angle));
+      hitbox[0][1] = rightY + len * sin(radians(angle));
+      hitbox[1][0] = rightX - len * cos(radians(angle));
+      hitbox[1][1] = rightY - len * sin(radians(angle));
+      stroke(0);
+      fill(0);
+      circle(hitbox[0][0], hitbox[0][1], 5);
+      stroke(255);
+      fill(255);
+      circle(hitbox[1][0], hitbox[1][1], 5);
+    }
   }
   
   public void swing(){
@@ -78,13 +115,13 @@ class Flipper extends Stopper{
       pushMatrix();
       translate(x, y);
       rotate(-1 * radians(angle));
-      rect(-1 * len, -1 * wi / 2, 2 * len, wi);
+      rect(-1 * len, 0, 2 * len, wi);
       popMatrix();
     }else{
       pushMatrix();
       translate(width - leftX, y);
       rotate(radians(angle));
-      rect(-1 * len, -1 * wi / 2, 2 * len, wi);
+      rect(-1 * len, 0, 2 * len, wi);
       popMatrix();
     }
   }
@@ -97,7 +134,7 @@ class Flipper extends Stopper{
      color bar = color(ratio * 255, abs(ratio - 0.5) * 255 * 2, (1 - ratio) * 255);
      stroke(bar);
      fill(bar);
-     rect(width - 14, height / 2 + 100 - (int)(ratio * 198), 9, (int)(ratio * 198));
+     rect(width - 14, height / 2 + 99 - (int)(ratio * 198), 8, (int)(ratio * 198));
      stroke(0);
      fill(0);
      rect(width - 16, height / 2 - 1, 11, 2);
