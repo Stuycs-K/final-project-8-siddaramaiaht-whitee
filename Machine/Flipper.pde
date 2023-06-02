@@ -137,9 +137,9 @@ class Flipper extends Stopper{
      stroke(bar);
      fill(bar);
      rect(width - 14, height / 2 + 99 - (int)(ratio * 198), 8, (int)(ratio * 198));
-     stroke(0);
-     fill(0);
-     rect(width - 16, height / 2 - 1, 11, 2);
+     stroke(125);
+     fill(125);
+     rect(width - 16, height / 2 - 1, 12, 2);
   }
 
   public float getAngle(){
