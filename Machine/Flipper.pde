@@ -39,6 +39,9 @@ class Flipper extends Stopper{
   public void swing(){
     //System.out.println(swingSpeed);
     if (up){
+      if (angle == initialAngle){
+        swingSpeed = initialSwingSpeed;
+      }
       if (angle < finalAngle - swingSpeed){
         angle += swingSpeed;
         swingSpeed += swingAcceleration;
@@ -94,10 +97,11 @@ class Flipper extends Stopper{
   }
   
   public void changeStrength(float deltaStrength){
-    if (getAngle() == initialAngle){
+    if ((getAngle() == initialAngle) && (initialSwingSpeed + deltaStrength > 0)){
       strength += deltaStrength;
       initialSwingSpeed += deltaStrength;
       swingAcceleration = -1 * (initialSwingSpeed * initialSwingSpeed) / (2 * swingSweep);
+      System.out.println("initialSwingSpeed: " + initialSwingSpeed);
     }
   }
   
