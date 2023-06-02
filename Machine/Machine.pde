@@ -50,7 +50,7 @@ void draw(){
   
   if (downLetGo){
     left.changeStrength(-1 * strengthIncrement);
-    right.changeStrength(-1 * strenghtIncrement);
+    right.changeStrength(-1 * strengthIncrement);
     downLetGo = false;
     System.out.println("strength decreased");
   }
@@ -66,6 +66,7 @@ void draw(){
   
   left.display();
   right.display();
+  left.strengthDisplay();
 }
 
 void swing(){

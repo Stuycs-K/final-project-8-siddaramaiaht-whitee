@@ -2,7 +2,6 @@ class Flipper extends Stopper{
   final int wi = 20; //width 
   final int len = 60; //length
   private float initialSwingSpeed; // initial speed of the swing
-  final float defaultInitialSwingSpeed = 7;
   final float flipperMass = 30; // mass of flipper to determine how much force it will exert on the ball
   final float swingSweep = 70; // angle that the flipper sweeps 
   private float swingSpeed; // speed of swing in degrees per frame
@@ -12,6 +11,8 @@ class Flipper extends Stopper{
   final float finalAngle = initialAngle + swingSweep;
   private int side; // 0 for left, 1 for right
   private float strength; // strength of the swing in terms of initialSpeed
+  final float initialSwingSpeedMax = 20;
+  final float defaultInitialSwingSpeed = initialSwingSpeedMax / 2; // initialSwingSpeed at strength = 0
   
   private boolean up;
   
@@ -87,6 +88,20 @@ class Flipper extends Stopper{
       popMatrix();
     }
   }
+  
+  public void strengthDisplay(){
+     stroke(0);
+     fill(0);
+     rect(width - 15, height / 2 - 100, 10, 200);
+     float ratio = initialSwingSpeed / initialSwingSpeedMax;
+     color bar = color(ratio * 255, abs(ratio - 0.5) * 255 * 2, (1 - ratio) * 255);
+     stroke(bar);
+     fill(bar);
+     rect(width - 14, height / 2 + 100 - (int)(ratio * 198), 9, (int)(ratio * 198));
+     stroke(0);
+     fill(0);
+     rect(width - 16, height / 2 - 1, 11, 2);
+  }
 
   public float getAngle(){
     return angle;
@@ -97,7 +112,7 @@ class Flipper extends Stopper{
   }
   
   public void changeStrength(float deltaStrength){
-    if ((getAngle() == initialAngle) && (initialSwingSpeed + deltaStrength > 0)){
+    if ((getAngle() == initialAngle) && (initialSwingSpeed + deltaStrength > 0) && (initialSwingSpeed + deltaStrength <= initialSwingSpeedMax)){
       strength += deltaStrength;
       initialSwingSpeed += deltaStrength;
       swingAcceleration = -1 * (initialSwingSpeed * initialSwingSpeed) / (2 * swingSweep);
