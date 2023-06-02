@@ -47,13 +47,14 @@ public void move(){
   }
   if(position.y > 720 + getRadius() && position.x >= 300 && position.x <= 520){
     Machine.MODE = 1;
-    position.set(408, 500);
-    velocity.set(0, 0);
+    position.set(410, 500);
+    velocity.set(0.5, 0);
     acceleration.set(0, 0);
+    score = 0;
   }
-  if(velocity.mag() == 0){
+  /*if(velocity.mag() == 0){
     Machine.MODE = 1;
-  }
+  }*/
 }
 
 public void display(){
