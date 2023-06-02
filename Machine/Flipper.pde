@@ -19,7 +19,7 @@ class Flipper extends Stopper{
   
   final int leftX = 200;
   final int leftY = 450;
-  final int rightX = 600 - leftX;
+  final int rightX = 800 - leftX;
   final int rightY = leftY;
   
   public Flipper(int si){
