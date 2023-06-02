@@ -115,13 +115,15 @@ class Flipper extends Stopper{
       pushMatrix();
       translate(x, y);
       rotate(-1 * radians(angle));
-      rect(-1 * len, 0, 2 * len, wi);
+      //rect(-1 * len, 0, 2 * len, wi);
+      triangle(-1 * len, 0, len, 0, -1 * len, wi);
       popMatrix();
     }else{
       pushMatrix();
       translate(width - leftX, y);
       rotate(radians(angle));
-      rect(-1 * len, 0, 2 * len, wi);
+      //rect(-1 * len, 0, 2 * len, wi);
+      triangle(-1 * len, 0, len, 0, len, wi);
       popMatrix();
     }
   }
@@ -153,7 +155,6 @@ class Flipper extends Stopper{
       strength += deltaStrength;
       initialSwingSpeed += deltaStrength;
       swingAcceleration = -1 * (initialSwingSpeed * initialSwingSpeed) / (2 * swingSweep);
-      System.out.println("initialSwingSpeed: " + initialSwingSpeed);
     }
   }
   

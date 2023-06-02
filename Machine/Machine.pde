@@ -36,32 +36,26 @@ void draw(){
     left.changeStrength(strengthIncrement);
     right.changeStrength(strengthIncrement);
     upLetGo = false;
-    System.out.println("strength increased");
   }
   if (upPressedLastFrame && ! keyboardInput.isPressed(Controller.INCREASE)){
     upLetGo = true;
     upPressedLastFrame = false;
-    System.out.println("up has been let go");
   }
   if (keyboardInput.isPressed(Controller.INCREASE)){
     upPressedLastFrame = true;
-    System.out.println("up pressed");
   }
   
   if (downLetGo){
     left.changeStrength(-1 * strengthIncrement);
     right.changeStrength(-1 * strengthIncrement);
     downLetGo = false;
-    System.out.println("strength decreased");
   }
   if (downPressedLastFrame && ! keyboardInput.isPressed(Controller.DECREASE)){
     downLetGo = true;
     downPressedLastFrame = false;
-    System.out.println("down has been let go");
   }
   if (keyboardInput.isPressed(Controller.DECREASE)){
     downPressedLastFrame = true;
-    System.out.println("down pressed");
   }
   
   left.display();
