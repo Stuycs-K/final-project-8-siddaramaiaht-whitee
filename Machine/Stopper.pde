@@ -4,34 +4,6 @@ class Stopper{
   private int w; //width of hitbox
   private int h; //height of hitbox
   private int score;
-  public Stopper(){}
-  public Stopper(float k, int s){
-    bounciness = k;
-    score = s;
-  }
-  public Stopper(int x, int y){
-    pos = new PVector(x,y);
-  }
-  public Stopper(int x, int y, float k){
-    pos = new PVector(x, y);
-    bounciness = k;
-  }
-  public Stopper(int x, int y, float k, int s){
-    pos = new PVector(x, y);
-    bounciness = k;
-    score = s;
-  }
-  public Stopper(int x, int y, int wi, int he){
-    pos = new PVector(x, y);
-    w = wi;
-    h = he;
-  }
-  public Stopper(int x, int y, int wi, int he, float k){
-    pos = new PVector(x, y);
-    bounciness = k;
-    w = wi;
-    h = he;
-  }
   public Stopper(int x, int y, int wi, int he, float k, int s){
     pos = new PVector(x, y);
     bounciness = k;
