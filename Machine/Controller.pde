@@ -21,6 +21,8 @@ class Controller {
       inputs[INCREASE] = true;
     if (code == 40)
       inputs[DECREASE] = true;
+    if(code == 'Q')
+      Machine.MODE = (Machine.MODE+1)%2;
   }
   
   void release(int code) {

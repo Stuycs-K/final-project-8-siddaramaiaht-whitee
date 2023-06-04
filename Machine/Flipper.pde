@@ -46,9 +46,9 @@ class Flipper extends Stopper{
     //right.updateHitbox();
     float stopX = hitbox[0][0];
     float stopY = hitbox[1][1];
-    stroke(0);
+    /*stroke(0);
     fill(1);
-    //circle(stopX, stopY, 10);
+    circle(stopX, stopY, 10);*/
     if (side == 1){
       return super.bounce(ball, stopX, stopY);
     }else{
