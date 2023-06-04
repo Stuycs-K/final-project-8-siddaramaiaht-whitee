@@ -3,12 +3,24 @@ class Stopper{
   private float bounciness;
   private int w; //width of hitbox
   private int h; //height of hitbox
+  private float[][] hitbox;
+  private float[] hitboxCir;
   private int score;
   public Stopper(int x, int y, int wi, int he, float k, int s){
     pos = new PVector(x, y);
     bounciness = k;
     w = wi;
     h = he;
+    score = s;
+  }
+  public Stopper(float[][] hit, float k, int s){
+    hitbox = hit;
+    bounciness = k;;
+    score = s;
+  }
+  public Stopper(float[] hit, float k, int s){
+    hitboxCir = hit;
+    bounciness = k;
     score = s;
   }
   
@@ -19,23 +31,42 @@ class Stopper{
   public void display(){
     noStroke();
   }
-  public boolean bounce(Ball ball, float stopX, float stopY){
+  public boolean bounce(Ball ball, float stopX, float stopY, String type){
     float ballX = ball.getPos().x;
     float ballY = ball.getPos().y;
     float vX = ball.getV().x;
     float vY = ball.getV().y;
     float r = ball.getRadius();
     
-    if(ballX - r + vX < stopX + getWidth() && ballX + r + vX > stopX && ballY - r < stopY + getHeight() && ballY + r > stopY){
-      ball.getV().set(-1*vX, vY);
-      ball.getV().mult(getBounciness());
-      return true;
+    if (type == "rect"){
+      if(ballX - r + vX < stopX + getWidth() && ballX + r + vX > stopX && ballY - r < stopY + getHeight() && ballY + r > stopY){
+        ball.getV().set(-1*vX, vY);
+        ball.getV().mult(getBounciness());
+        return true;
+      }
+      if(ballY - r + vY < stopY + getHeight() && ballY + r +  vY > stopY && ballX - r < stopX + getWidth() && ballX + r > stopX){
+        ball.getV().set(vX, -1*vY);
+        ball.getV().mult(getBounciness());
+        return true;
+      }
     }
-    if(ballY - r + vY < stopY + getHeight() && ballY + r +  vY > stopY && ballX - r < stopX + getWidth() && ballX + r > stopX){
-      ball.getV().set(vX, -1*vY);
-      ball.getV().mult(getBounciness());
-      return true;
+    
+    else if(type == "tri"){
+      if (hitbox.length == 2){
+        float a = hitbox[0][0];
+        float b = hitbox[0][1];
+        float c = hitbox[1][0];
+        float d = hitbox[1][1];
+        float v = sqrt(sq(vX) + sq(vY)) * abs(vX) / vX * abs(vY) / vY; // the slope of the trajectory of the ball
+        
     }
+    
+    else if (type == "cir"){
+      
+    }
+    
+    else if (type == "
+    
     return false;
   }
   public PVector getPos(){
