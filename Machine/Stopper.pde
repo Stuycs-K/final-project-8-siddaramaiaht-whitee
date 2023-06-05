@@ -57,8 +57,12 @@ class Stopper{
         float b = hitbox[0][1];
         float c = hitbox[1][0];
         float d = hitbox[1][1];
-        float v = sqrt(sq(vX) + sq(vY)) * abs(vX) / vX * abs(vY) / vY; // the slope of the trajectory of the ball
-        
+        float vBall = vY / vX; // the slope of the trajectory of the ball
+        float m = (b - d) / (a - c); // slope of the hitbox (which is a line formed by the two points in hitbox[][])
+        float normal = -1 / m; // slope of the perpendicular to the hitbox
+        float u = (2 * normal + vBall * sq(normal) - vBall) / (1 - sq(normal) + 2 * vBall * normal);
+        float theta = atan(u);
+        ball.setVelocity(new PVector(sqrt(sq(vX) + sq(vY)) * bounciness * cos(theta), sqrt(sq(vX) + sq(vY)) * bounciness * sin(theta)));
     }
     
     else if (type == "cir"){
