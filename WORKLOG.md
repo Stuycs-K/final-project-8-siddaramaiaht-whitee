@@ -79,3 +79,7 @@ I made it so that Flippers swing all the way no matter the swingSpeed and change
 ### 2023-06-01
 
 I made the up and down arrow keys change the strength of the Flippers' swing, which is displayed by a bar on the side. I then added a hitbox for the Flippers using the top two points of the Flippers to make them be able to hit the Ball, which works sometimes because sometimes they pass through the Ball without hitting it. I also made the Flippers display as triangles.
+
+### 2023-06-02 - 2023-06-04
+
+I removed unused Stopper constructors and made new ones for different types of hitboxes (like those that are slanted or circular) that take the form of 1d/2d float arrays. I also started to add to the bounce method to work with these types of hitboxes. 
