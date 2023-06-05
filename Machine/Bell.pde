@@ -18,14 +18,14 @@ class Bell extends Stopper{
   public boolean bounce(Ball ball){
     /*float stopX = getPos().x - getWidth()/2;
     float stopY = getPos().y - getHeight()/2;
-    super.bounce(ball, stopX, stopY);*/
+    super.bounce(ball, stopX, stopY);
     //if(getPos().dist(ball.getPos()) < getWidth()/2 + ball.getRadius()){
       float stopX = getPos().x - getWidth()/2;
       float stopY = getPos().y - getHeight()/2;
       return super.bounce(ball, stopX, stopY);
     //}
-    //return false;
-    /*float stopX = getPos().x;
+    //return false;*/
+    float stopX = getPos().x;
     float stopY = getPos().y;
     float ballX = ball.getPos().x;
     float ballY = ball.getPos().y;
@@ -39,6 +39,6 @@ class Bell extends Stopper{
       //ball.getV().rotate(-1*HALF_PI);
       return true;
     }
-    return false;*/
+    return false;
   }
 }
