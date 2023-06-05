@@ -22,13 +22,9 @@ I worked on making a collision method for the stoppers. I worked on the code, th
 
 I continued working on making the collision method work properly. I came up with the idea of using distance between ball and stopper to create hitboxes rather than an array. Though, I just worked on implementation for rectangular hitboxes for now.
 
-### 2023-05-28
+### 2023-05-27 - 2023-05-29
 
-I worked on the bounce method, and I removed removing the collide method to improve the viability of coding the hitboxes. I made the proper interaction for the ball and the stoppers, wall and bell, such that the ball bounces appropriately.
-
-### 2023-05-29
-
-I worked on preventing the ball from leaving the pinball area by calculating where the ball would be if it didn't pass the walls. I also merged the Display branch onto main.
+I worked on the bounce method, and I removed removing the collide method to improve the viability of coding the hitboxes. I made the proper interaction for the ball and the stoppers, wall and bell, such that the ball bounces appropriately. I worked on preventing the ball from leaving the pinball area by calculating where the ball would be if it didn't pass the walls. I also merged the Display branch onto main.
 
 ### 2023-05-30
 
@@ -41,6 +37,10 @@ I added a game over screen, so when the ball leaves the area of the game, the ga
 ### 2023-06-01
 
 I worked on the bounce method with the PVectors in order to bounce the ball correctly. I made some progress using trigonometry, but the ball doesn't bounce quite right, yet. I also made the game look cleaner for a better playing experience.
+
+### 2023-06-02 - 2023-06-04
+
+I worked on the math for the bounce methods. I tried implementing the math, but there were some errors with the bouncing that caused the ball to roll instead of bounce.
 
 ## Eli White
 
