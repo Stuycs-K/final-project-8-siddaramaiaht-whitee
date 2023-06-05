@@ -75,3 +75,7 @@ I added a Controller class (as on the website), and modified it so that pressing
 ### 2023-05-31
 
 I made it so that Flippers swing all the way no matter the swingSpeed and changed the swing method so that they came back to resting position after swinging upwards. I then modified Flipper so that (inward) angles below the horizontal are negative and the angles above positive. I also added acceleration to the Flippers to make their swings look more realistic.
+
+### 2023-06-01
+
+I made the up and down arrow keys change the strength of the Flippers' swing, which is displayed by a bar on the side. I then added a hitbox for the Flippers using the top two points of the Flippers to make them be able to hit the Ball, which works sometimes because sometimes they pass through the Ball without hitting it. I also made the Flippers display as triangles.
