@@ -63,6 +63,12 @@ class Stopper{
         float u = (2 * normal + vBall * sq(normal) - vBall) / (1 - sq(normal) + 2 * vBall * normal);
         float theta = atan(u);
         ball.setVelocity(new PVector(sqrt(sq(vX) + sq(vY)) * bounciness * cos(theta), sqrt(sq(vX) + sq(vY)) * bounciness * sin(theta)));
+        if(m > 0 && vX < 0 && vY < 0){
+          ball.multVelocity(-1);
+        }
+        if (m < 0 && vX > 0 && vY > 0){
+          ball.multVelocity(-1);
+        }
     }
     
     else if (type == "cir"){

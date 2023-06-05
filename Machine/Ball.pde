@@ -21,6 +21,10 @@ public void setVelocity(PVector v){
   velocity = v;
 }
 
+public void multVelocity(PVector v){
+  velocity.mult(v);
+}
+
 public void move(){
   velocity.add(acceleration);
   //velocity.y =- 9.8 / mass; gravity will be used later
