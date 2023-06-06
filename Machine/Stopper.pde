@@ -69,13 +69,12 @@ class Stopper{
         if (m < 0 && vX > 0 && vY > 0){
           ball.multVelocity(-1);
         }
+      }
     }
     
     else if (type == "cir"){
       
     }
-    
-    else if (type == "
     
     return false;
   }

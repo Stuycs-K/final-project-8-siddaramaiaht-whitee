@@ -27,8 +27,8 @@ final int rightY = leftY;
 final int wi = 20; //width of flippers
 final int len = 100; //length of flippers
 
-Flipper left = new Flipper(0, leftX, leftY, len, wi, 1, 0);
-Flipper right = new Flipper(1, rightX, rightY, len, wi, 1, 0);
+Flipper left = new Flipper(0, new float[][] {{0,0},{0,0}}, 1, 0);
+Flipper right = new Flipper(1, new float[][] {{0,0},{0,0}}, 1, 0);
 
 boolean upPressedLastFrame = false;
 boolean upLetGo = false;

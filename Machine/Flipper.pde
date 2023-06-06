@@ -14,11 +14,11 @@ class Flipper extends Stopper{
   private int side; // 0 for left, 1 for right
   private float strength; // strength of the swing in terms of initialSpeed
   
-  private float[][] hitbox; // [[innerX, innerY], [outerX, outerY]]
+  //private float[][] hitbox; // [[innerX, innerY], [outerX, outerY]]
   private boolean up; // true if going upwards or at rest, false if going downwards
   
-  public Flipper(int si, int x, int y, int wi, int he, float k, int s){
-    super(x, y, wi, he, k, s); 
+  public Flipper(int si, float[][] hit, float k, int s){
+    super(hit, k, s); 
     hitbox = new float[2][2];
     if (si == 0){
       hitbox[0][0] = leftX + len * cos(radians(initialAngle));

@@ -21,8 +21,8 @@ public void setVelocity(PVector v){
   velocity = v;
 }
 
-public void multVelocity(PVector v){
-  velocity.mult(v);
+public void multVelocity(float c){
+  velocity = PVector.mult(velocity, c);
 }
 
 public void move(){
