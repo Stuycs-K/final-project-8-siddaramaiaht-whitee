@@ -45,7 +45,10 @@ class Stopper{
     float ballY = ball.getPos().y;
     float vX = ball.getV().x;
     float vY = ball.getV().y;
+    PVector v = ball.getV(); /*******TEST*********/
     float r = ball.getRadius();
+    float aX = ball.getAcc().x; /*******TEST*********/
+    float aY = ball.getAcc().y; /*******TEST*********/
     
     if (type == "rect"){
       float stopX = pos.x;
@@ -70,16 +73,17 @@ class Stopper{
         float d = hitbox[1][1]; // y of second point
         float mBall = 0; // the slope of the trajectory of the ball
         if (vX == 0){
-          mBall = vY / (vX + 0.000001);
+          mBall = vY / 1e-10;
         }else{
           mBall = vY / vX;
         }
         float m = (b - d) / (a - c); // slope of the hitbox (which is a line formed by the two points in hitbox[][])
         float normal = -1 / m; // slope of the perpendicular to the hitbox
         float u = (2 * normal + mBall * sq(normal) - mBall) / (1 - sq(normal) + 2 * mBall * normal);
+        PVEctor u =  /*******TEST*********/
         float theta = atan(u);
-        float nextBallX = ballX + vX;
-        float nextBallY = ballY + vY;
+        float nextBallX = ballX + vX + aX;
+        float nextBallY = ballY + vY + aY;
         
         /*******TEST*********/
         fill(0);
@@ -94,14 +98,15 @@ class Stopper{
         boolean above = collisionSide.equals("above") && (nextBallY > m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
         boolean below = collisionSide.equals("below") && (nextBallY < m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
         if (above || below){
-          ball.setVelocity(new PVector(sqrt(sq(vX) + sq(vY)) * bounciness * cos(theta), sqrt(sq(vX) + sq(vY)) * bounciness * sin(theta)));
+          //ball.setVelocity(new PVector(sqrt(sq(vX) + sq(vY)) * bounciness * cos(theta), sqrt(sq(vX) + sq(vY)) * bounciness * sin(theta)));
+          ball.setVelocity(u);
           
-          if(m > 0 && vX < 0 && vY < 0){
+          /*if(m > 0 && vX < 0 && vY < 0){
             ball.multVelocity(-1);
           }
           if (m < 0 && vX > 0 && vY > 0){
             ball.multVelocity(-1);
-          }
+          }*/
           System.out.println("tri bounce happened"); /*******TEST*********/
           return true;
         }else{
