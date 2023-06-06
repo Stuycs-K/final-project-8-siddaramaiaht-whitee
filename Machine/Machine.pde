@@ -83,8 +83,9 @@ void draw(){
     background(255);
     
     walls.get(0).display(); /*******TEST*********/
-    //fill(100);
-    //triangle(300, 600, 500, 700, , 700);
+    if (walls.get(0).bounce(b)){
+      b.addScore(walls.get(0).getScore());
+    }
     
     /*left.display();
     right.display();

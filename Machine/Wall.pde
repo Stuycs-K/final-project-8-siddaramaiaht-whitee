@@ -8,15 +8,14 @@ class Wall extends Stopper{
   }
   public void display(){
     super.display();
-    if (hitbox == null && hitboxCir == null){
+    if (hitbox == null){
       float x = this.getPos().x;
       float y = this.getPos().y;
       int w = this.getWidth();
       int h = this.getHeight();
       fill(100);
       rect(x, y, w, h);
-    }
-    else if (hitbox != null){
+    }else{
       System.out.println("correct outer if");  /*******TEST*********/
       float minY = min(hitbox[0][1], hitbox[1][1]);
       float maxY = max(hitbox[0][1], hitbox[1][1]);
@@ -34,18 +33,19 @@ class Wall extends Stopper{
          fill(100);
          triangle(hitbox[0][0], hitbox[0][1], hitbox[1][0], hitbox[1][1], xOfMinY, maxY);
       }
-      if (getCollisionSide().equals("bottom")){
+      if (getCollisionSide().equals("below")){
         fill(100);
         triangle(hitbox[0][0], hitbox[0][1], hitbox[1][0], hitbox[1][1], xOfMaxY, minY);
       }
     }
-    else if (hitboxCir != null){
-      
-    }
   }
   public boolean bounce(Ball ball){
-    float stopX = getPos().x;
-    float stopY = getPos().y;
-    return super.bounce(ball, stopX, stopY, "rect");
+    if (hitbox == null){
+      float stopX = getPos().x;
+      float stopY = getPos().y;
+      return super.bounce(ball, stopX, stopY, "rect");
+    }else{
+      return super.bounce(ball, stopX, stopY, "tri");
+    }
   }
 }
