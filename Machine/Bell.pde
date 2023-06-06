@@ -30,13 +30,15 @@ class Bell extends Stopper{
     float ballX = ball.getPos().x;
     float ballY = ball.getPos().y;
     //Pvector radii = new PVector(getRadius(), ball.getRadius());
-    PVector norm = PVector.sub(getPos(), new PVector(stopX*ball.getRadius()+ballX*getRadius(), stopY*ball.getRadius()+ballY*getRadius()).div(getRadius()+ball.getRadius())).rotate(HALF_PI);
+    PVector norm = PVector.sub(getPos(), new PVector(stopX*ball.getRadius()+ballX*getRadius(), stopY*ball.getRadius()+ballY*getRadius()).div(getRadius()+ball.getRadius())).rotate(-1*HALF_PI);
     if(getPos().dist(ball.getPos().copy().add(ball.getV())) <= ball.getRadius() + getRadius()){
       System.out.println("hi");
       float p = 2*PVector.dot(ball.getV(), norm)/(mass + Ball.mass);
-      ball.getV().set(ball.getV().copy().sub(PVector.mult(norm, (mass-Ball.mass)*p)).setMag(ball.getV().mag()));
+      PVector vCopy = ball.getV().copy();
+      vCopy.set(ball.getV().copy().sub(PVector.mult(norm, (mass-Ball.mass)*p)).setMag(ball.getV().mag()));
       //ball.getPos().set((stopX*ball.getRadius
       //ball.getV().rotate(-1*HALF_PI);
+      ball.getV().rotate(PVector.angleBetween(ball.getV(), vCopy)/2);
       return true;
     }
     return false;
