@@ -1,7 +1,9 @@
 class Wall extends Stopper{
   final int wallK = 1;
+  private PVector[] vertices;
   public Wall(int x, int y, int w, int h, int s){
     super(x, y, w, h, 1, s);
+    vertices = new PVector[] {new PVector(x, y), new PVector(x, y+h), new PVector(x+w, y), new PVector(x+w, y+h)};
   }
   public void display(){
     super.display();
@@ -16,5 +18,8 @@ class Wall extends Stopper{
     float stopX = getPos().x;
     float stopY = getPos().y;
     return super.bounce(ball, stopX, stopY);
+  }
+  public PVector[] getVertices(){
+    return vertices;
   }
 }

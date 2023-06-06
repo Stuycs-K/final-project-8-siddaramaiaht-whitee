@@ -74,6 +74,10 @@ void draw(){
   if(MODE == 1){
     fill(255, 0, 0);
     text("GAME OVER", 280, 400);
+    b.getPos().set(410, 500);
+    b.getV().set(0.5, 0);
+    b.getAcc().set(0, 0);
+    b.score = 0;
   }
   else{
     background(255);
