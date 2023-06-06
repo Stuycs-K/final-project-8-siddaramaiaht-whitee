@@ -95,13 +95,13 @@ class Stopper{
         boolean below = collisionSide.equals("below") && (nextBallY < m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
         if (above || below){
           ball.setVelocity(new PVector(sqrt(sq(vX) + sq(vY)) * bounciness * cos(theta), sqrt(sq(vX) + sq(vY)) * bounciness * sin(theta)));
+          
           if(m > 0 && vX < 0 && vY < 0){
             ball.multVelocity(-1);
           }
           if (m < 0 && vX > 0 && vY > 0){
             ball.multVelocity(-1);
           }
-          //ball.setVelocity(new PVector(0,-10));
           System.out.println("tri bounce happened"); /*******TEST*********/
           return true;
         }else{
