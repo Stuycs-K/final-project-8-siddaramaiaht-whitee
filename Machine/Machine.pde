@@ -42,12 +42,12 @@ final int midGap = 220;
 
 void setup(){
   size(800, 800);
-  frameRate(100);
+  frameRate(20);
   
   /*left.display();
   right.display();*/
   
-  b = new Ball(new PVector(408, 500), new PVector(0, 0.5), new PVector(1, 0));
+  b = new Ball(new PVector(408, 500), new PVector(0, 0), new PVector(0, 0));
   
   walls.add(new Wall(new float[][] {{300, 600},{500, 700}}, "above", 1, 0)); /*******TEST*********/
   
@@ -81,11 +81,6 @@ void draw(){
   }
   else{
     background(255);
-    
-    walls.get(0).display(); /*******TEST*********/
-    /*if (walls.get(0).bounce(b)){
-      b.addScore(walls.get(0).getScore());
-    }*/
     
     /*left.display();
     right.display();
@@ -121,6 +116,14 @@ void draw(){
     fill(0);
     textSize(50);
     text("Score: " + b.getScore(), 20, 50);
+    
+    /*******TEST*********/
+    walls.get(0).display();
+    if (walls.get(0).bounce(b)){
+      b.addScore(walls.get(0).getScore());
+    }
+    
+    /*******TEST*********/
   }
   /*
   if ((keyboardInput.isPressed(Controller.SWING) || left.getAngle() > left.getAngleI()) && MODE != 1){

@@ -73,9 +73,21 @@ class Stopper{
         float normal = -1 / m; // slope of the perpendicular to the hitbox
         float u = (2 * normal + vBall * sq(normal) - vBall) / (1 - sq(normal) + 2 * vBall * normal);
         float theta = atan(u);
-        boolean above = collisionSide.equals("above") && ballY < m * ballX + b - m * a && ((ballX < a && ballX > c) || (ballX > a && ballX < c));
-        boolean bottom = collisionSide.equals("below") && ballY > m * ballX + b - m * a && ((ballX < a && ballX > c) || (ballX > a && ballX < c));
-        if (above || bottom){
+        float nextBallX = ballX + vX;
+        float nextBallY = ballY + vY;
+        
+        /*******TEST*********/
+        fill(0);
+        circle(a, b, 10);
+        circle(c, d, 10);
+        circle(nextBallX, nextBallY, 10);
+        System.out.println("nextBallX: " + nextBallX + " | nextBallY: " + nextBallY);
+        System.out.println("line: " + (m * nextBallX + b - m * a));
+        /*******TEST*********/
+        
+        boolean above = collisionSide.equals("above") && (nextBallY > m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
+        boolean below = collisionSide.equals("below") && (nextBallY < m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
+        if (above || below){
           ball.setVelocity(new PVector(sqrt(sq(vX) + sq(vY)) * bounciness * cos(theta), sqrt(sq(vX) + sq(vY)) * bounciness * sin(theta)));
           if(m > 0 && vX < 0 && vY < 0){
             ball.multVelocity(-1);
@@ -83,10 +95,11 @@ class Stopper{
           if (m < 0 && vX > 0 && vY > 0){
             ball.multVelocity(-1);
           }
-          System.out.println("slant collision happened");
+          //ball.setVelocity(new PVector(0,-10));
+          System.out.println("tri bounce happened"); /*******TEST*********/
           return true;
         }else{
-          System.out.println("slant collision was called");
+
         }
       }
     }

@@ -16,7 +16,6 @@ class Wall extends Stopper{
       fill(100);
       rect(x, y, w, h);
     }else{
-      System.out.println("correct outer if");  /*******TEST*********/
       float minY = min(hitbox[0][1], hitbox[1][1]);
       float maxY = max(hitbox[0][1], hitbox[1][1]);
       float xOfMaxY = 0;
@@ -29,7 +28,6 @@ class Wall extends Stopper{
         xOfMinY = hitbox[0][0];
       }
       if (getCollisionSide().equals("above")){
-         System.out.println("above called"); /*******TEST*********/
          fill(100);
          triangle(hitbox[0][0], hitbox[0][1], hitbox[1][0], hitbox[1][1], xOfMinY, maxY);
       }
