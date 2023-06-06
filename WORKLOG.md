@@ -42,6 +42,11 @@ I worked on the bounce method with the PVectors in order to bounce the ball corr
 
 I worked on the math for the bounce methods. I tried implementing the math, but there were some errors with the bouncing that caused the ball to roll instead of bounce.
 
+### 2023-06-05
+
+I worked on establishing the vertices needed for the bounce method. I also made the game over screen correcty restart the game when the player wants to quit the game.
+
+
 ## Eli White
 
 ### 2023-05-22
