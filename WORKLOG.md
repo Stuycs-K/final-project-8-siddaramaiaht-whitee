@@ -82,4 +82,8 @@ I made the up and down arrow keys change the strength of the Flippers' swing, wh
 
 ### 2023-06-02 - 2023-06-04
 
-I removed unused Stopper constructors and made new ones for different types of hitboxes (like those that are slanted or circular) that take the form of 1d/2d float arrays. I also started to add to the bounce method to work with these types of hitboxes. 
+I removed unused Stopper constructors and made new ones for different types of hitboxes (like those that are slanted or circular) that take the form of 1d/2d float arrays. I also started to add to the bounce method to work with these types of hitboxes.
+
+### 2023-06-05
+
+I started to adapt the Stopper subclasses to the constructors that use new types of hitboxes. I added a slanted/triangle Wall constructor and worked on the "tri" bounce for slanted surfaces. As of now, this part of bounce works for some cases but not for others (I think depending on the sign of the slope of the surface).
