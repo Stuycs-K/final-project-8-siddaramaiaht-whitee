@@ -15,8 +15,14 @@ class Stopper{
     score = s;
   }
   public Stopper(int x, int y, float[][] hit, String side, float k, int s){
-    pos = new PVector(x,y);
+    pos = new PVector(x,y); // for display
     hitbox = hit;
+    bounciness = k;;
+    score = s;
+    collisionSide = side;
+  }
+  public Stopper(float[][] hit, String side, float k, int s){
+    hitbox = hit; // hitbox is used for displaying in this constructor
     bounciness = k;;
     score = s;
     collisionSide = side;

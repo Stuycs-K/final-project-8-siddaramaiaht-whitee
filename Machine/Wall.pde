@@ -3,7 +3,7 @@ class Wall extends Stopper{
   public Wall(int x, int y, int w, int h, int s){
     super(x, y, w, h, 1, s);
   }
-  public Wall(int x, int y, float[][] hit, String side, float k, int s){
+  public Wall(float[][] hit, String side, float k, int s){
     super(x, y, hit, side, k, s);
   }
   public void display(){
