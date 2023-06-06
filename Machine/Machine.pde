@@ -49,7 +49,7 @@ void setup(){
   
   b = new Ball(new PVector(408, 500), new PVector(0, 0), new PVector(0, 0));
   
-  walls.add(new Wall(new float[][] {{300, 600},{500, 700}}, "above", 1, 0)); /*******TEST*********/
+  walls.add(new Wall(new float[][] {{300, 700},{500, 600}}, "above", 1, 0)); /*******TEST*********/
   
   /*walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
   walls.add(new Wall(sideGap, sideGap, wallWi, height - 200, 0));

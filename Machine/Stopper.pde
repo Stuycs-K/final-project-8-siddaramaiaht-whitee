@@ -68,15 +68,15 @@ class Stopper{
         float b = hitbox[0][1]; // y of first point
         float c = hitbox[1][0]; // x of second point
         float d = hitbox[1][1]; // y of second point
-        float vBall = 0; // the slope of the trajectory of the ball
+        float mBall = 0; // the slope of the trajectory of the ball
         if (vX == 0){
-          vBall = vY / (vX + 0.0001);
+          mBall = vY / (vX + 0.000001);
         }else{
-          vBall = vY / vX;
+          mBall = vY / vX;
         }
         float m = (b - d) / (a - c); // slope of the hitbox (which is a line formed by the two points in hitbox[][])
         float normal = -1 / m; // slope of the perpendicular to the hitbox
-        float u = (2 * normal + vBall * sq(normal) - vBall) / (1 - sq(normal) + 2 * vBall * normal);
+        float u = (2 * normal + mBall * sq(normal) - mBall) / (1 - sq(normal) + 2 * mBall * normal);
         float theta = atan(u);
         float nextBallX = ballX + vX;
         float nextBallY = ballY + vY;
@@ -86,6 +86,7 @@ class Stopper{
         circle(a, b, 10);
         circle(c, d, 10);
         circle(nextBallX, nextBallY, 10);
+        System.out.println("vX: " + vX + " | vY: " + vY);
         System.out.println("nextBallX: " + nextBallX + " | nextBallY: " + nextBallY);
         System.out.println("line: " + (m * nextBallX + b - m * a));
         /*******TEST*********/
