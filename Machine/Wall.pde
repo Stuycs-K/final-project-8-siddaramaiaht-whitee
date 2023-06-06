@@ -43,9 +43,9 @@ class Wall extends Stopper{
     if (hitbox == null){
       float stopX = getPos().x;
       float stopY = getPos().y;
-      return super.bounce(ball, stopX, stopY, "rect");
+      return super.bounce(ball, "rect");
     }else{
-      return super.bounce(ball, stopX, stopY, "tri");
+      return super.bounce(ball, "tri");
     }
   }
 }

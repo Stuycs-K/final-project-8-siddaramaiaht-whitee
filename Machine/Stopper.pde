@@ -40,7 +40,7 @@ class Stopper{
   public void display(){
     noStroke();
   }
-  public boolean bounce(Ball ball, float stopX, float stopY, String type){
+  public boolean bounce(Ball ball, String type){
     float ballX = ball.getPos().x;
     float ballY = ball.getPos().y;
     float vX = ball.getV().x;
@@ -48,6 +48,8 @@ class Stopper{
     float r = ball.getRadius();
     
     if (type == "rect"){
+      float stopX = pos.x;
+      float stopY = pos.y;
       if(ballX - r + vX < stopX + getWidth() && ballX + r + vX > stopX && ballY - r < stopY + getHeight() && ballY + r > stopY){
         ball.getV().set(-1*vX, vY);
         ball.getV().mult(getBounciness());

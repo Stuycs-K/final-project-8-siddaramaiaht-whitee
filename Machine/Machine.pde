@@ -83,9 +83,9 @@ void draw(){
     background(255);
     
     walls.get(0).display(); /*******TEST*********/
-    if (walls.get(0).bounce(b)){
+    /*if (walls.get(0).bounce(b)){
       b.addScore(walls.get(0).getScore());
-    }
+    }*/
     
     /*left.display();
     right.display();
