@@ -49,7 +49,7 @@ void setup(){
   
   b = new Ball(new PVector(408, 500), new PVector(0, 0.5), new PVector(1, 0));
   
-  walls.add(new Wall(
+  walls.add(new Wall(new float[][] {{300, 600},{500, 700}}, "above", 1, 0)); /*******TEST*********/
   
   /*walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
   walls.add(new Wall(sideGap, sideGap, wallWi, height - 200, 0));
@@ -81,6 +81,11 @@ void draw(){
   }
   else{
     background(255);
+    
+    walls.get(0).display(); /*******TEST*********/
+    //fill(100);
+    //triangle(300, 600, 500, 700, , 700);
+    
     /*left.display();
     right.display();
     for(int i = 0; i < walls.size(); i++){
