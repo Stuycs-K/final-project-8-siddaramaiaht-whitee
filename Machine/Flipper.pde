@@ -17,8 +17,8 @@ class Flipper extends Stopper{
   //private float[][] hitbox; // [[innerX, innerY], [outerX, outerY]]
   private boolean up; // true if going upwards or at rest, false if going downwards
   
-  public Flipper(int si, float[][] hit, float k, int s){
-    super(hit, k, s); 
+  public Flipper(int si, int x, int y, float[][] hit, float k, int s){
+    super(x, y, hit, "above", k, s); 
     hitbox = new float[2][2];
     if (si == 0){
       hitbox[0][0] = leftX + len * cos(radians(initialAngle));
@@ -50,7 +50,7 @@ class Flipper extends Stopper{
     fill(1); 
     circle(stopX, stopY, 10);*/
     if (side == 1){
-      return super.bounce(ball, stopX, stopY);
+      return super.bounce(ball, stopX, stopY, "tri");
     }else{
       float ballX = ball.getPos().x;
       float ballY = ball.getPos().y;

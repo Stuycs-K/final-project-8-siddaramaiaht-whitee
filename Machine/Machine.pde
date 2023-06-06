@@ -27,8 +27,8 @@ final int rightY = leftY;
 final int wi = 20; //width of flippers
 final int len = 100; //length of flippers
 
-Flipper left = new Flipper(0, new float[][] {{0,0},{0,0}}, 1, 0);
-Flipper right = new Flipper(1, new float[][] {{0,0},{0,0}}, 1, 0);
+//Flipper left = new Flipper(0, leftX, leftY, new float[][] {{0,0},{0,0}}, 1, 0);
+//Flipper right = new Flipper(1, rightX, rightY, new float[][] {{0,0},{0,0}}, 1, 0);
 
 boolean upPressedLastFrame = false;
 boolean upLetGo = false;
@@ -44,12 +44,14 @@ void setup(){
   size(800, 800);
   frameRate(100);
   
-  left.display();
-  right.display();
+  /*left.display();
+  right.display();*/
   
   b = new Ball(new PVector(408, 500), new PVector(0, 0.5), new PVector(1, 0));
   
-  walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
+  walls.add(new Wall(
+  
+  /*walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
   walls.add(new Wall(sideGap, sideGap, wallWi, height - 200, 0));
   walls.add(new Wall(sideGap, sideGap, width - 200, wallWi, 0));
   walls.add(new Wall(sideGap, height - sideGap - wallWi, (width - 2 * sideGap - midGap) / 2, wallWi, 0));
@@ -66,7 +68,9 @@ void setup(){
     }
   }  
   
-  keyboardInput = new Controller();
+  keyboardInput = new Controller();*/
+  
+  //walls.add(
 }
 
 void draw(){
@@ -77,7 +81,7 @@ void draw(){
   }
   else{
     background(255);
-    left.display();
+    /*left.display();
     right.display();
     for(int i = 0; i < walls.size(); i++){
       walls.get(i).display();
@@ -104,6 +108,7 @@ void draw(){
       //System.out.println("right bounce");
     }
     //System.out.println(left.getBounciness());
+    */
     b.display();
     b.applyForce(new PVector(0, 9.8));
     b.move();
@@ -111,7 +116,7 @@ void draw(){
     textSize(50);
     text("Score: " + b.getScore(), 20, 50);
   }
-  
+  /*
   if ((keyboardInput.isPressed(Controller.SWING) || left.getAngle() > left.getAngleI()) && MODE != 1){
     left.swing();
     right.swing();
@@ -147,6 +152,7 @@ void draw(){
   
   left.updateHitbox();
   right.updateHitbox();
+  */
   
   //stroke(0);
   //fill(0);
