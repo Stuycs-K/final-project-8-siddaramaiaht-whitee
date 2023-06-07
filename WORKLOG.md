@@ -46,6 +46,9 @@ I worked on the math for the bounce methods. I tried implementing the math, but 
 
 I worked on establishing the vertices needed for the bounce method. I also made the game over screen correcty restart the game when the player wants to quit the game.
 
+### 2023-06-05
+
+I worked on the bounce method, and I got the ball to bounce more correctly. I also worked on the math for the other stoppers.
 
 ## Eli White
 
