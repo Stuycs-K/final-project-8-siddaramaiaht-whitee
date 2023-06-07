@@ -47,7 +47,7 @@ void setup(){
   /*left.display();
   right.display();*/
   
-  b = new Ball(new PVector(450, 500), new PVector(0.1, 0), new PVector(0, 0));
+  b = new Ball(new PVector(400, 500), new PVector(0, 2), new PVector(0, 0));
   
   walls.add(new Wall(new float[][] {{100, 700},{500, 500}}, "above", 1, 0)); /*******TEST*********/
   

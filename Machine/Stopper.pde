@@ -71,17 +71,24 @@ class Stopper{
         float b = hitbox[0][1]; // y of first point
         float c = hitbox[1][0]; // x of second point
         float d = hitbox[1][1]; // y of second point
-        float mBall = 0; // the slope of the trajectory of the ball
+        /*float mBall = 0; // the slope of the trajectory of the ball
         if (vX == 0){
           mBall = vY / 1e-10;
         }else{
           mBall = vY / vX;
-        }
+        }*/
         float m = (b - d) / (a - c); // slope of the hitbox (which is a line formed by the two points in hitbox[][])
+        /*
         float normal = -1 / m; // slope of the perpendicular to the hitbox
         float u = (2 * normal + mBall * sq(normal) - mBall) / (1 - sq(normal) + 2 * mBall * normal);
         PVEctor u =  /*******TEST*********/
-        float theta = atan(u);
+        //float theta = atan(u);
+        
+        PVector surface = new PVector(a - c, b - d);
+        PVector normal = new PVector(d - b, c - a);
+        float angleBw = PVector.angleBetween(normal, v);
+        PVector newV = v.rotate(2 * angleBw);
+        
         float nextBallX = ballX + vX + aX;
         float nextBallY = ballY + vY + aY;
         
@@ -92,14 +99,15 @@ class Stopper{
         circle(nextBallX, nextBallY, 10);
         System.out.println("vX: " + vX + " | vY: " + vY);
         System.out.println("nextBallX: " + nextBallX + " | nextBallY: " + nextBallY);
-        System.out.println("line: " + (m * nextBallX + b - m * a));
+        //System.out.println("line: " + (m * nextBallX + b - m * a));
         /*******TEST*********/
         
         boolean above = collisionSide.equals("above") && (nextBallY > m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
         boolean below = collisionSide.equals("below") && (nextBallY < m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
         if (above || below){
           //ball.setVelocity(new PVector(sqrt(sq(vX) + sq(vY)) * bounciness * cos(theta), sqrt(sq(vX) + sq(vY)) * bounciness * sin(theta)));
-          ball.setVelocity(u);
+          //ball.setVelocity(newV);
+          System.out.println("newV: <" + newV.x + " , " + newV.y + ">");
           
           /*if(m > 0 && vX < 0 && vY < 0){
             ball.multVelocity(-1);
