@@ -92,3 +92,7 @@ I removed unused Stopper constructors and made new ones for different types of h
 ### 2023-06-05
 
 I started to adapt the Stopper subclasses to the constructors that use new types of hitboxes. I added a slanted/triangle Wall constructor and worked on the "tri" bounce for slanted surfaces. As of now, this part of bounce works for some cases but not for others (I think depending on the sign of the slope of the surface).
+
+### 2023-06-06
+
+I started to use switch over to PVectors from the slopes of lines for the "tri" bounce because it makes it simpler with the built-in methods and eliminates having to convert the slope into a PVector at the end. So far I have used the angleBetween and rotate methods, but it is not working.
