@@ -102,11 +102,12 @@ class Stopper{
         //System.out.println("line: " + (m * nextBallX + b - m * a));
         /*******TEST*********/
         
-        boolean above = collisionSide.equals("above") && (nextBallY > m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
-        boolean below = collisionSide.equals("below") && (nextBallY < m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
-        if (above || below){
+       // boolean above = collisionSide.equals("above") && (nextBallY > m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
+       // boolean below = collisionSide.equals("below") && (nextBallY < m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
+        /*if (above || below){
           //ball.setVelocity(new PVector(sqrt(sq(vX) + sq(vY)) * bounciness * cos(theta), sqrt(sq(vX) + sq(vY)) * bounciness * sin(theta)));
           //ball.setVelocity(newV);
+          //ball.setVelocity(new PVector (0, -10));
           System.out.println("newV: <" + newV.x + " , " + newV.y + ">");
           
           /*if(m > 0 && vX < 0 && vY < 0){
@@ -115,11 +116,11 @@ class Stopper{
           if (m < 0 && vX > 0 && vY > 0){
             ball.multVelocity(-1);
           }*/
-          System.out.println("tri bounce happened"); /*******TEST*********/
-          return true;
+         /* System.out.println("tri bounce happened"); /*******TEST*********/
+         /* return true;
         }else{
 
-        }
+        }*/
       }
     }
     
