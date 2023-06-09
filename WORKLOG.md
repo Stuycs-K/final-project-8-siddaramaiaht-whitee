@@ -99,3 +99,11 @@ I started to adapt the Stopper subclasses to the constructors that use new types
 ### 2023-06-06
 
 I started to use switch over to PVectors from the slopes of lines for the "tri" bounce because it makes it simpler with the built-in methods and eliminates having to convert the slope into a PVector at the end. So far I have used the angleBetween and rotate methods, but it is not working.
+
+### 2023-06-08
+
+I changed how the PVectors work in the Stopper bounce method, but now the Ball vibrates even when I do not use these changes in Stopper.
+
+### 2023-06-08
+
+I started to integrate the Bell bounce method from Tejas's Bounce branch into Stopper and my hitbox branch's use of arrays for hitboxes.
