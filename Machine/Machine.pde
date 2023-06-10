@@ -42,12 +42,12 @@ final int midGap = 220;
 
 void setup(){
   size(800, 800);
-  frameRate(100);
+  frameRate(10);
   
   left.display();
   right.display();
   
-  b = new Ball(new PVector(500, 250), new PVector(0, 0.5), new PVector(1, 0));
+  b = new Ball(new PVector(330, 150), new PVector(0, 0.5), new PVector(1, 0));
   
   walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
   walls.add(new Wall(sideGap, sideGap, wallWi, height - 200, 0));

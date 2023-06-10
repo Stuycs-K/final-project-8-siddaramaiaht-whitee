@@ -18,8 +18,8 @@ class Wall extends Stopper{
     /*float stopX = getPos().x;
     float stopY = getPos().y;
     return super.bounce(ball, vertices[0], vertices[2]);*/
-    PVector v1 = vertices[0];
-    PVector v2 = vertices[2];
+    //PVector v1 = vertices[0];
+    //PVector v2 = vertices[2];
     /*PVector slope = PVector.sub(v2, v1);
     PVector a = PVector.sub(ball.getPos(), v1);
     PVector cross = (a.cross(slope)).cross(a);
@@ -29,15 +29,7 @@ class Wall extends Stopper{
       return true;
     }
     return false;*/
-    PVector slope = PVector.sub(v2, v1);
-    PVector a = PVector.sub(ball.getPos(), v1);
-    float crossMag = (a.cross(slope)).mag();
-    float dist = crossMag/slope.mag();
-    if(dist <= ball.getRadius()){
-      System.out.println("hi1");
-      return true;
-    }
-    return false;
+    return super.bounce(ball, vertices[0], vertices[1]) || super.bounce(ball, vertices[0], vertices[2]) || super.bounce(ball, vertices[1], vertices[3]) || super.bounce(ball, vertices[2], vertices[3]);
   }
   public PVector[] getVertices(){
     return vertices;

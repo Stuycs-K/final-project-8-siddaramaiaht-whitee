@@ -66,14 +66,20 @@ class Stopper{
     }
     return false;*/
     PVector slope = PVector.sub(v2, v1);
-    PVector a = PVector.sub(ball.getPos(), v1);
+    PVector a = PVector.sub(PVector.add(ball.getPos(), ball.getV()), v1);
     float crossMag = (a.cross(slope)).mag();
     float dist = crossMag/slope.mag();
-    if(dist <= ball.getRadius()){
-      //System.out.println("hi1");
-      return true;
+    
+    if(dist < ball.getRadius()){
+      PVector norm = slope.copy().set(-1*slope.y, slope.x);
+      float angle = PVector.angleBetween(ball.getV(), norm);
+      System.out.println(degrees(angle));
+      //if(slope.y/slope.x < 0){
+        
+      ball.getV().rotate(2*angle);
     }
     return false;
+    
   }
   public PVector getPos(){
     return pos;
