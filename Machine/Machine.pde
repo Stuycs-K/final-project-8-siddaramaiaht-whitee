@@ -47,7 +47,7 @@ void setup(){
   left.display();
   right.display();
   
-  b = new Ball(new PVector(408, 500), new PVector(0, 0.5), new PVector(1, 0));
+  b = new Ball(new PVector(500, 250), new PVector(0, 0.5), new PVector(1, 0));
   
   walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
   walls.add(new Wall(sideGap, sideGap, wallWi, height - 200, 0));
@@ -55,6 +55,7 @@ void setup(){
   walls.add(new Wall(sideGap, height - sideGap - wallWi, (width - 2 * sideGap - midGap) / 2, wallWi, 0));
   walls.add(new Wall(sideGap + (width - 2 * sideGap - midGap) / 2 + midGap, height - sideGap - wallWi, (width - 2 * sideGap - midGap) / 2, wallWi, 0));
   
+  walls.add(new Wall(450, 450, 100, 100, 20));
   bumpers.add(new Bumper(350, 350, 1, 30));
   for(int i = 100; i < 300; i++){
     walls.add(new Wall(i, 350+i, 1, 350-i, 0));

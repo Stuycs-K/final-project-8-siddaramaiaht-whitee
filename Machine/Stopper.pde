@@ -47,8 +47,8 @@ class Stopper{
   public void display(){
     noStroke();
   }
-  public boolean bounce(Ball ball, float stopX, float stopY){
-    float ballX = ball.getPos().x;
+  public boolean bounce(Ball ball, PVector v1, PVector v2){//float stopX, float stopY){
+    /*float ballX = ball.getPos().x;
     float ballY = ball.getPos().y;
     float vX = ball.getV().x;
     float vY = ball.getV().y;
@@ -62,6 +62,15 @@ class Stopper{
     if(ballY - r + vY < stopY + getHeight() && ballY + r +  vY > stopY && ballX - r < stopX + getWidth() && ballX + r > stopX){
       ball.getV().set(vX, -1*vY);
       ball.getV().mult(getBounciness());
+      return true;
+    }
+    return false;*/
+    PVector slope = PVector.sub(v2, v1);
+    PVector a = PVector.sub(ball.getPos(), v1);
+    float crossMag = (a.cross(slope)).mag();
+    float dist = crossMag/slope.mag();
+    if(dist <= ball.getRadius()){
+      //System.out.println("hi1");
       return true;
     }
     return false;

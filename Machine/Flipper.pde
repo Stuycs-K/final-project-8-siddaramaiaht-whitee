@@ -50,7 +50,8 @@ class Flipper extends Stopper{
     fill(1);
     circle(stopX, stopY, 10);*/
     if (side == 1){
-      return super.bounce(ball, stopX, stopY);
+      //return super.bounce(ball, stopX, stopY);
+      return true;
     }else{
       float ballX = ball.getPos().x;
       float ballY = ball.getPos().y;

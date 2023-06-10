@@ -13,7 +13,7 @@ class Bumper extends Stopper{
   public boolean bounce(Ball b){
     float x = this.getPos().x;
     float y = this.getPos().y;
-    return super.bounce(b, x-20, y+10);
+    return super.bounce(b, vertices[0], vertices[1]);
   }
   public PVector[] getVertices(){
     return vertices;
