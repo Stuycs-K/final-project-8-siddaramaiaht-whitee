@@ -1,6 +1,6 @@
 class Bumper extends Stopper{
   private PVector[] vertices;
-  public Bumper(int x1, int y1, int x2, int y2, int x3, int y3, int k, int s){
+  public Bumper(int x1, int y1, int x2, int y2, int x3, int y3, float k, int s){
     super(x1, y1, 40, 10, k, s);
     vertices = new PVector[] {new PVector(x1, y1), new PVector(x2, y2), new PVector(x3, y3)};
   }

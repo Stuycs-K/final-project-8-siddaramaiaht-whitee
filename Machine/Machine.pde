@@ -27,8 +27,8 @@ final int rightY = leftY;
 final int wi = 20; //width of flippers
 final int len = 100; //length of flippers
 
-Flipper left = new Flipper(0, leftX, leftY, len, wi, 10, 0);
-Flipper right = new Flipper(1, rightX, rightY, len, wi, 10, 0);
+Flipper left = new Flipper(0, leftX, leftY, len, wi, 2, 0);
+Flipper right = new Flipper(1, rightX, rightY, len, wi, 2, 0);
 
 boolean upPressedLastFrame = false;
 boolean upLetGo = false;
@@ -42,7 +42,7 @@ final int midGap = 220;
 
 void setup(){
   size(800, 800);
-  frameRate(10);
+  frameRate(100);
   
   left.display();
   right.display();
@@ -56,8 +56,8 @@ void setup(){
   walls.add(new Wall(sideGap + (width - 2 * sideGap - midGap) / 2 + midGap, height - sideGap - wallWi, (width - 2 * sideGap - midGap) / 2, wallWi, 0));
   
   //walls.add(new Wall(450, 450, 100, 100, 20));
-  bumpers.add(new Bumper(100, 400, 100, 700, 350, 700, 1, 1));
-  bumpers.add(new Bumper(700, 400, 450, 700, 700, 700, 1, 1));
+  bumpers.add(new Bumper(100, 400, 100, 700, 350, 700, 0.5, 0));
+  bumpers.add(new Bumper(700, 400, 450, 700, 700, 700, 0.5, 0));
   /*for(int i = 100; i < 300; i++){
     walls.add(new Wall(i, 350+i, 1, 350-i, 0));
     walls.add(new Wall(799-i, 350+i, 1, 350-i, 0));

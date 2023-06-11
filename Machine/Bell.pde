@@ -2,7 +2,7 @@ class Bell extends Stopper{
   final int bellK = 1;
   final int mass = 5000;
   public Bell(int x, int y, int r, int s){
-    super(x, y, r, r, 1, s);
+    super(x, y, r, r, 3, s);
   }
   public void display(){
     float x = this.getPos().x;
@@ -43,4 +43,15 @@ class Bell extends Stopper{
     }
     return false;
   }
+  /*if(getPos().dist(ball.getPos().copy().add(ball.getV())) <= ball.getRadius() + getRadius()){
+    PVector dist = PVector.sub(ball.getPos(), getPos());
+    PVector norm = dist.copy().set(-1*dist.y, dist.x);
+    PVector mid = PVector.add(ball.getPos(), getPos()).mult(0.5);
+    float m = dist.y/dist.x;
+    PVector v1 = new PVector((m*mid.x-mid.y)/m, 0);
+    PVector v2 = new PVector(0, mid.y-m*mid.x);
+    return super.bounce(ball, v1, v2);
+  }
+  return false;
+}*/
 }
