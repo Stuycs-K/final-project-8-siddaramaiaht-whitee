@@ -76,6 +76,7 @@ class Flipper extends Stopper{
     }*/
     if(super.bounce(ball, vertices[0], vertices[1]) || super.bounce(ball, vertices[0], vertices[2]) || super.bounce(ball, vertices[1], vertices[2])){
       System.out.println("no");
+      triangle(vertices[0].x, vertices[0].y, vertices[1].x, vertices[1].y, vertices[2].x, vertices[2].y);
     }
     return false;
   }
@@ -149,9 +150,9 @@ class Flipper extends Stopper{
       translate(x, y);
       rotate(-1 * radians(angle));
       //rect(-1 * len, 0, 2 * len, wi);
-      vertices[0] = new PVector(-1 * len, 0);
-      vertices[1] = new PVector(len, 0);
-      vertices[2] = new PVector(-1 * len, wi);
+      vertices[0] = new PVector(-1 * len+x, y);
+      vertices[1] = new PVector(len+x, y);
+      vertices[2] = new PVector(-1 * len+x, wi+y);
       triangle(-1 * len, 0, len, 0, -1 * len, wi);
       popMatrix();
     }else{
@@ -159,9 +160,9 @@ class Flipper extends Stopper{
       translate(width - leftX, y);
       rotate(radians(angle));
       //rect(-1 * len, 0, 2 * len, wi);
-      vertices[0] = new PVector(-1 * len, 0);
-      vertices[1] = new PVector(len, 0);
-      vertices[2] = new PVector(len, wi);
+      vertices[0] = new PVector(-1 * len+width - leftX, y);
+      vertices[1] = new PVector(len+width - leftX, y);
+      vertices[2] = new PVector(len+width - leftX, wi+y);
       triangle(-1 * len, 0, len, 0, len, wi);
       popMatrix();
     }

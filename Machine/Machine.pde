@@ -42,7 +42,7 @@ final int midGap = 220;
 
 void setup(){
   size(800, 800);
-  frameRate(10);
+  frameRate(100);
   
   left.display();
   right.display();
