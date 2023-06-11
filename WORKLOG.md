@@ -22,13 +22,9 @@ I worked on making a collision method for the stoppers. I worked on the code, th
 
 I continued working on making the collision method work properly. I came up with the idea of using distance between ball and stopper to create hitboxes rather than an array. Though, I just worked on implementation for rectangular hitboxes for now.
 
-### 2023-05-28
+### 2023-05-27 - 2023-05-29
 
-I worked on the bounce method, and I removed removing the collide method to improve the viability of coding the hitboxes. I made the proper interaction for the ball and the stoppers, wall and bell, such that the ball bounces appropriately.
-
-### 2023-05-29
-
-I worked on preventing the ball from leaving the pinball area by calculating where the ball would be if it didn't pass the walls. I also merged the Display branch onto main.
+I worked on the bounce method, and I removed removing the collide method to improve the viability of coding the hitboxes. I made the proper interaction for the ball and the stoppers, wall and bell, such that the ball bounces appropriately. I worked on preventing the ball from leaving the pinball area by calculating where the ball would be if it didn't pass the walls. I also merged the Display branch onto main.
 
 ### 2023-05-30
 
@@ -41,6 +37,31 @@ I added a game over screen, so when the ball leaves the area of the game, the ga
 ### 2023-06-01
 
 I worked on the bounce method with the PVectors in order to bounce the ball correctly. I made some progress using trigonometry, but the ball doesn't bounce quite right, yet. I also made the game look cleaner for a better playing experience.
+
+### 2023-06-02 - 2023-06-04
+
+I worked on the math for the bounce methods. I tried implementing the math, but there were some errors with the bouncing that caused the ball to roll instead of bounce.
+
+### 2023-06-05
+
+I worked on establishing the vertices needed for the bounce method. I also made the game over screen correctly restart the game when the player wants to quit the game.
+
+### 2023-06-06
+
+I worked on the bounce method, and I got the ball to bounce more correctly. I also worked on the math for the other stoppers.
+
+### 2023-06-07
+
+I continued working on the math for the bounce method by trying to find the angle of rotation of the velocity around the normal vectors. I worked on debugging my bounce method, but forgot to commit my work. I found that the ball bounced two times off of the bells.
+
+### 2023-06-09
+
+I worked on finding the proper distance from a point to a line to know when to correctly bounce the ball off the side.
+
+### 2023-06-10
+
+I found the correct formulas to bounce the ball off of the slanted side. I implemented the formulas into my code, and now the ball bounces correctly off the side. I also worked on the bounce for the flippers.
+
 
 ## Eli White
 
@@ -75,3 +96,31 @@ I added a Controller class (as on the website), and modified it so that pressing
 ### 2023-05-31
 
 I made it so that Flippers swing all the way no matter the swingSpeed and changed the swing method so that they came back to resting position after swinging upwards. I then modified Flipper so that (inward) angles below the horizontal are negative and the angles above positive. I also added acceleration to the Flippers to make their swings look more realistic.
+
+### 2023-06-01
+
+I made the up and down arrow keys change the strength of the Flippers' swing, which is displayed by a bar on the side. I then added a hitbox for the Flippers using the top two points of the Flippers to make them be able to hit the Ball, which works sometimes because sometimes they pass through the Ball without hitting it. I also made the Flippers display as triangles.
+
+### 2023-06-02 - 2023-06-04
+
+I removed unused Stopper constructors and made new ones for different types of hitboxes (like those that are slanted or circular) that take the form of 1d/2d float arrays. I also started to add to the bounce method to work with these types of hitboxes.
+
+### 2023-06-05
+
+I started to adapt the Stopper subclasses to the constructors that use new types of hitboxes. I added a slanted/triangle Wall constructor and worked on the "tri" bounce for slanted surfaces. As of now, this part of bounce works for some cases but not for others (I think depending on the sign of the slope of the surface).
+
+### 2023-06-06
+
+I started to use switch over to PVectors from the slopes of lines for the "tri" bounce because it makes it simpler with the built-in methods and eliminates having to convert the slope into a PVector at the end. So far I have used the angleBetween and rotate methods, but it is not working.
+
+### 2023-06-08
+
+I changed how the PVectors work in the Stopper bounce method, but now the Ball vibrates even when I do not use these changes in Stopper.
+
+### 2023-06-09
+
+I started to integrate the Bell bounce method from Tejas's Bounce branch into Stopper and my hitbox branch's use of arrays for hitboxes.
+
+### 2023-06-10
+
+I made my bounce for slanted surfaces work for when the Ball needs to bounce towards the left.
