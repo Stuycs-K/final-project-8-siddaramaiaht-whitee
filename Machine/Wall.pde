@@ -2,7 +2,7 @@ class Wall extends Stopper{
   final int wallK = 1;
   private PVector[] vertices;
   public Wall(int x, int y, int w, int h, int s){
-    super(x, y, w, h, 0.5, s);
+    super(x, y, w, h, 0.9, s);
     vertices = new PVector[] {new PVector(x, y), new PVector(x, y+h), new PVector(x+w, y), new PVector(x+w, y+h)};
   }
   public void display(){

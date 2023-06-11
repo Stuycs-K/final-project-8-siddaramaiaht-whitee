@@ -65,10 +65,16 @@ class Stopper{
       return true;
     }
     return false;*/
-    PVector slope = PVector.sub(v2, v1);
+    /*PVector slope = PVector.sub(v2, v1);
     PVector a = PVector.sub(PVector.add(ball.getPos(), ball.getV()), v1);
     float crossMag = (a.cross(slope)).mag();
     float dist = crossMag/slope.mag();
+    //if(PVector.add(ball.getPos(), ball.getV()).dist(v1) <= ball.getRadius() || PVector.add(ball.getPos(), ball.getV()).dist(v2) <= ball.getRadius()){
+      //return true;
+    //}
+    //PVector slope = PVector.sub(v2, v1);
+    //PVector a = PVector.sub(PVector.add(ball.getPos(), ball.getV()), v1);
+    //float dot = a.dot(
     
     if(dist < ball.getRadius()){
       PVector norm = slope.copy().set(-1*slope.y, slope.x);
@@ -76,10 +82,32 @@ class Stopper{
       System.out.println(degrees(angle));
       //if(slope.y/slope.x < 0){
         
-      ball.getV().rotate(2*angle);
+      ball.getV().rotate(-1*angle);
     }
     return false;
-    
+    */
+    PVector slope = PVector.sub(v2, v1);
+    PVector a = PVector.sub(PVector.add(ball.getPos(), ball.getV()), v1);
+    float dot = a.dot(slope)/slope.magSq();
+    if(dot > 1){
+      //return false;
+      dot = 1;
+    }
+    else if(dot < 0){
+      //return false;
+      dot = 0;
+    }
+    PVector closest = PVector.add(v1, PVector.mult(slope, dot));
+    //PVector dist = PVector.sub(closest, ball.getPos());
+    if(PVector.dist(PVector.add(ball.getPos(), ball.getV()), closest) < ball.getRadius()){
+      PVector norm = slope.copy().set(-1*slope.y, slope.x);
+      PVector u = PVector.mult(norm, ball.getV().dot(norm)/norm.magSq());
+      PVector w = PVector.sub(ball.getV(), u);
+      PVector newV = PVector.sub(w, u);
+      ball.getV().set(PVector.mult(newV, bounciness));
+      return true;
+    }
+    return false;
   }
   public PVector getPos(){
     return pos;

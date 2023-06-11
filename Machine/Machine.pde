@@ -47,7 +47,7 @@ void setup(){
   left.display();
   right.display();
   
-  b = new Ball(new PVector(330, 150), new PVector(0, 0.5), new PVector(1, 0));
+  b = new Ball(new PVector(150, 250), new PVector(0, 0.5), new PVector(1, 0));
   
   walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
   walls.add(new Wall(sideGap, sideGap, wallWi, height - 200, 0));
@@ -55,12 +55,14 @@ void setup(){
   walls.add(new Wall(sideGap, height - sideGap - wallWi, (width - 2 * sideGap - midGap) / 2, wallWi, 0));
   walls.add(new Wall(sideGap + (width - 2 * sideGap - midGap) / 2 + midGap, height - sideGap - wallWi, (width - 2 * sideGap - midGap) / 2, wallWi, 0));
   
-  walls.add(new Wall(450, 450, 100, 100, 20));
-  bumpers.add(new Bumper(350, 350, 1, 30));
-  for(int i = 100; i < 300; i++){
+  //walls.add(new Wall(450, 450, 100, 100, 20));
+  bumpers.add(new Bumper(100, 400, 100, 700, 350, 700, 1, 1));
+  bumpers.add(new Bumper(700, 400, 450, 700, 700, 700, 1, 1));
+  /*for(int i = 100; i < 300; i++){
     walls.add(new Wall(i, 350+i, 1, 350-i, 0));
     walls.add(new Wall(799-i, 350+i, 1, 350-i, 0));
-  }
+  }*/
+  //bumpers.add(
   for(int i = 0; i < 3; i++){
     for(int j = 0; j < 2; j++){
       bells.add(new Bell((int)(Math.random()*125)+145+i*200, (int)(Math.random()*125)+145+175*j, 50, 30));
@@ -96,9 +98,11 @@ void draw(){
         b.addScore(bells.get(i).getScore());
       }
     }
-    bumpers.get(0).display();
-    if(bumpers.get(0).bounce(b)){
-      b.addScore(bumpers.get(0).getScore());
+    for(int i = 0; i < bumpers.size(); i++){
+      bumpers.get(i).display();
+      if(bumpers.get(i).bounce(b)){
+        b.addScore(bumpers.get(i).getScore());
+      }
     }
     if(left.bounce(b)){
       b.addScore(left.getScore());
