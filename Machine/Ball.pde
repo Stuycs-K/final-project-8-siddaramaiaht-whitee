@@ -45,12 +45,11 @@ public void move(){
   if(velocity.mag() >= 30){
     velocity.setMag(30);
   }
+  if(velocity.mag() < 0.1){
+    velocity.mult(0.1/velocity.mag());
+  }
   if(position.y > 720 + getRadius() && position.x >= 300 && position.x <= 520){
     Machine.MODE = 1;
-    position.set(410, 500);
-    velocity.set(0.5, 0);
-    acceleration.set(0, 0);
-    score = 0;
   }
   /*if(velocity.mag() == 0){
     Machine.MODE = 1;

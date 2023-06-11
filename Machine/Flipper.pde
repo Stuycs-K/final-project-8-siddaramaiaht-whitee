@@ -17,8 +17,11 @@ class Flipper extends Stopper{
   private float[][] hitbox; // [[innerX, innerY], [outerX, outerY]]
   private boolean up; // true if going upwards or at rest, false if going downwards
   
+  private PVector[] vertices;
+  
   public Flipper(int si, int x, int y, int wi, int he, float k, int s){
     super(x, y, wi, he, k, s); 
+    vertices = new PVector[3];
     hitbox = new float[2][2];
     if (si == 0){
       hitbox[0][0] = leftX + len * cos(radians(initialAngle));
@@ -49,8 +52,9 @@ class Flipper extends Stopper{
     /*stroke(0);
     fill(1);
     circle(stopX, stopY, 10);*/
-    if (side == 1){
-      return super.bounce(ball, stopX, stopY);
+    /*if (side == 1){
+      //return super.bounce(ball, stopX, stopY);
+      return true;
     }else{
       float ballX = ball.getPos().x;
       float ballY = ball.getPos().y;
@@ -69,7 +73,14 @@ class Flipper extends Stopper{
         return true;
       }
       return false;
+    }*/
+    if(super.bounce(ball, vertices[0], vertices[1]) || super.bounce(ball, vertices[0], vertices[2]) || super.bounce(ball, vertices[1], vertices[2])){
+      //System.out.println("no");
+      //triangle(vertices[0].x, vertices[0].y, vertices[1].x, vertices[1].y, vertices[2].x, vertices[2].y);
+      ball.move();
+      return true;
     }
+    return false;
   }
   
   public void updateHitbox(){
@@ -141,6 +152,16 @@ class Flipper extends Stopper{
       translate(x, y);
       rotate(-1 * radians(angle));
       //rect(-1 * len, 0, 2 * len, wi);
+      vertices[0] = new PVector(-1 * len, 0);
+      vertices[1] = new PVector(len, 0);
+      vertices[2] = new PVector(-1 * len, wi);
+      vertices[0].rotate(-1 * radians(angle));
+      vertices[1].rotate(-1 * radians(angle));
+      vertices[2].rotate(-1 * radians(angle));
+      PVector t = new PVector(x, y);
+      vertices[0].add(t);
+      vertices[1].add(t);
+      vertices[2].add(t);
       triangle(-1 * len, 0, len, 0, -1 * len, wi);
       popMatrix();
     }else{
@@ -148,6 +169,17 @@ class Flipper extends Stopper{
       translate(width - leftX, y);
       rotate(radians(angle));
       //rect(-1 * len, 0, 2 * len, wi);
+      vertices[0] = new PVector(-1 * len, 0);
+      vertices[1] = new PVector(len, 0);
+      vertices[2] = new PVector(len, wi);
+      vertices[0].rotate(radians(angle));
+      vertices[1].rotate(radians(angle));
+      vertices[2].rotate(radians(angle));
+      PVector t = new PVector(width-leftX, y);
+      vertices[0].add(t);
+      vertices[1].add(t);
+      vertices[2].add(t);
+
       triangle(-1 * len, 0, len, 0, len, wi);
       popMatrix();
     }

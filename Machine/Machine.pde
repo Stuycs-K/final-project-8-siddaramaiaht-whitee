@@ -27,8 +27,8 @@ final int rightY = leftY;
 final int wi = 20; //width of flippers
 final int len = 100; //length of flippers
 
-Flipper left = new Flipper(0, leftX, leftY, len, wi, 1, 0);
-Flipper right = new Flipper(1, rightX, rightY, len, wi, 1, 0);
+Flipper left = new Flipper(0, leftX, leftY, len, wi, 2, 0);
+Flipper right = new Flipper(1, rightX, rightY, len, wi, 2, 0);
 
 boolean upPressedLastFrame = false;
 boolean upLetGo = false;
@@ -55,11 +55,14 @@ void setup(){
   walls.add(new Wall(sideGap, height - sideGap - wallWi, (width - 2 * sideGap - midGap) / 2, wallWi, 0));
   walls.add(new Wall(sideGap + (width - 2 * sideGap - midGap) / 2 + midGap, height - sideGap - wallWi, (width - 2 * sideGap - midGap) / 2, wallWi, 0));
   
-  bumpers.add(new Bumper(350, 350, 1, 30));
-  for(int i = 100; i < 300; i++){
+  //walls.add(new Wall(450, 450, 100, 100, 20));
+  bumpers.add(new Bumper(100, 400, 100, 700, 350, 700, 0.5, 0));
+  bumpers.add(new Bumper(700, 400, 450, 700, 700, 700, 0.5, 0));
+  /*for(int i = 100; i < 300; i++){
     walls.add(new Wall(i, 350+i, 1, 350-i, 0));
     walls.add(new Wall(799-i, 350+i, 1, 350-i, 0));
-  }
+  }*/
+  //bumpers.add(
   for(int i = 0; i < 3; i++){
     for(int j = 0; j < 2; j++){
       bells.add(new Bell((int)(Math.random()*125)+145+i*200, (int)(Math.random()*125)+145+175*j, 50, 30));
@@ -74,6 +77,10 @@ void draw(){
   if(MODE == 1){
     fill(255, 0, 0);
     text("GAME OVER", 280, 400);
+    b.getPos().set(410, 500);
+    b.getV().set(0.5, 0);
+    b.getAcc().set(0, 0);
+    b.score = 0;
   }
   else{
     background(255);
@@ -91,9 +98,11 @@ void draw(){
         b.addScore(bells.get(i).getScore());
       }
     }
-    bumpers.get(0).display();
-    if(bumpers.get(0).bounce(b)){
-      b.addScore(bumpers.get(0).getScore());
+    for(int i = 0; i < bumpers.size(); i++){
+      bumpers.get(i).display();
+      if(bumpers.get(i).bounce(b)){
+        b.addScore(bumpers.get(i).getScore());
+      }
     }
     if(left.bounce(b)){
       b.addScore(left.getScore());
