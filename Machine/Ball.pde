@@ -93,5 +93,8 @@ public int getScore(){
 public void addScore(int s){
   score += s;
 }
+public PVector nextPos(){
+  return PVector.add(getPos(), PVector.add(getV(), getAcc()));
+}
 
 }

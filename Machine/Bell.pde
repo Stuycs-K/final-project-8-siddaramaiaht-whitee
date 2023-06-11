@@ -39,15 +39,25 @@ class Bell extends Stopper{
       //ball.getPos().set((stopX*ball.getRadius
       //ball.getV().rotate(-1*HALF_PI);
       ball.getV().rotate(PVector.angleBetween(ball.getV(), vCopy)/2);
-      PVector ballNextPos = PVector.add(ball.getPos(), PVector.add(ball.getV(), ball.getAcc()));
+      PVector ballNextPos = ball.nextPos();
       if(getPos().dist(ballNextPos.copy().add(ball.getV())) <= (ball.getRadius() + getRadius())){
         PVector pass = new PVector(getPos().x - ball.getPos().x, getPos().y - ball.getPos().y);
         PVector tangent = new PVector(pass.y, pass.x);
         ball.setPos(new PVector(ballX, ballY));
         tangent.normalize();
-        tangent.mult(9.81 * cos(tangent.y/tangent.x));
+        tangent.mult(9.81 * sin(tangent.y/tangent.x) * -1 * getBounciness());
         ball.setV(tangent);
         System.out.println("bells phase fix called");
+        ballNextPos = ball.nextPos();
+        
+        /************TEST************/
+        /*if(getPos().dist(ballNextPos.copy().add(ball.getV())) <= (ball.getRadius() + getRadius())){
+           ball.setPos(new PVector(ballX, ballY));
+           ball.setAcc(new PVector(0,0));
+           ball.setV(new PVector(0,0));
+           Machine.MODE = Machine.OVER;
+        }
+        /************TEST************/
       }
       return true;
     }

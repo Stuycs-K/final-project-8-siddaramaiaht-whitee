@@ -47,7 +47,7 @@ void setup(){
   left.display();
   right.display();
   
-  b = new Ball(new PVector(400, 401), new PVector(0, 0), new PVector(0, 0));
+  b = new Ball(new PVector(410, 400), new PVector(0, 0), new PVector(0, 0));
   
  /* walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
   walls.add(new Wall(sideGap, sideGap, wallWi, height - 200, 0));
