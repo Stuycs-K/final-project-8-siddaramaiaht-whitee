@@ -73,7 +73,7 @@ class Stopper{
       if(PVector.dist(PVector.add(ball.getPos(), ball.getV()), closest) < ball.getRadius()){
         ball.setPos(new PVector(ballXI, ballYI));
         slope.normalize();
-        slope.mult(9.8 * cos(slope.y/slope.x));
+        slope.mult(9.81 * cos(slope.y/slope.x));
         ball.setV(slope);
         System.out.println("walls phase fix called");
       }
