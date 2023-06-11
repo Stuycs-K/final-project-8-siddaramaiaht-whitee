@@ -19,7 +19,7 @@ void keyReleased() {
   keyboardInput.release(keyCode);
 }
 
-final int leftX = 295;
+final int leftX = 275;
 final int leftY = 645;
 final int rightX = 800 - leftX;
 final int rightY = leftY;
@@ -42,22 +42,29 @@ final int midGap = 220;
 
 void setup(){
   size(800, 800);
-  frameRate(100);
+  //frameRate(300);
   
   left.display();
   right.display();
   
-  b = new Ball(new PVector(408, 500), new PVector(0, 0.5), new PVector(1, 0));
+  b = new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0));
   
   walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
   walls.add(new Wall(sideGap, sideGap, wallWi, height - 200, 0));
   walls.add(new Wall(sideGap, sideGap, width - 200, wallWi, 0));
-  walls.add(new Wall(sideGap, height - sideGap - wallWi, (width - 2 * sideGap - midGap) / 2, wallWi, 0));
-  walls.add(new Wall(sideGap + (width - 2 * sideGap - midGap) / 2 + midGap, height - sideGap - wallWi, (width - 2 * sideGap - midGap) / 2, wallWi, 0));
+  walls.add(new Wall(sideGap, height - sideGap - wallWi+20, (width - 2 * sideGap - midGap) / 2+40, wallWi, 0));
+  walls.add(new Wall(sideGap + (width - 2 * sideGap - midGap) / 2 + midGap-40, height - sideGap - wallWi+20, (width - 2 * sideGap - midGap) / 2+40, wallWi, 0));
   
+  walls.add(new Wall(width - sideGap - wallWi-100, sideGap+20, wallWi, height - 600, 0));
+
+  //walls.add(new Wall(sideGap + (width - 2 * sideGap - midGap) / 2 + midGap-500, height - sideGap - wallWi-100, (width - 2 * sideGap - midGap) / 2+500, wallWi, 0));
+
   //walls.add(new Wall(450, 450, 100, 100, 20));
-  bumpers.add(new Bumper(100, 400, 100, 700, 350, 700, 0.5, 0));
-  bumpers.add(new Bumper(700, 400, 450, 700, 700, 700, 0.5, 0));
+  bumpers.add(new Bumper(100, 400, 100, 700, 330, 700, 0.5, 0));
+  bumpers.add(new Bumper(700, 400, 470, 700, 700, 700, 0.5, 0));
+  bumpers.add(new Bumper(100, 400, 100, 100, 330, 100, 0.5, 0));
+  //bumpers.add(new Bumper(700, 400, 470, 700, 700, 700, 0.5, 0));
+
   /*for(int i = 100; i < 300; i++){
     walls.add(new Wall(i, 350+i, 1, 350-i, 0));
     walls.add(new Wall(799-i, 350+i, 1, 350-i, 0));
@@ -65,7 +72,7 @@ void setup(){
   //bumpers.add(
   for(int i = 0; i < 3; i++){
     for(int j = 0; j < 2; j++){
-      bells.add(new Bell((int)(Math.random()*125)+145+i*200, (int)(Math.random()*125)+145+175*j, 50, 30));
+      bells.add(new Bell((int)(Math.random()*125)+225+j*200, (int)(Math.random()*125)+145+175*i, 50, 30));
     }
   }  
   
@@ -77,8 +84,8 @@ void draw(){
   if(MODE == 1){
     fill(255, 0, 0);
     text("GAME OVER", 280, 400);
-    b.getPos().set(410, 500);
-    b.getV().set(0.5, 0);
+    b.getPos().set(640, 150);
+    b.getV().set(0, 0);
     b.getAcc().set(0, 0);
     b.score = 0;
   }
@@ -114,8 +121,8 @@ void draw(){
     }
     //System.out.println(left.getBounciness());
     b.display();
-    b.applyForce(new PVector(0, 9.8));
     b.move();
+    b.applyForce(new PVector(0, 9.8));
     fill(0);
     textSize(50);
     text("Score: " + b.getScore(), 20, 50);

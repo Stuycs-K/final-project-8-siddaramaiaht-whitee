@@ -18,6 +18,7 @@ public void applyForce(PVector F){
 }
 
 public void move(){
+  //velocity.add(new PVector(0, 0.098));
   velocity.add(acceleration);
   //velocity.y =- 9.8 / mass; gravity will be used later
   position.add(velocity);
@@ -45,9 +46,9 @@ public void move(){
   if(velocity.mag() >= 30){
     velocity.setMag(30);
   }
-  if(velocity.mag() < 0.1){
-    velocity.mult(0.1/velocity.mag());
-  }
+  /*if(Math.abs(velocity.y) < 0.1 && velocity.y > 0){
+    velocity.y = 0.1*velocity.y/Math.abs(velocity.y);
+  }*/
   if(position.y > 720 + getRadius() && position.x >= 300 && position.x <= 520){
     Machine.MODE = 1;
   }
