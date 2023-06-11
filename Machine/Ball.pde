@@ -78,6 +78,9 @@ public void setAcc(PVector newAcc){
 public PVector getV(){
   return velocity;
 }
+public void setV(PVector newV){
+  velocity = newV;
+}
 public void multV(float x){
   velocity = velocity.mult(x);
 }
