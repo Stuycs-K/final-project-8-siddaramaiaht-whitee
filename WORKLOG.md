@@ -117,6 +117,10 @@ I started to use switch over to PVectors from the slopes of lines for the "tri" 
 
 I changed how the PVectors work in the Stopper bounce method, but now the Ball vibrates even when I do not use these changes in Stopper.
 
-### 2023-06-08
+### 2023-06-09
 
 I started to integrate the Bell bounce method from Tejas's Bounce branch into Stopper and my hitbox branch's use of arrays for hitboxes.
+
+### 2023-06-10
+
+I made my bounce for slanted surfaces work for when the Ball needs to bounce towards the left.
