@@ -44,11 +44,24 @@ I worked on the math for the bounce methods. I tried implementing the math, but 
 
 ### 2023-06-05
 
-I worked on establishing the vertices needed for the bounce method. I also made the game over screen correcty restart the game when the player wants to quit the game.
+I worked on establishing the vertices needed for the bounce method. I also made the game over screen correctly restart the game when the player wants to quit the game.
 
-### 2023-06-05
+### 2023-06-06
 
 I worked on the bounce method, and I got the ball to bounce more correctly. I also worked on the math for the other stoppers.
+
+### 2023-06-07
+
+I continued working on the math for the bounce method by trying to find the angle of rotation of the velocity around the normal vectors. I worked on debugging my bounce method, but forgot to commit my work. I found that the ball bounced two times off of the bells.
+
+### 2023-06-09
+
+I worked on finding the proper distance from a point to a line to know when to correctly bounce the ball off the side.
+
+### 2023-06-10
+
+I found the correct formulas to bounce the ball off of the slanted side. I implemented the formulas into my code, and now the ball bounces correctly off the side. I also worked on the bounce for the flippers.
+
 
 ## Eli White
 
