@@ -150,9 +150,16 @@ class Flipper extends Stopper{
       translate(x, y);
       rotate(-1 * radians(angle));
       //rect(-1 * len, 0, 2 * len, wi);
-      vertices[0] = new PVector(-1 * len+x, y);
-      vertices[1] = new PVector(len+x, y);
-      vertices[2] = new PVector(-1 * len+x, wi+y);
+      vertices[0] = new PVector(-1 * len, 0);
+      vertices[1] = new PVector(len, 0);
+      vertices[2] = new PVector(-1 * len, wi);
+      vertices[0].rotate(-1 * radians(angle));
+      vertices[1].rotate(-1 * radians(angle));
+      vertices[2].rotate(-1 * radians(angle));
+      PVector t = new PVector(x, y);
+      vertices[0].add(t);
+      vertices[1].add(t);
+      vertices[2].add(t);
       triangle(-1 * len, 0, len, 0, -1 * len, wi);
       popMatrix();
     }else{
@@ -160,9 +167,17 @@ class Flipper extends Stopper{
       translate(width - leftX, y);
       rotate(radians(angle));
       //rect(-1 * len, 0, 2 * len, wi);
-      vertices[0] = new PVector(-1 * len+width - leftX, y);
-      vertices[1] = new PVector(len+width - leftX, y);
-      vertices[2] = new PVector(len+width - leftX, wi+y);
+      vertices[0] = new PVector(-1 * len, 0);
+      vertices[1] = new PVector(len, 0);
+      vertices[2] = new PVector(len, wi);
+      vertices[0].rotate(radians(angle));
+      vertices[1].rotate(radians(angle));
+      vertices[2].rotate(radians(angle));
+      PVector t = new PVector(width-leftX, y);
+      vertices[0].add(t);
+      vertices[1].add(t);
+      vertices[2].add(t);
+
       triangle(-1 * len, 0, len, 0, len, wi);
       popMatrix();
     }

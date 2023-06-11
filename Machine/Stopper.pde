@@ -90,12 +90,12 @@ class Stopper{
     PVector a = PVector.sub(PVector.add(ball.getPos(), ball.getV()), v1);
     float dot = a.dot(slope)/slope.magSq();
     if(dot > 1){
-      return false;
-      //dot = 1;
+      //return false;
+      dot = 1;
     }
     else if(dot < 0){
-      return false;
-      //dot = 0;
+      //return false;
+      dot = 0;
     }
     PVector closest = PVector.add(v1, PVector.mult(slope, dot));
     //PVector dist = PVector.sub(closest, ball.getPos());
