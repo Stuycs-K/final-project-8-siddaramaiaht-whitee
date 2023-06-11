@@ -45,10 +45,9 @@ class Stopper{
     float ballY = ball.getPos().y;
     float vX = ball.getV().x;
     float vY = ball.getV().y;
-    PVector v = ball.getV(); /*******TEST*********/
     float r = ball.getRadius();
-    float aX = ball.getAcc().x; /*******TEST*********/
-    float aY = ball.getAcc().y; /*******TEST*********/
+    float aX = ball.getAcc().x;
+    float aY = ball.getAcc().y;
     
     if (type == "rect"){
       float stopX = pos.x;
@@ -71,24 +70,16 @@ class Stopper{
         float b = hitbox[0][1]; // y of first point
         float c = hitbox[1][0]; // x of second point
         float d = hitbox[1][1]; // y of second point
-        /*float mBall = 0; // the slope of the trajectory of the ball
+        float mBall = 0; // the slope of the trajectory of the ball
         if (vX == 0){
-          mBall = vY / 1e-10;
+          mBall = vY / (vX + 0.000001);
         }else{
           mBall = vY / vX;
-        }*/
+        }
         float m = (b - d) / (a - c); // slope of the hitbox (which is a line formed by the two points in hitbox[][])
-        /*
         float normal = -1 / m; // slope of the perpendicular to the hitbox
         float u = (2 * normal + mBall * sq(normal) - mBall) / (1 - sq(normal) + 2 * mBall * normal);
-        PVEctor u =  /*******TEST*********/
-        //float theta = atan(u);
-        
-        PVector surface = new PVector(a - c, b - d);
-        PVector normal = new PVector(d - b, c - a);
-        float angleBw = PVector.angleBetween(normal, v);
-        PVector newV = v.rotate(2 * angleBw);
-        
+        float theta = atan(u);
         float nextBallX = ballX + vX + aX;
         float nextBallY = ballY + vY + aY;
         
@@ -99,49 +90,31 @@ class Stopper{
         circle(nextBallX, nextBallY, 10);
         System.out.println("vX: " + vX + " | vY: " + vY);
         System.out.println("nextBallX: " + nextBallX + " | nextBallY: " + nextBallY);
-        //System.out.println("line: " + (m * nextBallX + b - m * a));
+        System.out.println("line: " + (m * nextBallX + b - m * a));
         /*******TEST*********/
         
-       // boolean above = collisionSide.equals("above") && (nextBallY > m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
-       // boolean below = collisionSide.equals("below") && (nextBallY < m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
-        /*if (above || below){
-          //ball.setVelocity(new PVector(sqrt(sq(vX) + sq(vY)) * bounciness * cos(theta), sqrt(sq(vX) + sq(vY)) * bounciness * sin(theta)));
-          //ball.setVelocity(newV);
-          //ball.setVelocity(new PVector (0, -10));
-          System.out.println("newV: <" + newV.x + " , " + newV.y + ">");
+        boolean above = collisionSide.equals("above") && (nextBallY > m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
+        boolean below = collisionSide.equals("below") && (nextBallY < m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
+        if (above || below){
+          ball.setVelocity(new PVector(sqrt(sq(vX) + sq(vY)) * bounciness * cos(theta), sqrt(sq(vX) + sq(vY)) * bounciness * sin(theta)));
           
-          /*if(m > 0 && vX < 0 && vY < 0){
+          nextBallX = ballX + ball.getV().x + aX;
+          nextBallY = ballY + ball.getV().y + aY;
+          above = collisionSide.equals("above") && (nextBallY > m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
+          below = collisionSide.equals("below") && (nextBallY < m * nextBallX + b - m * a) && ((nextBallX < a && nextBallX > c) || (nextBallX > a && nextBallX < c));
+          if (above || below){
             ball.multVelocity(-1);
           }
-          if (m < 0 && vX > 0 && vY > 0){
-            ball.multVelocity(-1);
-          }*/
-         /* System.out.println("tri bounce happened"); /*******TEST*********/
-         /* return true;
+          System.out.println("tri bounce happened"); /*******TEST*********/
+          return true;
         }else{
 
-        }*/
+        }
       }
     }
     
     else if (type == "cir"){
-      float stopX = getPos().x;
-    float stopY = getPos().y;
-    float ballX = ball.getPos().x;
-    float ballY = ball.getPos().y;
-    //Pvector radii = new PVector(getRadius(), ball.getRadius());
-    PVector norm = PVector.sub(getPos(), new PVector(stopX*ball.getRadius()+ballX*getRadius(), stopY*ball.getRadius()+ballY*getRadius()).div(getRadius()+ball.getRadius())).rotate(-1*HALF_PI);
-    if(getPos().dist(ball.getPos().copy().add(ball.getV())) <= ball.getRadius() + getRadius()){
-      System.out.println("hi");
-      float p = 2*PVector.dot(ball.getV(), norm)/(mass + Ball.mass);
-      PVector vCopy = ball.getV().copy();
-      vCopy.set(ball.getV().copy().sub(PVector.mult(norm, (mass-Ball.mass)*p)).setMag(ball.getV().mag()));
-      //ball.getPos().set((stopX*ball.getRadius
-      //ball.getV().rotate(-1*HALF_PI);
-      ball.getV().rotate(PVector.angleBetween(ball.getV(), vCopy)/2);
-      return true;
-    }
-    return false;
+      
     }
     
     return false;
