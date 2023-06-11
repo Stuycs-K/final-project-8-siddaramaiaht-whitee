@@ -39,6 +39,17 @@ class Bell extends Stopper{
       //ball.getPos().set((stopX*ball.getRadius
       //ball.getV().rotate(-1*HALF_PI);
       ball.getV().rotate(PVector.angleBetween(ball.getV(), vCopy)/2);
+      PVector ballNextPos = PVector.add(ball.getPos(), ball.getV());
+      fill(0);
+      stroke(0);
+      circle(ballNextPos.x , ballNextPos.y, 10);
+      System.out.println(ballNextPos.x);
+      if(getPos().dist(ballNextPos.copy().add(ball.getV())) <= ball.getRadius() + getRadius()){
+        ball.setPos(new PVector(ballX, ballY));
+        ball.multV(0);
+        ball.setAcc(new PVector(0, 0));
+        System.out.println("anti phase fix was called for bells");
+      }
       return true;
     }
     return false;

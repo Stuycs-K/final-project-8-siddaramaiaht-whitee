@@ -66,11 +66,20 @@ public void display(){
 public PVector getPos(){
   return position;
 }
+public void setPos(PVector newPos){
+  position = newPos;
+}
 public PVector getAcc(){
   return acceleration;
 }
+public void setAcc(PVector newAcc){
+  acceleration = newAcc;
+}
 public PVector getV(){
   return velocity;
+}
+public void multV(float x){
+  velocity = velocity.mult(x);
 }
 public int getRadius(){
   return radius/2;

@@ -120,7 +120,16 @@ void draw(){
       //System.out.println("right bounce");
     }
     //System.out.println(left.getBounciness());
+    
     b.display();
+    
+    /************TEST************/
+    PVector ballNextPos = PVector.add(b.getPos(), b.getV());
+    fill(0);
+    stroke(0);
+    circle(ballNextPos.x , ballNextPos.y, 10);
+    /************TEST************/
+    
     b.move();
     b.applyForce(new PVector(0, 9.8));
     fill(0);

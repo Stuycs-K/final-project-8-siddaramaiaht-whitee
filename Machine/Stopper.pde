@@ -86,6 +86,8 @@ class Stopper{
     }
     return false;
     */
+    float ballXI = ball.getPos().x;
+    float ballYI = ball.getPos().y;
     PVector slope = PVector.sub(v2, v1);
     PVector a = PVector.sub(PVector.add(ball.getPos(), ball.getV()), v1);
     float dot = a.dot(slope)/slope.magSq();
@@ -105,6 +107,12 @@ class Stopper{
       PVector w = PVector.sub(ball.getV(), u);
       PVector newV = PVector.sub(w, u);
       ball.getV().set(PVector.mult(newV, bounciness));
+      if(PVector.dist(PVector.add(ball.getPos(), ball.getV()), closest) < ball.getRadius()){
+        ball.setPos(new PVector(ballXI, ballYI));
+        ball.multV(0);
+        ball.setAcc(new PVector(0, 0));
+        System.out.println("anti phase fix was called");
+      }
       return true;
     }
     return false;
