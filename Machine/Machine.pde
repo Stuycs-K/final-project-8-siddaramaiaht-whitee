@@ -62,7 +62,7 @@ void setup(){
   balls.add(b);
   for(int i = 1; i < 10; i++){
     int size = (int)(Math.random()*30+30);
-    balls.add(new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), size, size-20));
+    balls.add(new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), size, size+20));
   }
   
   walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
@@ -77,7 +77,7 @@ void setup(){
 
   //walls.add(new Wall(450, 450, 100, 100, 20));
   bumpers.add(new Bumper(100, 400, 100, 700, 330, 700, 0.5, 0));
-  bumpers.add(new Bumper(700, 400, 470, 700, 700, 700, 0.5, 0));
+  bumpers.add(new Bumper(699, 400, 470, 700, 699, 700, 0.5, 0));
   bumpers.add(new Bumper(100, 400, 100, 100, 330, 100, 0.5, 0));
   bumpers.add(new Bumper(330, 100, width - sideGap - wallWi-100, sideGap+20, 470, 200, 0.5, 0));
   //bumpers.add(new Bumper(700, 400, 470, 700, 700, 700, 0.5, 0));
@@ -91,7 +91,7 @@ void setup(){
   int curScore = 5;
   for(int i = 0; i < 3; i++){
     for(int j = 0; j < 2; j++){
-      bells.add(new Bell((int)(Math.random()*125)+225+j*200, (int)(Math.random()*100)+190+175*i, 50, curScore));
+      bells.add(new Bell((int)(Math.random()*100)+250+j*200, (int)(Math.random()*100)+190+175*i, 50, curScore));
     }
     curScore -= 2;
   }  
@@ -119,11 +119,11 @@ void draw(){
   }
   if (keyboardInput.isPressed(Controller.MULTIPLE) && MODE == OVER){
     balls = new ArrayList<Ball>();
-    b = new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), 50, 80);
+    b = new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), 50, 10);
     balls.add(b);
     for(int i = 1; i < 10; i++){
       int size = (int)(Math.random()*30+30);
-      balls.add(new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), size, size-20));
+      balls.add(new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), size, 10));
     }
     MODE = MULTI;
   }

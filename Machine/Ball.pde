@@ -53,7 +53,7 @@ public void move(){
   }*/
   Float pX = new Float(position.x);
   Float pY = new Float(position.y);
-  if((position.y > 720 + getRadius() && position.x >= 300 && position.x <= 520) || position.x <= 0 || position.x >= width || position.y <= 0 || position.y >= height || pX.isNaN() || pY.isNaN()){
+  if((position.y > 720 + getRadius() && position.x >= 300 && position.x <= 520) || position.x <= 0 || position.x >= width || position.y <= 0 || position.y >= height){// || pX.isNaN() || pY.isNaN()){
     Machine.MODE = Machine.OVER;
   }
   /*if(velocity.mag() == 0){
@@ -100,27 +100,38 @@ public void addScore(int s){
 public int getMass(){
   return mass;
 }
-public void bounce(Ball b){
-  if((b.getPos()).dist((getPos())) <= b.getRadius() + getRadius()){
+public void bounce(Ball ball){
+  if((ball.getPos()).dist((getPos())) <= ball.getRadius() + getRadius()){
+    PVector normal = PVector.sub(ball.getPos(), getPos());
+    PVector vDiff = PVector.sub(ball.getV(), getV());
+    float massSum = ball.getMass() + getMass();
+    float dot = normal.dot(vDiff)/normal.magSq();
+    PVector v1 = PVector.mult(normal, 2*getMass()/massSum * dot);
+    PVector v2 = PVector.mult(normal, -1*2*ball.getMass()/massSum * dot);
+    ball.getV().sub(v1);
+    getV().sub(v2);
+  }
     /*PVector normal = PVector.sub(ball.getPos(), getPos());
-    normal.normalize();
-    float v1i = ball.getV().dot(normal);
-    float v2i = getV().dot(normal);
-    float v1f = (v1i*(ball.getMass()-getMass())+v2i*(2*getMass()))/(getMass() + ball.getMass());
-    float v2f = (v2i*(getMass()-ball.getMass())+v1i*(2*ball.getMass()))/(getMass() + ball.getMass());
+    //normal.normalize();
+    float v1i = ball.getV().dot(normal)/normal.mag();
+    float v2i = getV().dot(normal)/normal.mag();
+    float v1f = v2i;//(v1i*(ball.getMass()-getMass())+v2i*(2*getMass()))/(getMass() + ball.getMass());
+    float v2f = v1i;//(v2i*(getMass()-ball.getMass())+v1i*(2*ball.getMass()))/(getMass() + ball.getMass());
 
-    ball.getV().set(normal.mult(v1f-v1i));
-    getV().set(normal.mult(v2f-v2i));
+    ball.getV().add(normal.mult(v1f-v1i));
+    getV().add(normal.mult(v2f-v2i));
   }*/
-    PVector normal = PVector.sub(b.getPos(), getPos());
+    /*PVector normal = PVector.sub(b.getPos(), getPos());
     normal.normalize();
     PVector tangent = new PVector(-1*normal.y, normal.x);
     float v1n = normal.dot(getV());
     float v1t = tangent.dot(getV());
     float v2n = normal.dot(b.getV());
     float v2t = tangent.dot(b.getV());
+    
     float va1n = (v1n*(getMass()-b.getMass())+v2n*(2*b.getMass()))/(getMass() + b.getMass());
     float va2n = (v2n*(b.getMass()-getMass())+v1n*(2*getMass()))/(getMass() + b.getMass());
+    
     PVector vea1n = normal.mult(va1n);
     PVector vea1t = tangent.mult(v1t);
     PVector vea2n = normal.mult(va2n);
