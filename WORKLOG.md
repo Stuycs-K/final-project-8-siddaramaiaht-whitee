@@ -124,3 +124,7 @@ I started to integrate the Bell bounce method from Tejas's Bounce branch into St
 ### 2023-06-10
 
 I made my bounce for slanted surfaces work for when the Ball needs to bounce towards the left.
+
+### 2023-6-11
+
+I worked on making sure that the Ball does not phase through objects when it is moving slowly. I also worked on trying to make it so that the Ball is not pushed downwards by the Flippers. I made it so that differently-colored Bells give you different amounts of score and made a high score. Added additional instructional text for when you quit a round. Made multi mode work better by looping through all the Balls in draw to make sure they all bounce and not just one.
