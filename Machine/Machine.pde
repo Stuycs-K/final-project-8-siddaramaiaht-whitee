@@ -5,7 +5,7 @@ static int OVER = 1;
 static int MULTI = 2;
 static int MODE = PLAYING;
 static int n = 1;
-static int count = 0;
+static int count = 1;
 
 static int highScore = 0;
 
@@ -51,7 +51,6 @@ final int scoreTimer = 7;
 
 void setup(){
   size(800, 800);
-  //frameRate(20);
   
   scoreCountdown = 0;
   
@@ -62,7 +61,7 @@ void setup(){
   balls.add(b);
   for(int i = 1; i < 10; i++){
     int size = (int)(Math.random()*30+30);
-    balls.add(new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), size, size-20));
+    balls.add(new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), size, size+20));
   }
   
   walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
@@ -71,41 +70,26 @@ void setup(){
   walls.add(new Wall(sideGap, height - sideGap - wallWi+20, (width - 2 * sideGap - midGap) / 2+40, wallWi, 0));
   walls.add(new Wall(sideGap + (width - 2 * sideGap - midGap) / 2 + midGap-40, height - sideGap - wallWi+20, (width - 2 * sideGap - midGap) / 2+40, wallWi, 0));
   
-  walls.add(new Wall(width - sideGap - wallWi-100, sideGap+20, wallWi, height - 600, 0));
+  walls.add(new Wall(width - sideGap - wallWi-100-30, sideGap+20, wallWi+30, height - 600, 0));
 
-  //walls.add(new Wall(sideGap + (width - 2 * sideGap - midGap) / 2 + midGap-500, height - sideGap - wallWi-100, (width - 2 * sideGap - midGap) / 2+500, wallWi, 0));
-
-  //walls.add(new Wall(450, 450, 100, 100, 20));
   bumpers.add(new Bumper(100, 400, 100, 700, 330, 700, 0.5, 0));
-  bumpers.add(new Bumper(700, 400, 470, 700, 700, 700, 0.5, 0));
+  bumpers.add(new Bumper(699, 400, 470, 700, 699, 700, 0.5, 0));
   bumpers.add(new Bumper(100, 400, 100, 100, 330, 100, 0.5, 0));
   bumpers.add(new Bumper(330, 100, width - sideGap - wallWi-100, sideGap+20, 470, 200, 0.5, 0));
-  //bumpers.add(new Bumper(700, 400, 470, 700, 700, 700, 0.5, 0));
-
-  /*for(int i = 100; i < 300; i++){
-    walls.add(new Wall(i, 350+i, 1, 350-i, 0));
-    walls.add(new Wall(799-i, 350+i, 1, 350-i, 0));
-  }*/
-  //bumpers.add(
+    
+  //bumpers.add(new Bumper(width - sideGap - wallWi-130, sideGap+height - 580, width - sideGap - 100, sideGap+height - 580, (2*width - 2*sideGap - wallWi-230)/2, sideGap+height - 540, 0.5, 0));
   
   int curScore = 5;
   for(int i = 0; i < 3; i++){
     for(int j = 0; j < 2; j++){
-      bells.add(new Bell((int)(Math.random()*125)+225+j*200, (int)(Math.random()*125)+145+175*i, 50, curScore));
+      bells.add(new Bell((int)(Math.random()*100)+250+j*200, (int)(Math.random()*100)+190+175*i, 50, curScore));
     }
     curScore -= 2;
   }  
-  
-  
-  /************TEST************/
-  //bells.add(new Bell(400, 500, 50, 30));
-  /************TEST************/
-  
   keyboardInput = new Controller();
 }
 
 void draw(){
-  //System.out.println(MODE);
   if (scoreCountdown > 0){
     scoreCountdown--;
   }
@@ -119,11 +103,11 @@ void draw(){
   }
   if (keyboardInput.isPressed(Controller.MULTIPLE) && MODE == OVER){
     balls = new ArrayList<Ball>();
-    b = new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), 50, 80);
+    b = new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), 50, 10);
     balls.add(b);
     for(int i = 1; i < 10; i++){
       int size = (int)(Math.random()*30+30);
-      balls.add(new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), size, size-20));
+      balls.add(new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), size, 10));
     }
     MODE = MULTI;
   }
@@ -139,6 +123,14 @@ void draw(){
     b.getV().set(0, 0);
     b.getAcc().set(0, 0);
     b.score = 0;
+    for(int j = 0; j < balls.size(); j++){
+      balls.get(j).getPos().set(640, 150);
+      balls.get(j).getV().set(0, 0);
+      balls.get(j).getAcc().set(0, 0);
+      balls.get(j).score = 0;
+      n=1;
+      count = 1;
+    }
   }
   else{
     if(MODE == MULTI){
@@ -151,14 +143,14 @@ void draw(){
     }
     else{
       n=1;
-      count = 0;
+      count = 1;
     }
     background(255);
     left.display();
     right.display();
     for(int i = 0; i < walls.size(); i++){
       walls.get(i).display();
-      for(int j = 0; j < balls.size(); j++){
+      for(int j = 0; j < n; j++){
         if(walls.get(i).bounce(balls.get(j)) && scoreCountdown == 0){
           balls.get(j).addScore(walls.get(i).getScore());
           scoreCountdown = scoreTimer;
@@ -167,52 +159,41 @@ void draw(){
     }
     for(int i = 0; i < bells.size(); i++){
       bells.get(i).display();
-      for(int j = 0; j < balls.size(); j++){
+      for(int j = 0; j < n; j++){
         if(bells.get(i).bounce(balls.get(j)) && scoreCountdown == 0){
           balls.get(j).addScore(bells.get(i).getScore());
           scoreCountdown = scoreTimer;
         }
       }
     }
-    for(int i = 0; i < bumpers.size(); i++){
-      bumpers.get(i).display();
     
     if (highScore < b.getScore()){
       highScore = b.getScore();
     }
-    
-      for(int j = 0; j < balls.size(); j++){
+    for(int i = 0; i < bumpers.size(); i++){
+      bumpers.get(i).display();
+      for(int j = 0; j < n; j++){
         if(bumpers.get(i).bounce(balls.get(j)) && scoreCountdown == 0){
           b.addScore(bumpers.get(i).getScore());
         }
       }
     }
-    for(int j = 0; j < balls.size(); j++){
+    for(int j = 0; j < n; j++){
       if(left.bounce(balls.get(j)) && scoreCountdown == 0){
         b.addScore(left.getScore());
         //System.out.println("left bounce");
       }
     }
-    for(int j = 0; j < balls.size(); j++){
+    for(int j = 0; j < n; j++){
       if(right.bounce(balls.get(j)) && scoreCountdown == 0){
         b.addScore(right.getScore());
         //System.out.println("right bounce");
       }
     }
-    //System.out.println(left.getBounciness());
-    /*b.display();
-    b1.display();
-    //b1.bounce(b);
-    b1.bounce(b);
-    b.move();
-    b1.move();
-
-    b.applyForce(new PVector(0, 9.8));
-    b1.applyForce(new PVector(0, 9.8));*/
     for(int j = 0; j < n; j++){
       balls.get(j).display();
       balls.get(j).move();
-      balls.get(j).applyForce(new PVector(0, 9.8));
+      //balls.get(j).applyForce(new PVector(0, 9.8));
       for(int i = j+1; i < n; i++){
         balls.get(j).bounce(balls.get(i));
       }
@@ -271,7 +252,4 @@ void draw(){
   left.updateHitbox();
   right.updateHitbox();
   
-  //stroke(0);
-  //fill(0);
-  //rect(200, 450, 10, 10);
 }
