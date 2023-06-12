@@ -24,10 +24,10 @@ class Controller {
       inputs[DECREASE] = true;
     if(code == 'Q')
       Machine.MODE = (Machine.MODE+1)%2;
-    if(code == 'R'){
+    if(code == 'R')
       inputs[RESTART] = true;;
-    }
-      
+    if(code == 'M')
+      Machine.MODE = MULTI;
   }
   
   void release(int code) {
