@@ -66,7 +66,7 @@ class Stopper{
       PVector u = PVector.mult(norm, ball.getV().dot(norm)/norm.magSq());
       PVector w = PVector.sub(ball.getV(), u);
       PVector newV = PVector.sub(w, u);
-      ball.getV().set(PVector.mult(newV, bounciness));
+      ball.getV().set(PVector.mult(newV, getBounciness()));
       return true;
     }
     return false;
