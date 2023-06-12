@@ -125,7 +125,7 @@ void draw(){
       b.addScore(left.getScore());
       //System.out.println("left bounce");
     }
-    if(right.bounce(b)){
+    if(right.bounce(b)){    
       b.addScore(right.getScore());
       //System.out.println("right bounce");
     }

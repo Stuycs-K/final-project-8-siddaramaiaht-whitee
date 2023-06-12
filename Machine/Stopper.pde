@@ -70,13 +70,16 @@ class Stopper{
       PVector newV = PVector.sub(w, u);
       ball.getV().set(PVector.mult(newV, bounciness));
       
-      if(PVector.dist(PVector.add(ball.getPos(), ball.getV()), closest) < ball.getRadius()){
+      if(PVector.dist(PVector.add(ball.getPos(), ball.getV()), closest) < ball.getRadius() && (!(this instanceof Flipper))){
         ball.setPos(new PVector(ballXI, ballYI));
         slope.normalize();
         float slopeAngle = atan(slope.y/slope.x);
         slope.mult(9.81 * cos(slope.y/slope.x));
         //slope.add(9.81 * cos(slopeAngle) * -1, 9.81 * sin(slopeAngle) * 1);
-        ball.setV(slope);
+        ball.setV(slope.add(new PVector(0, -5 * getBounciness())));
+        if (this instanceof Flipper){
+          System.out.println("flipper");
+        }
         System.out.println("walls phase fix called");
       }
       

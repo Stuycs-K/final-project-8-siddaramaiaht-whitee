@@ -41,7 +41,7 @@ class Bell extends Stopper{
       ball.getV().rotate(PVector.angleBetween(ball.getV(), vCopy)/2);
       
       PVector ballNextPos = ball.nextPos();
-      if(getPos().dist(ballNextPos.copy().add(ball.getV())) <= (ball.getRadius() + getRadius()) * 0.85){
+      if(getPos().dist(ballNextPos.copy().add(ball.getV())) <= (ball.getRadius() + getRadius()) * 0.87){
         PVector pass = new PVector(getPos().x - ball.getPos().x, getPos().y - ball.getPos().y);
         PVector tangent = new PVector(pass.y, pass.x);
         ball.setPos(new PVector(ballX, ballY));
