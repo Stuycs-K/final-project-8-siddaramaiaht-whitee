@@ -163,7 +163,7 @@ void draw(){
     stroke(0);
     circle(ballNextPos.x , ballNextPos.y, 10);
     
-    System.out.println("ball position: <" + b.position.x + ", " + b.position.y + ">");
+    //System.out.println("ball position: <" + b.position.x + ", " + b.position.y + ">");
     /************TEST************/
     
     if (highScore < b.getScore()){
