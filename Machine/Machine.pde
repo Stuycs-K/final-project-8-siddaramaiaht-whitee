@@ -74,10 +74,12 @@ void setup(){
   }*/
   //bumpers.add(
   
+  int curScore = 50;
   for(int i = 0; i < 3; i++){
     for(int j = 0; j < 2; j++){
-      bells.add(new Bell((int)(Math.random()*125)+225+j*200, (int)(Math.random()*125)+145+175*i, 50, 30));
+      bells.add(new Bell((int)(Math.random()*125)+225+j*200, (int)(Math.random()*125)+145+175*i, 50, curScore));
     }
+    curScore -= 20;
   }  
   
   
@@ -147,6 +149,8 @@ void draw(){
     fill(0);
     stroke(0);
     circle(ballNextPos.x , ballNextPos.y, 10);
+    
+    System.out.println("ball position: <" + b.position.x + ", " + b.position.y + ">");
     /************TEST************/
     
     if (highScore < b.getScore()){

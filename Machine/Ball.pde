@@ -49,8 +49,10 @@ public void move(){
   /*if(Math.abs(velocity.y) < 0.1 && velocity.y > 0){
     velocity.y = 0.1*velocity.y/Math.abs(velocity.y);
   }*/
-  if(position.y > 720 + getRadius() && position.x >= 300 && position.x <= 520){
-    Machine.MODE = 1;
+  Float pX = new Float(position.x);
+  Float pY = new Float(position.y);
+  if((position.y > 720 + getRadius() && position.x >= 300 && position.x <= 520) || position.x <= 0 || position.x >= width || position.y <= 0 || position.y >= height || pX.isNaN() || pY.isNaN()){
+    Machine.MODE = Machine.OVER;
   }
   /*if(velocity.mag() == 0){
     Machine.MODE = 1;

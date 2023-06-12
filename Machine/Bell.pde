@@ -1,4 +1,7 @@
 class Bell extends Stopper{
+  final int green = 10;
+  final int blue = 30;
+  final int purple = 50;
   final int bellK = 1;
   final int mass = 5000;
   public Bell(int x, int y, int r, int s){
@@ -10,6 +13,16 @@ class Bell extends Stopper{
     int w = this.getWidth();
     int h = this.getHeight();
     fill(100);
+    stroke(100);
+    if (getScore() == green){
+      fill(90, 200, 90);
+    }
+    else if (getScore() == blue){
+      fill(70, 90, 200);
+    }
+    else if (getScore() == purple){
+      fill(150, 70, 200);
+    }
     ellipse(x, y, w, h);
   }
   public int getRadius(){
@@ -52,11 +65,11 @@ class Bell extends Stopper{
         ballNextPos = ball.nextPos();
         
         /************TEST************/
-        /*if(getPos().dist(ballNextPos.copy().add(ball.getV())) <= (getRadius())){
-           ball.setPos(new PVector(ballX, ballY));
+        if(getPos().dist(ballNextPos.copy().add(ball.getV())) <= (getRadius())){
+           //ball.setPos(new PVector(ballX, ballY));
            //ball.setAcc(new PVector(0,0));
-           ball.setV(new PVector(0,0));
-           //Machine.MODE = Machine.OVER;
+           //ball.setV(new PVector(0,0));
+           Machine.MODE = Machine.OVER;
         }
         /************TEST************/
       }
