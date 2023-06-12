@@ -31,8 +31,8 @@ final int rightY = leftY;
 final int wi = 20; //width of flippers
 final int len = 100; //length of flippers
 
-Flipper left = new Flipper(0, leftX, leftY, len, wi, 2, 0);
-Flipper right = new Flipper(1, rightX, rightY, len, wi, 2, 0);
+Flipper left = new Flipper(0, leftX, leftY, len, wi, 1.05, 0);
+Flipper right = new Flipper(1, rightX, rightY, len, wi, 1.05, 0);
 
 boolean upPressedLastFrame = false;
 boolean upLetGo = false;
@@ -54,8 +54,8 @@ void setup(){
   b = new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), 50, 80);
   balls.add(b);
   for(int i = 1; i < 10; i++){
-    int size = (int)(Math.random()*50+20);
-    balls.add(new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), size, size*2));
+    int size = (int)(Math.random()*30+30);
+    balls.add(new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), size, size-20));
   }
   
   walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
@@ -103,7 +103,7 @@ void draw(){
   }
   else{
     if(MODE == 2){
-      if(count % 150 == 0 && n <= balls.size()){
+      if(count % 150 == 0 && n < balls.size()){
         n++;
       }
       count++;
@@ -117,7 +117,7 @@ void draw(){
     right.display();
     for(int i = 0; i < walls.size(); i++){
       walls.get(i).display();
-      for(int j = 0; j < n; j++){
+      for(int j = 0; j < balls.size(); j++){
         if(walls.get(i).bounce(balls.get(j))){
           b.addScore(walls.get(i).getScore());
         }
@@ -125,27 +125,27 @@ void draw(){
     }
     for(int i = 0; i < bells.size(); i++){
       bells.get(i).display();
-      for(int j = 0; j < n; j++){
+      for(int j = 0; j < balls.size(); j++){
         if(bells.get(i).bounce(balls.get(j))){
-          b.addScore(bells.get(i).getScore());
+          balls.get(j).addScore(bells.get(i).getScore());
         }
       }
     }
     for(int i = 0; i < bumpers.size(); i++){
       bumpers.get(i).display();
-      for(int j = 0; j < n; j++){
+      for(int j = 0; j < balls.size(); j++){
         if(bumpers.get(i).bounce(balls.get(j))){
           b.addScore(bumpers.get(i).getScore());
         }
       }
     }
-    for(int j = 0; j < n; j++){
+    for(int j = 0; j < balls.size(); j++){
       if(left.bounce(balls.get(j))){
         b.addScore(left.getScore());
         //System.out.println("left bounce");
       }
     }
-    for(int j = 0; j < n; j++){
+    for(int j = 0; j < balls.size(); j++){
       if(right.bounce(balls.get(j))){
         b.addScore(right.getScore());
         //System.out.println("right bounce");

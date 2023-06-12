@@ -86,16 +86,16 @@ public void addScore(int s){
 public int getMass(){
   return mass;
 }
-public void bounce(Ball b){
-  if(PVector.add(b.getPos(), b.getV()).dist(PVector.add(getPos(), getV())) <= b.getRadius() + getRadius()){
-    PVector normal = PVector.sub(b.getPos(), getPos());
+public void bounce(Ball ball){
+  if((ball.getPos()).dist((getPos())) <= ball.getRadius() + getRadius()){
+    PVector normal = PVector.sub(ball.getPos(), getPos());
     normal.normalize();
+    float v1i = ball.getV().dot(normal);
     float v2i = getV().dot(normal);
-    float v1i = b.getV().dot(normal);
-    float v1f = (v1i*(getMass()-b.getMass())+v2i*(2*b.getMass()))/(getMass() + b.getMass());
-    float v2f = (v2i*(b.getMass()-getMass())+v1i*(2*getMass()))/(getMass() + b.getMass());
+    float v1f = (v1i*(ball.getMass()-getMass())+v2i*(2*getMass()))/(getMass() + ball.getMass());
+    float v2f = (v2i*(getMass()-ball.getMass())+v1i*(2*ball.getMass()))/(getMass() + ball.getMass());
 
-    b.getV().add(normal.mult(v1f-v1i));
+    ball.getV().add(normal.mult(v1f-v1i));
     getV().add(normal.mult(v2f-v2i));
   }
 /*

@@ -2,7 +2,7 @@ class Bell extends Stopper{
   final int bellK = 1;
   final int mass = 5000;
   public Bell(int x, int y, int r, int s){
-    super(x, y, r, r, 1, s);
+    super(x, y, r, r, 1.1, s);
   }
   public void display(){
     float x = this.getPos().x;
@@ -44,7 +44,7 @@ class Bell extends Stopper{
     return false;
   }*/
     if(getPos().dist(ball.getPos().copy().add(ball.getV())) <= ball.getRadius() + getRadius()){
-      PVector dist = PVector.sub(ball.getPos(), getPos());
+      /*PVector dist = PVector.sub(ball.getPos(), getPos());
       PVector norm = dist.copy().set(-1*dist.y, dist.x);
       PVector mid = PVector.add(ball.getPos(), getPos()).mult(0.5);
       //float a = ball.getRadius()*Math.abs(ball.getPos().x - getPos().x)/(getRadius()+ball.getRadius());
@@ -72,7 +72,16 @@ class Bell extends Stopper{
       //PVector collide = PVector.add(ball.getPos(), new PVector(a, b));
       //ball.getV().mult(-1);
       
-      
+      if(PVector.add(ball.getPos(), ball.getV()).dist((getPos())) <= ball.getRadius() + getRadius()){
+        PVector normal = PVector.sub(getPos(), ball.getPos());
+        normal.normalize();
+        float v1i = ball.getV().dot(normal);
+        float v1f = (-1*v1i);
+    
+        ball.getV().add(normal.mult(v1f-v1i));
+        return true;
+      }
+
     }
     return false;
   }
