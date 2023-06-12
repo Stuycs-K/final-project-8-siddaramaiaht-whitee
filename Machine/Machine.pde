@@ -2,9 +2,13 @@ import java.util.*;
 
 static int PLAYING = 0;
 static int OVER = 1;
+static int MULTI = 2;
 static int MODE = PLAYING;
+static int n = 1;
+static int count = 0;
 
 Ball b;
+ArrayList<Ball> balls = new ArrayList<Ball>();
 ArrayList<Wall> walls = new ArrayList<Wall>();
 ArrayList<Bell> bells = new ArrayList<Bell>();
 ArrayList<Bumper> bumpers = new ArrayList<Bumper>();
@@ -42,12 +46,17 @@ final int midGap = 220;
 
 void setup(){
   size(800, 800);
-  //frameRate(300);
+  //frameRate(10);
   
   left.display();
   right.display();
   
-  b = new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0));
+  b = new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), 50, 80);
+  balls.add(b);
+  for(int i = 1; i < 10; i++){
+    int size = (int)(Math.random()*50+20);
+    balls.add(new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), size, size*2));
+  }
   
   walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
   walls.add(new Wall(sideGap, sideGap, wallWi, height - 200, 0));
@@ -63,6 +72,7 @@ void setup(){
   bumpers.add(new Bumper(100, 400, 100, 700, 330, 700, 0.5, 0));
   bumpers.add(new Bumper(700, 400, 470, 700, 700, 700, 0.5, 0));
   bumpers.add(new Bumper(100, 400, 100, 100, 330, 100, 0.5, 0));
+  bumpers.add(new Bumper(330, 100, width - sideGap - wallWi-100, sideGap+20, 470, 200, 0.5, 0));
   //bumpers.add(new Bumper(700, 400, 470, 700, 700, 700, 0.5, 0));
 
   /*for(int i = 100; i < 300; i++){
@@ -70,9 +80,9 @@ void setup(){
     walls.add(new Wall(799-i, 350+i, 1, 350-i, 0));
   }*/
   //bumpers.add(
-  for(int i = 0; i < 3; i++){
+  for(int i = 0; i < 2; i++){
     for(int j = 0; j < 2; j++){
-      bells.add(new Bell((int)(Math.random()*125)+225+j*200, (int)(Math.random()*125)+145+175*i, 50, 30));
+      bells.add(new Bell((int)(Math.random()*125)+225+j*200, (int)(Math.random()*125)+245+175*i, 50, 30));
     }
   }  
   
@@ -84,45 +94,82 @@ void draw(){
   if(MODE == 1){
     fill(255, 0, 0);
     text("GAME OVER", 280, 400);
-    b.getPos().set(640, 150);
-    b.getV().set(0, 0);
-    b.getAcc().set(0, 0);
-    b.score = 0;
+    for(int i = 0; i < balls.size(); i++){
+      balls.get(i).getPos().set(640, 150);
+      balls.get(i).getV().set(0, 0);
+      balls.get(i).getAcc().set(0, 0);
+      balls.get(i).score = 0;
+    }
   }
   else{
+    if(MODE == 2){
+      if(count % 150 == 0 && n <= balls.size()){
+        n++;
+      }
+      count++;
+    }
+    else{
+      n=1;
+      count = 0;
+    }
     background(255);
     left.display();
     right.display();
     for(int i = 0; i < walls.size(); i++){
       walls.get(i).display();
-      if(walls.get(i).bounce(b)){
-        b.addScore(walls.get(i).getScore());
+      for(int j = 0; j < n; j++){
+        if(walls.get(i).bounce(balls.get(j))){
+          b.addScore(walls.get(i).getScore());
+        }
       }
     }
     for(int i = 0; i < bells.size(); i++){
       bells.get(i).display();
-      if(bells.get(i).bounce(b)){
-        b.addScore(bells.get(i).getScore());
+      for(int j = 0; j < n; j++){
+        if(bells.get(i).bounce(balls.get(j))){
+          b.addScore(bells.get(i).getScore());
+        }
       }
     }
     for(int i = 0; i < bumpers.size(); i++){
       bumpers.get(i).display();
-      if(bumpers.get(i).bounce(b)){
-        b.addScore(bumpers.get(i).getScore());
+      for(int j = 0; j < n; j++){
+        if(bumpers.get(i).bounce(balls.get(j))){
+          b.addScore(bumpers.get(i).getScore());
+        }
       }
     }
-    if(left.bounce(b)){
-      b.addScore(left.getScore());
-      //System.out.println("left bounce");
+    for(int j = 0; j < n; j++){
+      if(left.bounce(balls.get(j))){
+        b.addScore(left.getScore());
+        //System.out.println("left bounce");
+      }
     }
-    if(right.bounce(b)){
-      b.addScore(right.getScore());
-      //System.out.println("right bounce");
+    for(int j = 0; j < n; j++){
+      if(right.bounce(balls.get(j))){
+        b.addScore(right.getScore());
+        //System.out.println("right bounce");
+      }
     }
     //System.out.println(left.getBounciness());
-    b.display();
+    /*b.display();
+    b1.display();
+    //b1.bounce(b);
+    b1.bounce(b);
     b.move();
+    b1.move();
+
     b.applyForce(new PVector(0, 9.8));
+    b1.applyForce(new PVector(0, 9.8));*/
+    for(int j = 0; j < n; j++){
+      balls.get(j).display();
+      balls.get(j).move();
+      balls.get(j).applyForce(new PVector(0, 9.8));
+      for(int i = j+1; i < n; i++){
+        balls.get(j).bounce(balls.get(i));
+      }
+    }
+
     fill(0);
     textSize(50);
     text("Score: " + b.getScore(), 20, 50);

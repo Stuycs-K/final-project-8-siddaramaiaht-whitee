@@ -2,7 +2,7 @@ class Bell extends Stopper{
   final int bellK = 1;
   final int mass = 5000;
   public Bell(int x, int y, int r, int s){
-    super(x, y, r, r, 3, s);
+    super(x, y, r, r, 1, s);
   }
   public void display(){
     float x = this.getPos().x;
@@ -25,7 +25,7 @@ class Bell extends Stopper{
       return super.bounce(ball, stopX, stopY);
     //}
     //return false;*/
-    float stopX = getPos().x;
+    /*float stopX = getPos().x;
     float stopY = getPos().y;
     float ballX = ball.getPos().x;
     float ballY = ball.getPos().y;
@@ -42,16 +42,38 @@ class Bell extends Stopper{
       return true;
     }
     return false;
+  }*/
+    if(getPos().dist(ball.getPos().copy().add(ball.getV())) <= ball.getRadius() + getRadius()){
+      PVector dist = PVector.sub(ball.getPos(), getPos());
+      PVector norm = dist.copy().set(-1*dist.y, dist.x);
+      PVector mid = PVector.add(ball.getPos(), getPos()).mult(0.5);
+      //float a = ball.getRadius()*Math.abs(ball.getPos().x - getPos().x)/(getRadius()+ball.getRadius());
+      //float b = ball.getRadius()*Math.abs(ball.getPos().y - getPos().y)/(getRadius()+ball.getRadius());
+      //PVector collide = PVector.add(ball.getPos(), new PVector(a, b));
+      //norm.add(mid);
+      PVector u = PVector.mult(norm, ball.getV().dot(norm)/norm.magSq());
+      PVector w = PVector.sub(ball.getV(), u);
+      PVector newV = PVector.sub(w, u);
+      ball.getV().set(PVector.mult(newV, getBounciness()));
+      return true;
+      //float m = dist.y/dist.x;
+      //PVector v1 = new PVector((m*mid.x-mid.y)/m, 0);
+      //PVector v2 = new PVector(0, mid.y-m*mid.x);
+      //return super.bounce(ball, v1, v2);
+      /*PVector dist = PVector.sub(ball.getPos(), getPos());
+      float overlap = ball.getRadius()+getRadius()-dist.mag();
+      PVector n = //dist.normalize();
+      ball.getPos().add(dist.mult(overlap));
+      float dot = ball.getV().dot(dist);
+      (ball.getV().add(n.mult(2*dot))).mult(getBounciness());
+      return true;*/
+      //float a = ball.getRadius()*Math.abs(ball.getPos().x - getPos().x)/(getRadius()+ball.getRadius());
+      //float b = ball.getRadius()*Math.abs(ball.getPos().y - getPos().y)/(getRadius()+ball.getRadius());
+      //PVector collide = PVector.add(ball.getPos(), new PVector(a, b));
+      //ball.getV().mult(-1);
+      
+      
+    }
+    return false;
   }
-  /*if(getPos().dist(ball.getPos().copy().add(ball.getV())) <= ball.getRadius() + getRadius()){
-    PVector dist = PVector.sub(ball.getPos(), getPos());
-    PVector norm = dist.copy().set(-1*dist.y, dist.x);
-    PVector mid = PVector.add(ball.getPos(), getPos()).mult(0.5);
-    float m = dist.y/dist.x;
-    PVector v1 = new PVector((m*mid.x-mid.y)/m, 0);
-    PVector v2 = new PVector(0, mid.y-m*mid.x);
-    return super.bounce(ball, v1, v2);
-  }
-  return false;
-}*/
 }
