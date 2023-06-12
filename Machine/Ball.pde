@@ -92,8 +92,8 @@ public void bounce(Ball ball){
     normal.normalize();
     float v1i = ball.getV().dot(normal);
     float v2i = getV().dot(normal);
-    float v1f = (v1i*(getMass()-ball.getMass())+v2i*(2*ball.getMass()))/(getMass() + ball.getMass());
-    float v2f = (v2i*(ball.getMass()-getMass())+v1i*(2*getMass()))/(getMass() + ball.getMass());
+    float v1f = (v1i*(ball.getMass()-getMass())+v2i*(2*getMass()))/(getMass() + ball.getMass());
+    float v2f = (v2i*(getMass()-ball.getMass())+v1i*(2*ball.getMass()))/(getMass() + ball.getMass());
 
     ball.getV().add(normal.mult(v1f-v1i));
     getV().add(normal.mult(v2f-v2i));
