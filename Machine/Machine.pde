@@ -173,7 +173,7 @@ void draw(){
     b.move();
     b.applyForce(new PVector(0, 9.8));
     fill(0);
-    textSize(50);
+    textSize(40);
     text("Score: " + b.getScore(), 20, 50);
     text("High Score: " + highScore, 260, 50);
     textSize(20);
