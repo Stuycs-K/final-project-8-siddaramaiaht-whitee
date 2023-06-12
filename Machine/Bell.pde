@@ -48,7 +48,7 @@ class Bell extends Stopper{
         tangent.normalize();
         tangent.mult(9.81 * sin(tangent.y/tangent.x) * -1);
         ball.setV(tangent);
-        System.out.println("bells phase fix called");
+        System.out.println("bells phase fix called");///
         ballNextPos = ball.nextPos();
         
         /************TEST************/

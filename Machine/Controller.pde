@@ -2,6 +2,7 @@ class Controller {
   static final int SWING = 0;
   static final int INCREASE = 1;
   static final int DECREASE = 2;
+  static final int RESTART = 3;
   boolean [] inputs;
 
   public Controller() {
@@ -24,7 +25,7 @@ class Controller {
     if(code == 'Q')
       Machine.MODE = (Machine.MODE+1)%2;
     if(code == 'R'){
-      Machine.MODE = Machine.OVER;
+      inputs[RESTART] = true;;
     }
       
   }
@@ -36,5 +37,7 @@ class Controller {
       inputs[INCREASE] = false;
     if (code == 40)
       inputs[DECREASE] = false;
+    if (code == 'R')
+      inputs[RESTART] = false;
   }
 }

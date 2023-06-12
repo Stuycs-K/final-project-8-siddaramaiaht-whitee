@@ -87,6 +87,13 @@ void setup(){
 }
 
 void draw(){
+  if (keyboardInput.isPressed(Controller.RESTART) && MODE == OVER){
+    walls.clear();
+    bells.clear();
+    bumpers.clear();
+    setup();
+    MODE = PLAYING;
+  }
   int bounceCount = 0;
   if(MODE == 1){
     fill(255, 0, 0);
@@ -94,7 +101,7 @@ void draw(){
     text("GAME OVER", 270, 400);
     textSize(30);
     text("Press 'q' to play again.",280, 470);
-    text("Press 'r' to play again with a different layout", 130, 500);
+    text("Press 'r' to play again with a different layout.", 130, 500);
     b.getPos().set(640, 150);
     b.getV().set(0, 0);
     b.getAcc().set(0, 0);
