@@ -1,7 +1,7 @@
 class Bell extends Stopper{
-  final int green = 10;
-  final int blue = 30;
-  final int purple = 50;
+  static final int green = 1;
+  static final int blue = 3;
+  static final int purple = 5;
   final int bellK = 1;
   final int mass = 5000;
   public Bell(int x, int y, int r, int s){

@@ -79,12 +79,12 @@ void setup(){
   }*/
   //bumpers.add(
   
-  int curScore = 50;
+  int curScore = 5;
   for(int i = 0; i < 3; i++){
     for(int j = 0; j < 2; j++){
       bells.add(new Bell((int)(Math.random()*125)+225+j*200, (int)(Math.random()*125)+145+175*i, 50, curScore));
     }
-    curScore -= 20;
+    curScore -= 2;
   }  
   
   
@@ -178,6 +178,15 @@ void draw(){
     text("High Score: " + highScore, 260, 50);
     textSize(20);
     text("press 'q' to quit",650, 30);
+    textSize(20);
+    text("points for each color:", 10, 780);
+    fill(150,70,200);
+    text(Bell.purple, 200, 780);
+    fill(70,90,200);
+    text(Bell.blue, 225, 780);
+    fill(90, 200, 90);
+    text(Bell.green, 250, 780);
+    
   }
   
   if ((keyboardInput.isPressed(Controller.SWING) || left.getAngle() > left.getAngleI()) && MODE != 1){
