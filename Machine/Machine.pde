@@ -42,14 +42,15 @@ final int midGap = 220;
 
 void setup(){
   size(800, 800);
-  frameRate(20);
+  //frameRate(20);
   
   left.display();
   right.display();
   
-  b = new Ball(new PVector(410, 400), new PVector(0, 0), new PVector(0, 0));
+  b = new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0));
+  /*b = new Ball(new PVector(400, 400), new PVector(0, 0), new PVector(0, 0)); /************TEST************/
   
- /* walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
+  walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
   walls.add(new Wall(sideGap, sideGap, wallWi, height - 200, 0));
   walls.add(new Wall(sideGap, sideGap, width - 200, wallWi, 0));
   walls.add(new Wall(sideGap, height - sideGap - wallWi+20, (width - 2 * sideGap - midGap) / 2+40, wallWi, 0));
@@ -70,23 +71,23 @@ void setup(){
     walls.add(new Wall(799-i, 350+i, 1, 350-i, 0));
   }*/
   //bumpers.add(
-  /*
+  
   for(int i = 0; i < 3; i++){
     for(int j = 0; j < 2; j++){
       bells.add(new Bell((int)(Math.random()*125)+225+j*200, (int)(Math.random()*125)+145+175*i, 50, 30));
     }
   }  
-  */
+  
   
   /************TEST************/
-  bells.add(new Bell(400, 500, 50, 30));
+  //bells.add(new Bell(400, 500, 50, 30));
   /************TEST************/
   
   keyboardInput = new Controller();
 }
 
 void draw(){
-  
+  int bounceCount = 0;
   if(MODE == 1){
     fill(255, 0, 0);
     text("GAME OVER", 280, 400);
@@ -103,18 +104,21 @@ void draw(){
       walls.get(i).display();
       if(walls.get(i).bounce(b)){
         b.addScore(walls.get(i).getScore());
+        bounceCount++;
       }
     }
     for(int i = 0; i < bells.size(); i++){
       bells.get(i).display();
       if(bells.get(i).bounce(b)){
         b.addScore(bells.get(i).getScore());
+        bounceCount++;
       }
     }
     for(int i = 0; i < bumpers.size(); i++){
       bumpers.get(i).display();
       if(bumpers.get(i).bounce(b)){
         b.addScore(bumpers.get(i).getScore());
+        bounceCount++;
       }
     }
     if(left.bounce(b)){
