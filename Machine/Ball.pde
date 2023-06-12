@@ -87,7 +87,7 @@ public int getMass(){
   return mass;
 }
 public void bounce(Ball b){
-  if(PVector.add(b.getPos(), b.getV()).dist(PVector.add(getPos(), getV())) <= b.getRadius() + getRadius()){
+  if((b.getPos()).dist((getPos())) <= b.getRadius() + getRadius()){
     PVector normal = PVector.sub(b.getPos(), getPos());
     normal.normalize();
     float v2i = getV().dot(normal);

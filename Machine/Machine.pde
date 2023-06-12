@@ -54,8 +54,8 @@ void setup(){
   b = new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), 50, 80);
   balls.add(b);
   for(int i = 1; i < 10; i++){
-    int size = (int)(Math.random()*50+20);
-    balls.add(new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), size, size*2));
+    int size = (int)(Math.random()*30+40);
+    balls.add(new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), size, size+20));
   }
   
   walls.add(new Wall(width - sideGap - wallWi, sideGap, wallWi, height - 200, 0));
