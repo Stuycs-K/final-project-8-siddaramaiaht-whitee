@@ -5,7 +5,7 @@ class Controller {
   boolean [] inputs;
 
   public Controller() {
-    inputs = new boolean[3];//3 valid buttons
+    inputs = new boolean[4];//3 valid buttons
   }
 
   /**@param code: a valid constant e.g. P1_LEFT
@@ -23,6 +23,10 @@ class Controller {
       inputs[DECREASE] = true;
     if(code == 'Q')
       Machine.MODE = (Machine.MODE+1)%2;
+    if(code == 'R'){
+      Machine.MODE = Machine.OVER;
+    }
+      
   }
   
   void release(int code) {

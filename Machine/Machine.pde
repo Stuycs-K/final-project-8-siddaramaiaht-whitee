@@ -90,7 +90,11 @@ void draw(){
   int bounceCount = 0;
   if(MODE == 1){
     fill(255, 0, 0);
-    text("GAME OVER", 280, 400);
+    textSize(60);
+    text("GAME OVER", 270, 400);
+    textSize(30);
+    text("Press 'q' to play again.",280, 470);
+    text("Press 'r' to play again with a different layout", 130, 500);
     b.getPos().set(640, 150);
     b.getV().set(0, 0);
     b.getAcc().set(0, 0);
@@ -145,6 +149,8 @@ void draw(){
     fill(0);
     textSize(50);
     text("Score: " + b.getScore(), 20, 50);
+    textSize(20);
+    text("press 'q' to quit",650, 30);
   }
   
   if ((keyboardInput.isPressed(Controller.SWING) || left.getAngle() > left.getAngleI()) && MODE != 1){
