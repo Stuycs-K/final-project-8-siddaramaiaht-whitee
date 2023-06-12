@@ -74,7 +74,7 @@ class Flipper extends Stopper{
       }
       return false;
     }*/
-    if(super.bounce(ball, vertices[0], vertices[1]) || super.bounce(ball, vertices[0], vertices[2]) || super.bounce(ball, vertices[1], vertices[2])){
+    if(super.bounce(ball, vertices[0], vertices[1])){
       //System.out.println("no");
       //triangle(vertices[0].x, vertices[0].y, vertices[1].x, vertices[1].y, vertices[2].x, vertices[2].y);
       //ball.move();

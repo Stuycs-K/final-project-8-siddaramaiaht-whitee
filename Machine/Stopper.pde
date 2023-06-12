@@ -69,6 +69,11 @@ class Stopper{
       PVector w = PVector.sub(ball.getV(), u);
       PVector newV = PVector.sub(w, u);
       ball.getV().set(PVector.mult(newV, bounciness));
+      if (this instanceof Flipper && ball.getV().y < 0){
+         ball.setV(new PVector(ball.getV().x * -1, ball.getV().y));
+         System.out.println("flipper sent up not down");
+      }
+        
       
       if(PVector.dist(PVector.add(ball.getPos(), ball.getV()), closest) < ball.getRadius() && (!(this instanceof Flipper))){
         ball.setPos(new PVector(ballXI, ballYI));
@@ -77,9 +82,6 @@ class Stopper{
         slope.mult(9.81 * cos(slope.y/slope.x));
         //slope.add(9.81 * cos(slopeAngle) * -1, 9.81 * sin(slopeAngle) * 1);
         ball.setV(slope.add(new PVector(0, -5 * getBounciness())));
-        if (this instanceof Flipper){
-          System.out.println("flipper");
-        }
         System.out.println("walls phase fix called");
       }
       

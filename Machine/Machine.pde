@@ -4,6 +4,8 @@ static int PLAYING = 0;
 static int OVER = 1;
 static int MODE = PLAYING;
 
+static int highScore = 0;
+
 Ball b;
 ArrayList<Wall> walls = new ArrayList<Wall>();
 ArrayList<Bell> bells = new ArrayList<Bell>();
@@ -94,7 +96,6 @@ void draw(){
     setup();
     MODE = PLAYING;
   }
-  int bounceCount = 0;
   if(MODE == 1){
     fill(255, 0, 0);
     textSize(60);
@@ -115,21 +116,18 @@ void draw(){
       walls.get(i).display();
       if(walls.get(i).bounce(b)){
         b.addScore(walls.get(i).getScore());
-        bounceCount++;
       }
     }
     for(int i = 0; i < bells.size(); i++){
       bells.get(i).display();
       if(bells.get(i).bounce(b)){
         b.addScore(bells.get(i).getScore());
-        bounceCount++;
       }
     }
     for(int i = 0; i < bumpers.size(); i++){
       bumpers.get(i).display();
       if(bumpers.get(i).bounce(b)){
         b.addScore(bumpers.get(i).getScore());
-        bounceCount++;
       }
     }
     if(left.bounce(b)){
@@ -151,11 +149,16 @@ void draw(){
     circle(ballNextPos.x , ballNextPos.y, 10);
     /************TEST************/
     
+    if (highScore < b.getScore()){
+      highScore = b.getScore();
+    }
+    
     b.move();
     b.applyForce(new PVector(0, 9.8));
     fill(0);
     textSize(50);
     text("Score: " + b.getScore(), 20, 50);
+    text("High Score: " + highScore, 260, 50);
     textSize(20);
     text("press 'q' to quit",650, 30);
   }
