@@ -3,10 +3,11 @@ class Controller {
   static final int INCREASE = 1;
   static final int DECREASE = 2;
   static final int RESTART = 3;
+  static final int MULTIPLE = 4;
   boolean [] inputs;
 
   public Controller() {
-    inputs = new boolean[4];//3 valid buttons
+    inputs = new boolean[5];//5 valid buttons
   }
 
   /**@param code: a valid constant e.g. P1_LEFT
@@ -26,8 +27,9 @@ class Controller {
       Machine.MODE = (Machine.MODE+1)%2;
     if(code == 'R')
       inputs[RESTART] = true;;
-    if(code == 'M')
-      Machine.MODE = MULTI;
+    if(code == 'M'){
+      inputs[MULTIPLE] = true;
+    }
   }
   
   void release(int code) {
@@ -39,5 +41,7 @@ class Controller {
       inputs[DECREASE] = false;
     if (code == 'R')
       inputs[RESTART] = false;
+    if (code == 'M')
+      inputs[MULTIPLE] = false;
   }
 }

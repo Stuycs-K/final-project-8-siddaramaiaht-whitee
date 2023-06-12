@@ -116,6 +116,12 @@ void draw(){
     setup();
     MODE = PLAYING;
   }
+  if (keyboardInput.isPressed(Controller.MULTIPLE) && MODE == OVER){
+    balls.clear();
+    b = new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), 50, 80);
+    balls.add(b);
+    MODE = MULTI; 
+  }
   if(MODE == 1){
     fill(255, 0, 0);
     textSize(60);
@@ -130,7 +136,7 @@ void draw(){
     b.score = 0;
   }
   else{
-    if(MODE == 2){
+    if(MODE == MULTI){
       if(count % 150 == 0 && n < balls.size()){
         n++;
       }
@@ -145,16 +151,20 @@ void draw(){
     right.display();
     for(int i = 0; i < walls.size(); i++){
       walls.get(i).display();
-      if(walls.get(i).bounce(b) && scoreCountdown == 0){
-        b.addScore(walls.get(i).getScore());
-        scoreCountdown = scoreTimer;
+      for(int j = 0; j < balls.size(); j++){
+        if(walls.get(i).bounce(balls.get(j)) && scoreCountdown == 0){
+          balls.get(j).addScore(walls.get(i).getScore());
+          scoreCountdown = scoreTimer;
+        }
       }
     }
     for(int i = 0; i < bells.size(); i++){
       bells.get(i).display();
-      if(bells.get(i).bounce(b) && scoreCountdown == 0){
-        b.addScore(bells.get(i).getScore());
-        scoreCountdown = scoreTimer;
+      for(int j = 0; j < balls.size(); j++){
+        if(bells.get(i).bounce(balls.get(j)) && scoreCountdown == 0){
+          balls.get(j).addScore(bells.get(i).getScore());
+          scoreCountdown = scoreTimer;
+        }
       }
     }
     for(int i = 0; i < bumpers.size(); i++){
