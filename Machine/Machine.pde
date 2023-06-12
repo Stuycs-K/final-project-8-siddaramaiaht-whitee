@@ -7,6 +7,8 @@ static int MODE = PLAYING;
 static int n = 1;
 static int count = 0;
 
+static int highScore = 0;
+
 Ball b;
 ArrayList<Ball> balls = new ArrayList<Ball>();
 ArrayList<Wall> walls = new ArrayList<Wall>();
@@ -44,9 +46,14 @@ final int wallWi = 20;
 final int sideGap = 100;
 final int midGap = 220;
 
+int scoreCountdown = 0;
+final int scoreTimer = 7;
+
 void setup(){
   size(800, 800);
-  //frameRate(10);
+  //frameRate(20);
+  
+  scoreCountdown = 0;
   
   left.display();
   right.display();
@@ -80,26 +87,47 @@ void setup(){
     walls.add(new Wall(799-i, 350+i, 1, 350-i, 0));
   }*/
   //bumpers.add(
-  for(int i = 0; i < 2; i++){
+  
+  int curScore = 5;
+  for(int i = 0; i < 3; i++){
     for(int j = 0; j < 2; j++){
-      bells.add(new Bell((int)(Math.random()*125)+225+j*200, (int)(Math.random()*125)+245+175*i, 50, 30));
+      bells.add(new Bell((int)(Math.random()*125)+225+j*200, (int)(Math.random()*125)+145+175*i, 50, curScore));
     }
+    curScore -= 2;
   }  
+  
+  
+  /************TEST************/
+  //bells.add(new Bell(400, 500, 50, 30));
+  /************TEST************/
   
   keyboardInput = new Controller();
 }
 
 void draw(){
-  
+  if (scoreCountdown > 0){
+    scoreCountdown--;
+  }
+  if (keyboardInput.isPressed(Controller.RESTART) && MODE == OVER){
+    walls.clear();
+    bells.clear();
+    bumpers.clear();
+    balls.clear();
+    setup();
+    MODE = PLAYING;
+  }
   if(MODE == 1){
     fill(255, 0, 0);
-    text("GAME OVER", 280, 400);
-    for(int i = 0; i < balls.size(); i++){
-      balls.get(i).getPos().set(640, 150);
-      balls.get(i).getV().set(0, 0);
-      balls.get(i).getAcc().set(0, 0);
-      balls.get(i).score = 0;
-    }
+    textSize(60);
+    text("GAME OVER", 255, 400);
+    textSize(30);
+    text("Press 'q' to play again.",266, 470);
+    text("Press 'r' to with a different layout.", 190, 500);
+    text("Press 'm' to play multi mode.", 220, 530);
+    b.getPos().set(640, 150);
+    b.getV().set(0, 0);
+    b.getAcc().set(0, 0);
+    b.score = 0;
   }
   else{
     if(MODE == 2){
@@ -117,36 +145,39 @@ void draw(){
     right.display();
     for(int i = 0; i < walls.size(); i++){
       walls.get(i).display();
-      for(int j = 0; j < balls.size(); j++){
-        if(walls.get(i).bounce(balls.get(j))){
-          b.addScore(walls.get(i).getScore());
-        }
+      if(walls.get(i).bounce(b) && scoreCountdown == 0){
+        b.addScore(walls.get(i).getScore());
+        scoreCountdown = scoreTimer;
       }
     }
     for(int i = 0; i < bells.size(); i++){
       bells.get(i).display();
-      for(int j = 0; j < balls.size(); j++){
-        if(bells.get(i).bounce(balls.get(j))){
-          balls.get(j).addScore(bells.get(i).getScore());
-        }
+      if(bells.get(i).bounce(b) && scoreCountdown == 0){
+        b.addScore(bells.get(i).getScore());
+        scoreCountdown = scoreTimer;
       }
     }
     for(int i = 0; i < bumpers.size(); i++){
       bumpers.get(i).display();
+    
+    if (highScore < b.getScore()){
+      highScore = b.getScore();
+    }
+    
       for(int j = 0; j < balls.size(); j++){
-        if(bumpers.get(i).bounce(balls.get(j))){
+        if(bumpers.get(i).bounce(balls.get(j)) && scoreCountdown == 0){
           b.addScore(bumpers.get(i).getScore());
         }
       }
     }
     for(int j = 0; j < balls.size(); j++){
-      if(left.bounce(balls.get(j))){
+      if(left.bounce(balls.get(j)) && scoreCountdown == 0){
         b.addScore(left.getScore());
         //System.out.println("left bounce");
       }
     }
     for(int j = 0; j < balls.size(); j++){
-      if(right.bounce(balls.get(j))){
+      if(right.bounce(balls.get(j)) && scoreCountdown == 0){
         b.addScore(right.getScore());
         //System.out.println("right bounce");
       }
@@ -171,8 +202,20 @@ void draw(){
     }
 
     fill(0);
-    textSize(50);
+    textSize(40);
     text("Score: " + b.getScore(), 20, 50);
+    text("High Score: " + highScore, 260, 50);
+    textSize(20);
+    text("press 'q' to quit",650, 30);
+    textSize(20);
+    text("points for each color:", 10, 780);
+    fill(150,70,200);
+    text(Bell.purple, 200, 780);
+    fill(70,90,200);
+    text(Bell.blue, 225, 780);
+    fill(90, 200, 90);
+    text(Bell.green, 250, 780);
+    
   }
   
   if ((keyboardInput.isPressed(Controller.SWING) || left.getAngle() > left.getAngleI()) && MODE != 1){

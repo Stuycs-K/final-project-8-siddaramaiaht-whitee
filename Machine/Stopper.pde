@@ -105,6 +105,9 @@ class Stopper{
       PVector w = PVector.sub(ball.getV(), u);
       PVector newV = PVector.sub(w, u);
       ball.getV().set(PVector.mult(newV, bounciness));
+      /*if (this instanceof Flipper && ball.getV().y < 0){
+        ball.setV(new PVector(ball.getV().x, - 1* ball.getV().y));
+      }*/
       return true;
     }
     return false;

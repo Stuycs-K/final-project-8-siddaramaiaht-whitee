@@ -1,4 +1,7 @@
 class Bell extends Stopper{
+  static final int green = 1;
+  static final int blue = 3;
+  static final int purple = 5;
   final int bellK = 1;
   final int mass = 5000;
   public Bell(int x, int y, int r, int s){
@@ -10,6 +13,16 @@ class Bell extends Stopper{
     int w = this.getWidth();
     int h = this.getHeight();
     fill(100);
+    stroke(100);
+    if (getScore() == green){
+      fill(90, 200, 90);
+    }
+    else if (getScore() == blue){
+      fill(70, 90, 200);
+    }
+    else if (getScore() == purple){
+      fill(150, 70, 200);
+    }
     ellipse(x, y, w, h);
   }
   public int getRadius(){
