@@ -105,6 +105,7 @@ void setup(){
 }
 
 void draw(){
+  //System.out.println(MODE);
   if (scoreCountdown > 0){
     scoreCountdown--;
   }
@@ -117,10 +118,14 @@ void draw(){
     MODE = PLAYING;
   }
   if (keyboardInput.isPressed(Controller.MULTIPLE) && MODE == OVER){
-    balls.clear();
+    balls = new ArrayList<Ball>();
     b = new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), 50, 80);
     balls.add(b);
-    MODE = MULTI; 
+    for(int i = 1; i < 10; i++){
+      int size = (int)(Math.random()*30+30);
+      balls.add(new Ball(new PVector(640, 150), new PVector(0, 0), new PVector(0, 0), size, size-20));
+    }
+    MODE = MULTI;
   }
   if(MODE == 1){
     fill(255, 0, 0);
@@ -137,8 +142,10 @@ void draw(){
   }
   else{
     if(MODE == MULTI){
+      System.out.println("count: " + count + " | ball.size(): " + balls.size());
       if(count % 150 == 0 && n < balls.size()){
         n++;
+        System.out.println("ah");
       }
       count++;
     }
