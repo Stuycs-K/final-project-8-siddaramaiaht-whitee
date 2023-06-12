@@ -152,7 +152,7 @@ void draw(){
       walls.get(i).display();
       for(int j = 0; j < n; j++){
         if(walls.get(i).bounce(balls.get(j)) && scoreCountdown == 0){
-          balls.get(j).addScore(walls.get(i).getScore());
+          b.addScore(walls.get(i).getScore());
           scoreCountdown = scoreTimer;
         }
       }
@@ -161,15 +161,12 @@ void draw(){
       bells.get(i).display();
       for(int j = 0; j < n; j++){
         if(bells.get(i).bounce(balls.get(j)) && scoreCountdown == 0){
-          balls.get(j).addScore(bells.get(i).getScore());
+          b.addScore(bells.get(i).getScore());
           scoreCountdown = scoreTimer;
         }
       }
     }
     
-    if (highScore < b.getScore()){
-      highScore = b.getScore();
-    }
     for(int i = 0; i < bumpers.size(); i++){
       bumpers.get(i).display();
       for(int j = 0; j < n; j++){
@@ -177,6 +174,9 @@ void draw(){
           b.addScore(bumpers.get(i).getScore());
         }
       }
+    }
+    if (highScore < b.getScore()){
+      highScore = b.getScore();
     }
     for(int j = 0; j < n; j++){
       if(left.bounce(balls.get(j)) && scoreCountdown == 0){
