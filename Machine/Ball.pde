@@ -20,7 +20,7 @@ public void applyForce(PVector F){
 }
 
 public void move(){
-  //velocity.add(new PVector(0, 0.098));
+  velocity.add(new PVector(0, 0.098));
   velocity.add(acceleration);
   //velocity.y =- 9.8 / mass; gravity will be used later
   position.add(velocity);
@@ -100,19 +100,20 @@ public void addScore(int s){
 public int getMass(){
   return mass;
 }
-public void bounce(Ball ball){
-  if((ball.getPos()).dist((getPos())) <= ball.getRadius() + getRadius()){
-    PVector normal = PVector.sub(ball.getPos(), getPos());
+public void bounce(Ball b){
+  if((b.getPos()).dist((getPos())) <= b.getRadius() + getRadius()){
+    /*PVector normal = PVector.sub(ball.getPos(), getPos());
     normal.normalize();
     float v1i = ball.getV().dot(normal);
     float v2i = getV().dot(normal);
     float v1f = (v1i*(ball.getMass()-getMass())+v2i*(2*getMass()))/(getMass() + ball.getMass());
     float v2f = (v2i*(getMass()-ball.getMass())+v1i*(2*ball.getMass()))/(getMass() + ball.getMass());
 
-    ball.getV().add(normal.mult(v1f-v1i));
-    getV().add(normal.mult(v2f-v2i));
-  }
-/*
+    ball.getV().set(normal.mult(v1f-v1i));
+    getV().set(normal.mult(v2f-v2i));
+  }*/
+    PVector normal = PVector.sub(b.getPos(), getPos());
+    normal.normalize();
     PVector tangent = new PVector(-1*normal.y, normal.x);
     float v1n = normal.dot(getV());
     float v1t = tangent.dot(getV());
@@ -131,7 +132,9 @@ public void bounce(Ball ball){
     getV().set(va1);
     b.getV().set(va2);
   }
-  /*float a1 = getV().dot(n);
+  /*PVector n = PVector.sub(ball.getPos(), getPos());
+  n.normalize();
+  float a1 = getV().dot(n);
   float a2 = b.getV().dot(n);
   
   float optimizedP = (2.0 * (a1 - a2)) / (getMass() + b.getMass());
@@ -145,7 +148,7 @@ public void bounce(Ball ball){
   PVector v2 = b.getV() + optimizedP * getMass() * n;
   
   getV().set(v1);
-  b.getV().set(v2);
-}*/
+  b.getV().set(v2);*/
+//}
 }
 }

@@ -5,7 +5,7 @@ static int OVER = 1;
 static int MULTI = 2;
 static int MODE = PLAYING;
 static int n = 1;
-static int count = 0;
+static int count = 1;
 
 static int highScore = 0;
 
@@ -71,7 +71,7 @@ void setup(){
   walls.add(new Wall(sideGap, height - sideGap - wallWi+20, (width - 2 * sideGap - midGap) / 2+40, wallWi, 0));
   walls.add(new Wall(sideGap + (width - 2 * sideGap - midGap) / 2 + midGap-40, height - sideGap - wallWi+20, (width - 2 * sideGap - midGap) / 2+40, wallWi, 0));
   
-  walls.add(new Wall(width - sideGap - wallWi-100, sideGap+20, wallWi, height - 600, 0));
+  walls.add(new Wall(width - sideGap - wallWi-100-30, sideGap+20, wallWi+30, height - 600, 0));
 
   //walls.add(new Wall(sideGap + (width - 2 * sideGap - midGap) / 2 + midGap-500, height - sideGap - wallWi-100, (width - 2 * sideGap - midGap) / 2+500, wallWi, 0));
 
@@ -91,7 +91,7 @@ void setup(){
   int curScore = 5;
   for(int i = 0; i < 3; i++){
     for(int j = 0; j < 2; j++){
-      bells.add(new Bell((int)(Math.random()*125)+225+j*200, (int)(Math.random()*125)+145+175*i, 50, curScore));
+      bells.add(new Bell((int)(Math.random()*125)+225+j*200, (int)(Math.random()*100)+190+175*i, 50, curScore));
     }
     curScore -= 2;
   }  
@@ -139,6 +139,14 @@ void draw(){
     b.getV().set(0, 0);
     b.getAcc().set(0, 0);
     b.score = 0;
+    for(int j = 0; j < balls.size(); j++){
+      balls.get(j).getPos().set(640, 150);
+      balls.get(j).getV().set(0, 0);
+      balls.get(j).getAcc().set(0, 0);
+      balls.get(j).score = 0;
+      n=1;
+      count = 1;
+    }
   }
   else{
     if(MODE == MULTI){
@@ -151,14 +159,14 @@ void draw(){
     }
     else{
       n=1;
-      count = 0;
+      count = 1;
     }
     background(255);
     left.display();
     right.display();
     for(int i = 0; i < walls.size(); i++){
       walls.get(i).display();
-      for(int j = 0; j < balls.size(); j++){
+      for(int j = 0; j < n; j++){
         if(walls.get(i).bounce(balls.get(j)) && scoreCountdown == 0){
           balls.get(j).addScore(walls.get(i).getScore());
           scoreCountdown = scoreTimer;
@@ -167,33 +175,32 @@ void draw(){
     }
     for(int i = 0; i < bells.size(); i++){
       bells.get(i).display();
-      for(int j = 0; j < balls.size(); j++){
+      for(int j = 0; j < n; j++){
         if(bells.get(i).bounce(balls.get(j)) && scoreCountdown == 0){
           balls.get(j).addScore(bells.get(i).getScore());
           scoreCountdown = scoreTimer;
         }
       }
     }
-    for(int i = 0; i < bumpers.size(); i++){
-      bumpers.get(i).display();
     
     if (highScore < b.getScore()){
       highScore = b.getScore();
     }
-    
-      for(int j = 0; j < balls.size(); j++){
+    for(int i = 0; i < bumpers.size(); i++){
+      bumpers.get(i).display();
+      for(int j = 0; j < n; j++){
         if(bumpers.get(i).bounce(balls.get(j)) && scoreCountdown == 0){
           b.addScore(bumpers.get(i).getScore());
         }
       }
     }
-    for(int j = 0; j < balls.size(); j++){
+    for(int j = 0; j < n; j++){
       if(left.bounce(balls.get(j)) && scoreCountdown == 0){
         b.addScore(left.getScore());
         //System.out.println("left bounce");
       }
     }
-    for(int j = 0; j < balls.size(); j++){
+    for(int j = 0; j < n; j++){
       if(right.bounce(balls.get(j)) && scoreCountdown == 0){
         b.addScore(right.getScore());
         //System.out.println("right bounce");
@@ -212,7 +219,7 @@ void draw(){
     for(int j = 0; j < n; j++){
       balls.get(j).display();
       balls.get(j).move();
-      balls.get(j).applyForce(new PVector(0, 9.8));
+      //balls.get(j).applyForce(new PVector(0, 9.8));
       for(int i = j+1; i < n; i++){
         balls.get(j).bounce(balls.get(i));
       }
