@@ -51,7 +51,6 @@ final int scoreTimer = 7;
 
 void setup(){
   size(800, 800);
-  //frameRate(20);
   
   scoreCountdown = 0;
   
@@ -73,20 +72,12 @@ void setup(){
   
   walls.add(new Wall(width - sideGap - wallWi-100-30, sideGap+20, wallWi+30, height - 600, 0));
 
-  //walls.add(new Wall(sideGap + (width - 2 * sideGap - midGap) / 2 + midGap-500, height - sideGap - wallWi-100, (width - 2 * sideGap - midGap) / 2+500, wallWi, 0));
-
-  //walls.add(new Wall(450, 450, 100, 100, 20));
   bumpers.add(new Bumper(100, 400, 100, 700, 330, 700, 0.5, 0));
   bumpers.add(new Bumper(699, 400, 470, 700, 699, 700, 0.5, 0));
   bumpers.add(new Bumper(100, 400, 100, 100, 330, 100, 0.5, 0));
   bumpers.add(new Bumper(330, 100, width - sideGap - wallWi-100, sideGap+20, 470, 200, 0.5, 0));
-  //bumpers.add(new Bumper(700, 400, 470, 700, 700, 700, 0.5, 0));
-
-  /*for(int i = 100; i < 300; i++){
-    walls.add(new Wall(i, 350+i, 1, 350-i, 0));
-    walls.add(new Wall(799-i, 350+i, 1, 350-i, 0));
-  }*/
-  //bumpers.add(
+    
+  //bumpers.add(new Bumper(width - sideGap - wallWi-130, sideGap+height - 580, width - sideGap - 100, sideGap+height - 580, (2*width - 2*sideGap - wallWi-230)/2, sideGap+height - 540, 0.5, 0));
   
   int curScore = 5;
   for(int i = 0; i < 3; i++){
@@ -95,17 +86,10 @@ void setup(){
     }
     curScore -= 2;
   }  
-  
-  
-  /************TEST************/
-  //bells.add(new Bell(400, 500, 50, 30));
-  /************TEST************/
-  
   keyboardInput = new Controller();
 }
 
 void draw(){
-  //System.out.println(MODE);
   if (scoreCountdown > 0){
     scoreCountdown--;
   }
@@ -206,16 +190,6 @@ void draw(){
         //System.out.println("right bounce");
       }
     }
-    //System.out.println(left.getBounciness());
-    /*b.display();
-    b1.display();
-    //b1.bounce(b);
-    b1.bounce(b);
-    b.move();
-    b1.move();
-
-    b.applyForce(new PVector(0, 9.8));
-    b1.applyForce(new PVector(0, 9.8));*/
     for(int j = 0; j < n; j++){
       balls.get(j).display();
       balls.get(j).move();
@@ -278,7 +252,4 @@ void draw(){
   left.updateHitbox();
   right.updateHitbox();
   
-  //stroke(0);
-  //fill(0);
-  //rect(200, 450, 10, 10);
 }

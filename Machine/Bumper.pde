@@ -11,8 +11,6 @@ class Bumper extends Stopper{
     triangle(vertices[0].x, vertices[0].y, vertices[1].x, vertices[1].y, vertices[2].x, vertices[2].y);
   }
   public boolean bounce(Ball b){
-    //float x = this.getPos().x;
-    //float y = this.getPos().y;
     return super.bounce(b, vertices[0], vertices[1]) || super.bounce(b, vertices[0], vertices[2]) || super.bounce(b, vertices[1], vertices[2]);
   }
   public PVector[] getVertices(){

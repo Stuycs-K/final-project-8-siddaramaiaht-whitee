@@ -45,42 +45,7 @@ class Flipper extends Stopper{
   }
   
   public boolean bounce(Ball ball){
-    //left.updateHitbox();
-    //right.updateHitbox();
-    float stopX = hitbox[0][0];
-    float stopY = hitbox[1][1];
-    /*stroke(0);
-    fill(1);
-    circle(stopX, stopY, 10);*/
-    /*if (side == 1){
-      //return super.bounce(ball, stopX, stopY);
-      return true;
-    }else{
-      float ballX = ball.getPos().x;
-      float ballY = ball.getPos().y;
-      float vX = ball.getV().x;
-      float vY = ball.getV().y;
-      float r = ball.getRadius();
-      
-      if(ballX - r + vX < stopX && ballX + r + vX > stopX - getWidth() && ballY - r < stopY + getHeight() && ballY + r > stopY){
-        ball.getV().set(-1*vX, vY);
-        ball.getV().mult(getBounciness());
-        return true;
-      }
-      if(ballY - r + vY < stopY + getHeight() && ballY + r +  vY > stopY && ballX - r < stopX && ballX + r > stopX - getWidth()){
-        ball.getV().set(vX, -1*vY);
-        ball.getV().mult(getBounciness());
-        return true;
-      }
-      return false;
-    }*/
-    if(super.bounce(ball, vertices[0], vertices[1]) || super.bounce(ball, vertices[0], vertices[2]) || super.bounce(ball, vertices[1], vertices[2])){
-      //System.out.println("no");
-      //triangle(vertices[0].x, vertices[0].y, vertices[1].x, vertices[1].y, vertices[2].x, vertices[2].y);
-      //ball.move();
-      return true;
-    }
-    return false;
+    return super.bounce(ball, vertices[0], vertices[1]) || super.bounce(ball, vertices[0], vertices[2]) || super.bounce(ball, vertices[1], vertices[2]);
   }
   
   public void updateHitbox(){
@@ -89,29 +54,16 @@ class Flipper extends Stopper{
       hitbox[0][1] = leftY + len * sin(radians(angle));
       hitbox[1][0] = leftX - len * cos(radians(angle));
       hitbox[1][1] = leftY - len * sin(radians(angle));
-      /*stroke(0);
-      fill(0);
-      circle(hitbox[0][0], hitbox[0][1], 5);
-      stroke(255);
-      fill(255);
-      circle(hitbox[1][0], hitbox[1][1], 5);*/
     }
     if (side == 1){
       hitbox[0][0] = rightX - len * cos(radians(angle));
       hitbox[0][1] = rightY + len * sin(radians(angle));
       hitbox[1][0] = rightX + len * cos(radians(angle));
       hitbox[1][1] = rightY - len * sin(radians(angle));
-      /*stroke(0);
-      fill(0);
-      circle(hitbox[0][0], hitbox[0][1], 5);
-      stroke(255);
-      fill(255);
-      circle(hitbox[1][0], hitbox[1][1], 5);*/
     }
   }
   
   public void swing(){
-    //System.out.println(swingSpeed);
     if (up){
       if (angle == initialAngle){
         swingSpeed = initialSwingSpeed;
@@ -137,9 +89,6 @@ class Flipper extends Stopper{
         swingSpeed = initialSwingSpeed;
       }
     }
-    
-    //System.out.println(swingSpeed);
-    //System.out.println(up);
   }
   
   public void display(){
