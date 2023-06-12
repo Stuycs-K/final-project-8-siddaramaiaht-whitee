@@ -42,9 +42,14 @@ final int wallWi = 20;
 final int sideGap = 100;
 final int midGap = 220;
 
+int scoreCountdown = 0;
+final int scoreTimer = 10;
+
 void setup(){
   size(800, 800);
   //frameRate(20);
+  
+  scoreCountdown = 0;
   
   left.display();
   right.display();
@@ -91,6 +96,9 @@ void setup(){
 }
 
 void draw(){
+  if (scoreCountdown > 0){
+    scoreCountdown--;
+  }
   if (keyboardInput.isPressed(Controller.RESTART) && MODE == OVER){
     walls.clear();
     bells.clear();
@@ -116,28 +124,33 @@ void draw(){
     right.display();
     for(int i = 0; i < walls.size(); i++){
       walls.get(i).display();
-      if(walls.get(i).bounce(b)){
+      if(walls.get(i).bounce(b) && scoreCountdown == 0){
         b.addScore(walls.get(i).getScore());
+        scoreCountdown = scoreTimer;
       }
     }
     for(int i = 0; i < bells.size(); i++){
       bells.get(i).display();
-      if(bells.get(i).bounce(b)){
+      if(bells.get(i).bounce(b) && scoreCountdown == 0){
         b.addScore(bells.get(i).getScore());
+        scoreCountdown = scoreTimer;
       }
     }
     for(int i = 0; i < bumpers.size(); i++){
       bumpers.get(i).display();
-      if(bumpers.get(i).bounce(b)){
+      if(bumpers.get(i).bounce(b) && scoreCountdown == 0){
         b.addScore(bumpers.get(i).getScore());
+        scoreCountdown = scoreTimer;
       }
     }
-    if(left.bounce(b)){
+    if(left.bounce(b) && scoreCountdown == 0){
       b.addScore(left.getScore());
+      scoreCountdown = scoreTimer;
       //System.out.println("left bounce");
     }
-    if(right.bounce(b)){    
+    if(right.bounce(b) && scoreCountdown == 0){    
       b.addScore(right.getScore());
+      scoreCountdown = scoreTimer;
       //System.out.println("right bounce");
     }
     //System.out.println(left.getBounciness());
