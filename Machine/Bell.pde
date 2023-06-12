@@ -75,7 +75,7 @@ class Bell extends Stopper{
       if(PVector.add(ball.getPos(), ball.getV()).dist((getPos())) <= ball.getRadius() + getRadius()){
         PVector normal = PVector.sub(getPos(), ball.getPos());
         normal.normalize();
-        float v1i = b.getV().dot(normal);
+        float v1i = ball.getV().dot(normal);
         float v1f = (-1*v1i);
     
         ball.getV().add(normal.mult(v1f-v1i));
