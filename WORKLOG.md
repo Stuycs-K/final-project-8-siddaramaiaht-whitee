@@ -135,3 +135,21 @@ I made my bounce for slanted surfaces work for when the Ball needs to bounce tow
 ### 2023-6-11
 
 I worked on making sure that the Ball does not phase through objects when it is moving slowly. I also worked on trying to make it so that the Ball is not pushed downwards by the Flippers. I made it so that differently-colored Bells give you different amounts of score and made a high score. Added additional instructional text for when you quit a round. Made multi mode work better by looping through all the Balls in draw to make sure they all bounce and not just one.
+
+Working Features:
+- Ball with with position, velocity, and acceleration that has realistic physics.
+- Ball that bounces off of obstacles at the correct angle based on the stoppers.
+- Bells that add points to a global score if there is a collision with a ball.
+- Flippers that can rotate and collide with the ball properly.
+- Game screens that allow the player to start a new game or try a different mode once the game is over or is quit.
+- Multiball mode where the ball bounces off of stoppers and other balls.
+- Randomly generated levels with bells randomly placed in a designated area.
+
+Broken Features/Bugs:
+- When the ball is moving really fast, the ball might get stuck inside a stopper.
+- When the ball is moving really slow and is in contact with a stopper, the ball may phase through the stopper.
+
+Resources:
+- https://en.wikipedia.org/wiki/Elastic_collision
+- https://stackoverflow.com/questions/573084/how-to-calculate-bounce-angle
+- http://paulbourke.net/geometry/pointlineplane/
