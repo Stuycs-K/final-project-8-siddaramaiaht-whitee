@@ -22,9 +22,13 @@ I worked on making a collision method for the stoppers. I worked on the code, th
 
 I continued working on making the collision method work properly. I came up with the idea of using distance between ball and stopper to create hitboxes rather than an array. Though, I just worked on implementation for rectangular hitboxes for now.
 
-### 2023-05-27 - 2023-05-29
+### 2023-05-28
 
-I worked on the bounce method, and I removed removing the collide method to improve the viability of coding the hitboxes. I made the proper interaction for the ball and the stoppers, wall and bell, such that the ball bounces appropriately. I worked on preventing the ball from leaving the pinball area by calculating where the ball would be if it didn't pass the walls. I also merged the Display branch onto main.
+I worked on the bounce method, and I removed removing the collide method to improve the viability of coding the hitboxes. I made the proper interaction for the ball and the stoppers, wall and bell, such that the ball bounces appropriately.
+
+### 2023-05-29
+
+I worked on preventing the ball from leaving the pinball area by calculating where the ball would be if it didn't pass the walls. I also merged the Display branch onto main.
 
 ### 2023-05-30
 
@@ -62,6 +66,9 @@ I worked on finding the proper distance from a point to a line to know when to c
 
 I found the correct formulas to bounce the ball off of the slanted side. I implemented the formulas into my code, and now the ball bounces correctly off the side. I also worked on the bounce for the flippers.
 
+### 2023-06-11
+
+I fixed the code to make the ball bounce off of bells properly. I also added a multiball mode where the balls can bounce off of the stoppers and can bounce off of other balls, using the correct formulas for elastic collisions.
 
 ## Eli White
 
